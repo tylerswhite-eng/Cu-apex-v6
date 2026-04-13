@@ -379,342 +379,148 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
 
 /* ══════════════════════════════════════
-   V6 — TUTORIAL LANDING + TUTORIAL MODE
+   V6 — TUTORIAL MODE (navy/orange — matches main app)
 ══════════════════════════════════════ */
-
-/* Auth card: add a Try Without Login option */
 .auth-divider{display:flex;align-items:center;gap:10px;margin:18px 0 14px;}
 .auth-divider-line{flex:1;height:1px;background:var(--border);}
-.auth-divider-text{font-size:.7rem;color:var(--muted);white-space:nowrap;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;}
+.auth-divider-text{font-size:.68rem;color:var(--muted);white-space:nowrap;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;}
 .btn-tutorial-entry{
-  width:100%;padding:12px;
-  background:linear-gradient(135deg,var(--orange-pale),#fff3e0);
+  width:100%;padding:13px;
+  background:linear-gradient(135deg,var(--orange-pale),#fff8f2);
   border:2px solid var(--orange);border-radius:8px;
   color:var(--orange);font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;
   letter-spacing:0.04em;cursor:pointer;transition:all .2s;
   display:flex;align-items:center;justify-content:center;gap:10px;
 }
-.btn-tutorial-entry:hover{background:var(--orange);color:white;transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,99,10,0.3);}
-.auth-feature-list{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.btn-tutorial-entry:hover{background:var(--orange);color:white;transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,99,10,.3);}
+.auth-feature-list{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .auth-feature-item{
   background:var(--blue-wash);border:1px solid var(--border);border-radius:6px;
-  padding:7px 10px;font-size:.67rem;color:var(--navy-dark);
+  padding:6px 10px;font-size:.67rem;color:var(--navy-dark);
   display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;
 }
 .auth-feature-item::before{content:'✓';color:var(--orange);font-weight:700;}
 
-/* ── TUTORIAL SCREEN (standalone full screen) ── */
+/* Tutorial screen uses the SAME visual language as the main game */
 #screen-tutorial{background:var(--cream);}
 
-/* Tutorial newswire — green theme */
-.tut-newswire{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:#103d1e;border-bottom:2px solid #8b7a2e;
-  height:32px;display:flex;align-items:center;overflow:hidden;
-}
-.tut-nw-label{
-  background:#8b7a2e;color:white;font-family:'Syne',sans-serif;
-  font-weight:800;font-size:.62rem;letter-spacing:.14em;
-  padding:0 12px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;
-}
-.tut-nw-track{
-  display:flex;align-items:center;gap:40px;
-  animation:nwscroll 50s linear infinite;
-  white-space:nowrap;padding-left:16px;
-}
-.tut-nw-track span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:rgba(255,255,255,.75);}
-.tut-nw-track .up{color:#6dd68a;}.tut-nw-track .dn{color:#f28b82;}.tut-nw-track .al{color:#d4b84a;font-weight:500;}
-
-/* Tutorial game header — green brand */
-.tut-game-header{
-  position:fixed;top:32px;left:0;right:0;z-index:190;
-  background:white;border-bottom:2px solid #d4e0d6;
-  height:60px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;box-shadow:0 2px 10px rgba(26,92,46,0.08);
-}
-.tut-gh-logo{
-  width:34px;height:34px;background:#1a5c2e;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:white;
-}
-.tut-badge{
-  background:#fdf8e8;border:1px solid #d4c070;border-radius:20px;
-  padding:4px 12px;font-family:'IBM Plex Mono',monospace;font-size:.65rem;
-  color:#8b7a2e;font-weight:600;letter-spacing:.06em;
-}
-.tut-exit-btn{
-  background:var(--orange-pale);border:1px solid var(--orange);
-  color:var(--orange);font-family:'DM Sans',sans-serif;font-size:.75rem;
-  font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .15s;
-}
-.tut-exit-btn:hover{background:var(--orange);color:white;}
-
-/* Tutorial tab bar — green */
-.tut-tab-bar{
-  position:fixed;top:92px;left:0;right:0;z-index:180;
-  background:white;border-bottom:1px solid #d4e0d6;
-  padding:0 24px;display:flex;gap:2px;overflow-x:auto;
-}
-.tut-tab-btn{
-  padding:10px 14px;border:none;background:none;
-  font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;
-  color:#5a6b5e;cursor:pointer;border-bottom:2px solid transparent;
-  white-space:nowrap;transition:all .18s;margin-bottom:-1px;
-  display:flex;align-items:center;gap:6px;
-}
-.tut-tab-btn.active{color:#1a5c2e;border-bottom-color:#1a5c2e;font-weight:600;}
-.tut-rdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-
-/* Tutorial main content area */
-.tut-main{
-  padding-top:120px;padding-bottom:60px;
-  max-width:1380px;margin:0 auto;padding-left:28px;padding-right:28px;
-}
-
-/* Tutorial panels */
-.tut-panel{display:none;}
-.tut-panel.active{display:block;}
-
-/* Tutorial-themed KPIs and cards — green */
-.tut-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
-.tut-kpi{
-  background:white;border:1px solid #d4e0d6;border-radius:10px;
-  padding:14px 16px;box-shadow:0 1px 4px rgba(26,92,46,0.06);
-}
-.tut-kpi.bad{border-color:#d4a0a0;background:#fde8e8;}
-.tut-kpi.warn{border-color:#d4c070;background:#fdf5e0;}
-.tut-kpi-label{font-size:.7rem;color:#5a6b5e;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;}
-.tut-kpi-value{font-family:'IBM Plex Mono',monospace;font-size:1.35rem;font-weight:700;color:#1e2820;}
-.tut-kpi-value.good{color:#1a7a3e;}.tut-kpi-value.warn{color:#8b6a1e;}.tut-kpi-value.bad{color:#8b2020;}
-.tut-kpi-note{font-size:.62rem;color:#5a6b5e;margin-top:3px;}
-
-/* Tutorial cards */
-.tut-card{background:white;border:1px solid #d4e0d6;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(26,92,46,0.06);}
-.tut-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#1a5c2e;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e8f0ea;}
-
-/* Tutorial role headers */
-.tut-role-hdr{
-  border-radius:10px;padding:16px 18px;margin-bottom:18px;
-  display:flex;align-items:center;gap:14px;
-}
-.tut-role-hdr.ceo{background:linear-gradient(135deg,#e8f3eb,#f5faf6);border:1px solid #b8d8be;}
-.tut-role-hdr.cfo{background:linear-gradient(135deg,#e8f0f8,#f5f9ff);border:1px solid #b0ccdf;}
-.tut-role-hdr.clo{background:linear-gradient(135deg,#fdf8e8,#fffdf5);border:1px solid #ddd070;}
-.tut-role-hdr.cmo{background:linear-gradient(135deg,#f0eeff,#f8f6ff);border:1px solid #c0b0e0;}
-.tut-role-icon{
-  width:44px;height:44px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:white;flex-shrink:0;
-}
-.tut-role-hdr.ceo .tut-role-icon{background:#1a5c2e;}
-.tut-role-hdr.cfo .tut-role-icon{background:#1e6b7a;}
-.tut-role-hdr.clo .tut-role-icon{background:#8b7a2e;}
-.tut-role-hdr.cmo .tut-role-icon{background:#5a3a8b;}
-.tut-role-hdr h3{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:3px;}
-.tut-role-hdr p{font-size:.76rem;color:#5a6b5e;line-height:1.55;}
-
-/* Tutorial decision controls */
-.tut-g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.tut-dec-group{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #e8f0ea;}
-.tut-dec-group:last-child{border-bottom:none;margin-bottom:0;}
-.tut-dec-group-title{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9e8e;margin-bottom:10px;}
-.tut-dec-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed #e8f0ea;}
-.tut-dec-row:last-child{border-bottom:none;}
-.tut-dec-lbl{flex:1;min-width:0;}
-.tut-dec-lbl-main{font-size:.78rem;font-weight:600;color:#1e2820;margin-bottom:2px;}
-.tut-dec-lbl-sub{font-size:.65rem;color:#5a6b5e;line-height:1.4;}
-.tut-dec-ctrl{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.tut-dec-ctrl input[type=range]{
-  width:110px;height:4px;border-radius:2px;
-  appearance:none;outline:none;cursor:pointer;
-  background:linear-gradient(90deg,#1a5c2e 50%,#d4e0d6 50%);
-}
-.tut-dec-ctrl input[type=range]::-webkit-slider-thumb{
-  appearance:none;width:14px;height:14px;border-radius:50%;
-  background:#1a5c2e;border:2px solid white;box-shadow:0 1px 4px rgba(26,92,46,.3);
-}
-.tut-rval{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;color:#1a5c2e;min-width:44px;text-align:right;}
-.tut-tog-wrap{display:flex;border:1px solid #d4e0d6;border-radius:6px;overflow:hidden;}
-.tut-tog-btn{
-  padding:5px 10px;border:none;background:white;
-  font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:500;
-  color:#5a6b5e;cursor:pointer;transition:all .15s;
-}
-.tut-tog-btn.on{background:#1a5c2e;color:white;font-weight:600;}
-
-/* Tutorial intel & info boxes */
-.tut-intel{background:#fdf8e8;border:1px solid #d4c070;border-left:3px solid #8b7a2e;border-radius:6px;padding:12px 14px;font-size:.74rem;color:#6a5010;line-height:1.6;margin-bottom:14px;}
-.tut-intel strong{color:#8b7a2e;display:block;margin-bottom:3px;font-size:.72rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;}
-.tut-info{background:#f0f5f1;border:1px solid #d4e0d6;border-left:3px solid #1a5c2e;border-radius:6px;padding:12px 14px;font-size:.74rem;color:#5a6b5e;line-height:1.6;margin-bottom:14px;}
-.tut-info strong{color:#1a5c2e;display:block;margin-bottom:3px;font-size:.72rem;}
-
-/* Tutorial run button */
-.tut-run-btn{
-  width:100%;padding:14px;border:none;border-radius:8px;
-  background:#1a5c2e;color:white;font-family:'Syne',sans-serif;
-  font-weight:800;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;box-shadow:0 3px 14px rgba(26,92,46,.25);
-  display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;
-}
-.tut-run-btn:hover{background:#103d1e;transform:translateY(-1px);box-shadow:0 5px 20px rgba(26,92,46,.35);}
-
-/* Tutorial apex / CAMEL */
-.tut-apex-wrap{
-  display:flex;align-items:center;gap:22px;
-  background:#103d1e;color:white;border-radius:12px;
-  padding:22px 26px;margin-bottom:20px;
-}
-.tut-apex-num{font-family:'Syne',sans-serif;font-weight:800;font-size:3.2rem;line-height:1;color:#d4b84a;min-width:100px;}
-.tut-apex-lbl{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.14em;opacity:.6;margin-bottom:2px;text-transform:uppercase;}
-.tut-apex-grade{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-top:5px;}
-.tut-apex-bar-bg{flex:1;height:9px;background:rgba(255,255,255,.15);border-radius:5px;overflow:hidden;}
-.tut-apex-bar{height:100%;border-radius:5px;background:linear-gradient(90deg,#c0392b,#d4b84a,#2ecc71);transition:width .9s cubic-bezier(.4,0,.2,1);}
-.tut-apex-break{font-family:'IBM Plex Mono',monospace;font-size:.6rem;opacity:.55;margin-top:6px;}
-
-.tut-camel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
-.tut-camel-card{background:white;border:1px solid #d4e0d6;border-radius:9px;padding:14px;text-align:center;box-shadow:0 1px 4px rgba(26,92,46,.06);}
-.tut-camel-letter{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;line-height:1;margin-bottom:3px;}
-.tut-camel-name{font-size:.58rem;color:#5a6b5e;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
-.tut-camel-score{font-family:'IBM Plex Mono',monospace;font-size:.95rem;font-weight:600;}
-.tut-camel-bar-bg{width:100%;height:4px;background:#d4e0d6;border-radius:2px;margin-top:5px;overflow:hidden;}
-.tut-camel-bar{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.4,0,.2,1);}
-
-/* Tutorial examiner lines */
-.tut-ex-line{display:flex;gap:8px;padding:9px 12px;border-radius:6px;font-size:.73rem;line-height:1.5;margin-bottom:7px;border:1px solid #e8f0ea;}
-.tut-ex-line.pass{background:#e8f5ec;color:#1a7a3e;border-color:#a0d4b0;}
-.tut-ex-line.caution{background:#fdf5e0;color:#8b6a1e;border-color:#d4c070;}
-.tut-ex-line.fail{background:#fde8e8;color:#8b2020;border-color:#d4a0a0;}
-
-/* Tutorial leaderboard */
-.tut-lb-hdr{display:grid;grid-template-columns:36px 1fr 80px 80px 80px 90px;gap:8px;padding:5px 14px;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:#5a6b5e;text-transform:uppercase;margin-bottom:5px;}
-.tut-lb-hdr>*:not(:nth-child(2)){text-align:right;}
-.tut-lb-row{display:grid;grid-template-columns:36px 1fr 80px 80px 80px 90px;gap:8px;align-items:center;padding:10px 14px;border-radius:8px;margin-bottom:4px;background:white;border:1px solid #d4e0d6;font-family:'IBM Plex Mono',monospace;font-size:.72rem;}
-.tut-lb-row.me{background:#e8f3eb;border-color:#1a5c2e;}
-.tut-lb-rank{font-weight:700;color:#5a6b5e;}
-.tut-lb-rank.g1{color:#c9a227;}.tut-lb-rank.g2{color:#8a8a8a;}.tut-lb-rank.g3{color:#a07040;}
-.tut-lb-cu{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.78rem;color:#1e2820;}
-.tut-lb-cu small{font-weight:400;color:#1a5c2e;font-size:.65rem;margin-left:5px;}
-.tut-lb-v{text-align:right;}
-.tut-lb-v.good{color:#1a7a3e;font-weight:600;}.tut-lb-v.bad{color:#8b2020;}
-
-/* Tutorial financial statement overrides */
-.tut-stmt{width:100%;border-collapse:collapse;}
-.tut-stmt th{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#5a6b5e;text-align:right;padding:5px 9px;border-bottom:2px solid #d4e0d6;font-weight:500;}
-.tut-stmt th:first-child{text-align:left;}
-.tut-stmt td{font-family:'IBM Plex Mono',monospace;font-size:.72rem;padding:4px 9px;text-align:right;border-bottom:1px solid #e8f0ea;color:#2c3e30;}
-.tut-stmt td:first-child{text-align:left;}
-.tut-stmt .sec td{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#5a6b5e;padding-top:12px;background:#f0f5f1;font-family:'Syne',sans-serif;font-weight:700;}
-.tut-stmt .sub td{border-top:1px solid #d4e0d6;color:#1e2820;font-weight:600;background:#f0f5f1;}
-.tut-stmt .total td{border-top:2px solid #1a5c2e;color:#1e2820;font-weight:700;font-size:.78rem;background:#e8f3eb;}
-.tut-stmt .ind td:first-child{padding-left:20px;}
-.tut-stmt .pos{color:#1a7a3e!important;}.tut-stmt .neg{color:#8b2020!important;}
-
-/* Tutorial alert bar */
-.tut-alert{border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:.8rem;line-height:1.5;display:none;}
-.tut-alert.bad{display:flex;gap:8px;background:#fde8e8;border:1px solid #d4a0a0;color:#8b2020;}
-.tut-alert.warn{display:flex;gap:8px;background:#fdf5e0;border:1px solid #d4c070;color:#8b6a1e;}
-
-/* Tutorial heat gauge */
-.tut-heat-wrap{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:#5a6b5e;}
-.tut-heat-bar{width:64px;height:6px;background:#d4e0d6;border-radius:3px;overflow:hidden;}
-.tut-heat-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#1a7a3e,#8b6a1e,#8b2020);transition:width .5s;}
-
-/* Tutorial sec-hdr */
-.tut-sec-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;}
-.tut-sec-hdr h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:#1e2820;}
-.tut-sec-hdr span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:#5a6b5e;letter-spacing:.06em;}
-
-/* Tutorial inline term tooltips */
-.tut-term{position:relative;border-bottom:1px dashed #b5a04a;cursor:help;color:inherit;}
-.tut-term-tip{
-  display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
-  background:#1e2820;color:white;border-radius:8px;padding:10px 12px;
-  width:240px;font-size:.7rem;line-height:1.55;z-index:300;
-  box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;
-  font-style:normal;font-weight:400;
-}
-.tut-term:hover .tut-term-tip{display:block;}
-
-/* ── TUTORIAL MODAL OVERLAY (intro steps) ── */
+/* Tutorial intro modal overlay */
 #tut-modal-overlay{
   position:fixed;inset:0;z-index:1000;
-  background:rgba(10,30,15,.72);backdrop-filter:blur(4px);
+  background:rgba(0,20,40,.72);backdrop-filter:blur(4px);
   display:flex;align-items:center;justify-content:center;
 }
 #tut-modal-overlay.hidden{display:none;}
 .tut-modal{
-  background:white;border-radius:16px;
+  background:var(--white);border-radius:16px;
   width:min(680px,95vw);max-height:90vh;overflow-y:auto;
   box-shadow:0 20px 60px rgba(0,0,0,.35);
-  border-top:5px solid #1a5c2e;
+  border-top:5px solid var(--navy);
 }
 .tut-modal-header{
-  background:#103d1e;color:white;
+  background:var(--navy-dark);color:white;
   padding:24px 28px;border-radius:11px 11px 0 0;
 }
 .tut-modal-header h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;}
 .tut-modal-header p{font-size:.78rem;opacity:.7;margin-top:4px;}
 .tut-step-dots{display:flex;gap:6px;margin-top:14px;}
 .tut-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .2s;}
-.tut-dot.on{background:#d4b84a;width:22px;border-radius:4px;}
+.tut-dot.on{background:var(--orange-light);width:22px;border-radius:4px;}
 .tut-modal-body{padding:28px;}
 .tut-step-content{display:none;}
 .tut-step-content.on{display:block;}
-.tut-step-content h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:#1e2820;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.tut-step-num{width:28px;height:28px;border-radius:50%;background:#1a5c2e;color:white;font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.tut-step-content p{font-size:.82rem;color:#5a6b5e;line-height:1.65;margin-bottom:12px;}
+.tut-step-content h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--navy-dark);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.tut-step-num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:white;font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tut-step-content p{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:12px;}
 .tut-step-content ul{margin-left:20px;margin-bottom:12px;}
-.tut-step-content ul li{font-size:.8rem;color:#5a6b5e;line-height:1.6;margin-bottom:4px;}
-.tut-step-content ul li strong{color:#1e2820;}
-.tut-callout{background:#f0f5f1;border:1px solid #d4e0d6;border-left:3px solid #1a5c2e;border-radius:6px;padding:12px 14px;font-size:.78rem;color:#1e2820;line-height:1.55;margin-top:12px;}
+.tut-step-content ul li{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:4px;}
+.tut-step-content ul li strong{color:var(--charcoal);}
+.tut-callout{background:var(--blue-wash);border:1px solid var(--border);border-left:3px solid var(--navy);border-radius:6px;padding:12px 14px;font-size:.78rem;color:var(--navy-dark);line-height:1.55;margin-top:12px;}
 .tut-callout strong{display:block;margin-bottom:4px;font-size:.74rem;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;}
 .tut-role-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
-.tut-role-card-mini{border-radius:8px;padding:12px 14px;font-size:.76rem;border:1px solid #d4e0d6;background:white;}
+.tut-role-card-mini{border-radius:8px;padding:12px 14px;font-size:.76rem;border:1px solid var(--border);background:var(--white);}
 .tut-role-card-mini h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;margin-bottom:5px;}
-.tut-role-card-mini p{font-size:.72rem;color:#5a6b5e;line-height:1.5;}
-.tut-modal-footer{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:16px 28px;border-top:1px solid #e8f0ea;
-  background:#f0f5f1;border-radius:0 0 16px 16px;
-}
-.tut-btn-back{padding:9px 20px;border-radius:7px;border:1px solid #d4e0d6;background:#e8f3eb;color:#1e2820;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .15s;}
-.tut-btn-next{padding:9px 22px;border-radius:7px;border:none;background:#1a5c2e;color:white;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .15s;}
-.tut-btn-next:hover{background:#103d1e;}
-.tut-btn-skip{font-size:.72rem;color:#8a9e8e;background:none;border:none;cursor:pointer;text-decoration:underline;}
+.tut-role-card-mini p{font-size:.72rem;color:var(--muted);line-height:1.5;}
+.tut-modal-footer{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;border-top:1px solid var(--border-light);background:var(--blue-wash);border-radius:0 0 16px 16px;}
+.tut-btn-back{padding:9px 20px;border-radius:7px;border:1px solid var(--border);background:var(--white);color:var(--navy-dark);font-family:'DM Sans',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .15s;}
+.tut-btn-next{padding:9px 22px;border-radius:7px;border:none;background:var(--navy);color:white;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .15s;}
+.tut-btn-next:hover{background:var(--navy-dark);}
+.tut-btn-skip{font-size:.72rem;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;}
 
-/* ── GLOSSARY DRAWER (shared between tutorial and game) ── */
-#glossary-overlay{position:fixed;inset:0;z-index:900;background:rgba(10,30,15,.5);display:none;}
+/* Tutorial game chrome — identical to main game */
+.tut-game-header{position:fixed;top:32px;left:0;right:0;z-index:190;background:white;border-bottom:2px solid var(--border);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;box-shadow:0 2px 10px var(--shadow);}
+.tut-newswire{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--navy-dark);border-bottom:2px solid var(--orange);height:32px;display:flex;align-items:center;overflow:hidden;}
+.tut-nw-label{background:var(--orange);color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:.14em;padding:0 12px;height:100%;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;}
+.tut-nw-track{display:flex;align-items:center;gap:40px;animation:nwscroll 50s linear infinite;white-space:nowrap;padding-left:16px;}
+.tut-nw-track span{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:rgba(255,255,255,.75);}
+.tut-nw-track .up{color:#6dd68a;}.tut-nw-track .dn{color:#f28b82;}.tut-nw-track .al{color:var(--orange-light);font-weight:500;}
+.tut-mode-badge{background:var(--orange-pale);border:1px solid var(--orange);border-radius:20px;padding:4px 12px;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--orange);font-weight:700;letter-spacing:.06em;}
+.tut-exit-btn{background:var(--blue-wash);border:1px solid var(--border);color:var(--navy-dark);font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .15s;}
+.tut-exit-btn:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.tut-glossary-btn{background:var(--orange-pale);border:1px solid var(--orange);color:var(--orange);font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .15s;}
+.tut-glossary-btn:hover{background:var(--orange);color:white;}
+
+/* Tutorial tab bar — identical to main game */
+.tut-tab-bar{position:fixed;top:92px;left:0;right:0;z-index:180;background:white;border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;overflow-x:auto;}
+.tut-tab-btn{padding:10px 14px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .18s;margin-bottom:-1px;display:flex;align-items:center;gap:6px;}
+.tut-tab-btn.active{color:var(--navy-dark);border-bottom-color:var(--navy);font-weight:600;}
+.tut-rdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* Tutorial main content */
+.tut-main{padding-top:120px;padding-bottom:60px;max-width:1380px;margin:0 auto;padding-left:28px;padding-right:28px;}
+.tut-panel{display:none;}
+.tut-panel.active{display:block;}
+
+/* Reuse existing .card, .kpi, .g2, .g4, .dec-row etc from main game —
+   tutorial panels use the same CSS classes */
+
+/* Tutorial run button — orange accent */
+.tut-run-btn{width:100%;padding:14px;border:none;border-radius:8px;background:var(--orange);color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;box-shadow:0 3px 14px rgba(232,99,10,.25);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;}
+.tut-run-btn:hover{background:var(--orange-light);transform:translateY(-1px);box-shadow:0 5px 20px rgba(232,99,10,.35);}
+
+/* Glossary drawer — reuse existing styles from main game */
+#glossary-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,20,40,.5);display:none;}
 #glossary-overlay.open{display:block;}
-.glossary-drawer{position:fixed;right:0;top:0;bottom:0;width:min(480px,95vw);background:white;border-left:2px solid #d4e0d6;box-shadow:-8px 0 30px rgba(26,92,46,.14);display:flex;flex-direction:column;z-index:901;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.glossary-drawer{position:fixed;right:0;top:0;bottom:0;width:min(480px,95vw);background:var(--white);border-left:2px solid var(--border);box-shadow:-8px 0 30px var(--shadow-md);display:flex;flex-direction:column;z-index:901;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);}
 #glossary-overlay.open .glossary-drawer{transform:translateX(0);}
-.glossary-head{background:#103d1e;color:white;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.glossary-head{background:var(--navy-dark);color:white;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
 .glossary-head h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;}
 .glossary-head span{font-size:.72rem;opacity:.6;margin-top:2px;}
 .glossary-close{background:rgba(255,255,255,.15);border:none;color:white;width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
 .glossary-close:hover{background:rgba(255,255,255,.3);}
-.glossary-search-wrap{padding:14px 20px;border-bottom:1px solid #d4e0d6;flex-shrink:0;}
-.glossary-search{width:100%;padding:8px 12px;border:1px solid #d4e0d6;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none;color:#1e2820;background:#f0f5f1;}
-.glossary-search:focus{border-color:#1a5c2e;}
+.glossary-search-wrap{padding:14px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.glossary-search{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none;color:var(--charcoal);background:var(--cream);}
+.glossary-search:focus{border-color:var(--navy);}
 .glossary-filter{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
-.gloss-cat{padding:3px 10px;border-radius:20px;font-size:.64rem;font-weight:600;border:1px solid #d4e0d6;background:#f0f5f1;color:#5a6b5e;cursor:pointer;letter-spacing:.04em;transition:all .15s;}
-.gloss-cat.on{background:#1a5c2e;color:white;border-color:#1a5c2e;}
+.gloss-cat{padding:3px 10px;border-radius:20px;font-size:.64rem;font-weight:600;border:1px solid var(--border);background:var(--blue-wash);color:var(--muted);cursor:pointer;letter-spacing:.04em;transition:all .15s;}
+.gloss-cat.on{background:var(--navy);color:white;border-color:var(--navy);}
 .glossary-list{flex:1;overflow-y:auto;padding:14px 20px;}
-.glossary-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #e8f0ea;}
+.glossary-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border-light);}
 .glossary-item:last-child{border-bottom:none;}
 .glossary-term{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
-.glossary-term h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:#1e2820;}
+.glossary-term h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--navy-dark);}
 .glossary-cat-badge{font-size:.58rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;padding:2px 7px;border-radius:10px;font-weight:500;}
-.cat-capital{background:#e8f3ff;color:#1a5080;}.cat-asset{background:#e8f5ec;color:#1a7a3e;}.cat-earnings{background:#fdf5e0;color:#8b6a1e;}.cat-liquidity{background:#f0f0ff;color:#3a3a8a;}.cat-mgmt{background:#f5eeff;color:#5a2a8a;}.cat-general{background:#e8f3eb;color:#1e2820;}
-.glossary-def{font-size:.76rem;color:#5a6b5e;line-height:1.65;}
-.glossary-def .why{font-style:italic;color:#236b36;margin-top:4px;display:block;}
-.glossary-formula{font-family:'IBM Plex Mono',monospace;font-size:.68rem;background:#f0f5f1;padding:5px 9px;border-radius:4px;color:#1e2820;margin-top:6px;display:inline-block;}
+.cat-capital{background:#e8f3ff;color:#1a5080;}.cat-asset{background:var(--good-bg);color:var(--good);}.cat-earnings{background:var(--warn-bg);color:var(--warn);}.cat-liquidity{background:#f0f0ff;color:#3a3a8a;}.cat-mgmt{background:#f5eeff;color:#5a2a8a;}.cat-general{background:var(--blue-pale);color:var(--navy-dark);}
+.glossary-def{font-size:.76rem;color:var(--muted);line-height:1.65;}
+.glossary-def .why{font-style:italic;color:var(--blue);margin-top:4px;display:block;}
+.glossary-formula{font-family:'IBM Plex Mono',monospace;font-size:.68rem;background:var(--blue-wash);padding:5px 9px;border-radius:4px;color:var(--navy-dark);margin-top:6px;display:inline-block;}
+
+/* Tutorial inline term tooltips */
+.tterm{position:relative;border-bottom:1px dashed var(--orange-light);cursor:help;color:inherit;}
+.tterm-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy-dark);color:white;border-radius:8px;padding:10px 12px;width:240px;font-size:.7rem;line-height:1.55;z-index:300;box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;font-style:normal;font-weight:400;}
+.tterm:hover .tterm-tip{display:block;}
+
+/* Tutorial-specific role header (reuses .role-hdr pattern with tutorial prefix to avoid conflicts) */
+.tut-role-hdr{border-radius:10px;padding:16px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+.tut-role-hdr.ceo{background:linear-gradient(135deg,var(--blue-wash),white);border:1px solid var(--border);}
+.tut-role-hdr.cfo{background:linear-gradient(135deg,#e8f4ff,white);border:1px solid var(--border);}
+.tut-role-hdr.clo{background:linear-gradient(135deg,var(--orange-pale),white);border:1px solid #e8c898;}
+.tut-role-hdr.cmo{background:linear-gradient(135deg,#f0eeff,white);border:1px solid #c8b8e8;}
+.tut-role-hdr h3{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:3px;color:var(--navy-dark);}
+.tut-role-hdr p{font-size:.76rem;color:var(--muted);line-height:1.55;}
+.tut-role-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:white;flex-shrink:0;}
 
 @media(max-width:800px){
-  .tut-kpi-grid{grid-template-columns:1fr 1fr;}
-  .tut-g2{grid-template-columns:1fr;}
-  .tut-camel-grid{grid-template-columns:repeat(3,1fr);}
-  .tut-lb-row,.tut-lb-hdr{grid-template-columns:30px 1fr 70px 70px;}
-  .tut-lb-row>*:nth-child(n+5),.tut-lb-hdr>*:nth-child(n+5){display:none;}
   .auth-feature-list{grid-template-columns:1fr;}
   .tut-role-cards{grid-template-columns:1fr;}
 }
@@ -877,7 +683,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       <p>Credit Union Leadership Simulation</p>
     </div>
 
-    <!-- TUTORIAL ENTRY — no login required -->
+    <!-- V6: Tutorial entry — no login required -->
     <button class="btn-tutorial-entry" onclick="enterTutorialMode()">
       🎓 Explore the Simulation — No Login Needed
     </button>
@@ -918,104 +724,73 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 
 <!-- ═══════════════════════════════════
      SCREEN T: TUTORIAL MODE (no login)
+     Uses same CSS classes as main game — navy/orange scheme
 ═══════════════════════════════════ -->
 <div id="screen-tutorial" class="screen">
 
-  <!-- Tutorial Intro Modal -->
+  <!-- ── Intro Modal ── -->
   <div id="tut-modal-overlay">
     <div class="tut-modal">
       <div class="tut-modal-header">
         <h2>Welcome to CU Apex 👋</h2>
-        <p>A quick orientation before you run your first quarter</p>
+        <p>A quick orientation before you run your first quarter — no login required</p>
         <div class="tut-step-dots">
-          <div class="tut-dot on" id="td0"></div>
-          <div class="tut-dot" id="td1"></div>
-          <div class="tut-dot" id="td2"></div>
-          <div class="tut-dot" id="td3"></div>
-          <div class="tut-dot" id="td4"></div>
+          <div class="tut-dot on" id="td0"></div><div class="tut-dot" id="td1"></div>
+          <div class="tut-dot" id="td2"></div><div class="tut-dot" id="td3"></div><div class="tut-dot" id="td4"></div>
         </div>
       </div>
       <div class="tut-modal-body">
-        <!-- Step 0 -->
         <div class="tut-step-content on" id="tts0">
           <h3><span class="tut-step-num">1</span> What is CU Apex?</h3>
-          <p>CU Apex puts you in the executive chair of a real credit union — <strong>Lakeside Community Credit Union</strong>, seeded from actual NCUA call report data with $750M in assets.</p>
-          <p>Your team of four will make real management decisions each quarter and compete against other teams on a regulator-calibrated scorecard.</p>
-          <div class="tut-callout">
-            <strong>🏦 Your Institution This Session</strong>
-            Lakeside Community CU · $750M Assets · 48,240 Members · Net Worth: 16.2% (well-capitalized)<br>
-            Scenario: <em>"The Great Unwind"</em> — Rising rate environment, Q2 2023
-          </div>
+          <p>CU Apex puts you in the executive chair of a real credit union — <strong>Lakeside Community Credit Union</strong>, seeded from actual NCUA 5300 call report data with $750M in assets.</p>
+          <p>Your team of four makes real management decisions each quarter and competes against peer institutions on a regulator-calibrated scorecard.</p>
+          <div class="tut-callout"><strong>🏦 Your Institution This Session</strong>Lakeside Community CU · $750M Assets · 48,240 Members · Net Worth: ~10.6% (well-capitalized)<br>Scenario: <em>"The Great Unwind"</em> — Rising rate environment, Q1 2023</div>
         </div>
-        <!-- Step 1 -->
         <div class="tut-step-content" id="tts1">
           <h3><span class="tut-step-num">2</span> Your Team's Four Roles</h3>
-          <p>Each team member has a specific executive role with its own decisions and private information. No single role sees everything.</p>
+          <p>Each role has unique decisions and private information. No single person sees everything — you have to coordinate.</p>
           <div class="tut-role-cards">
-            <div class="tut-role-card-mini" style="border-left:3px solid #1a5c2e">
-              <h4 style="color:#1a5c2e">🟢 CEO — Strategy</h4>
-              <p>Sets capital targets, growth posture, and staffing. Only role that sees all four executive summaries.</p>
-            </div>
-            <div class="tut-role-card-mini" style="border-left:3px solid #1e6b7a">
-              <h4 style="color:#1e6b7a">🔵 CFO — Investments & Funding</h4>
-              <p>Controls the investment portfolio and deposit pricing. Sees full ALM risk data others don't receive.</p>
-            </div>
-            <div class="tut-role-card-mini" style="border-left:3px solid #8b7a2e">
-              <h4 style="color:#8b7a2e">🟡 CLO — Lending</h4>
-              <p>Sets loan volumes, rates, and credit standards. Only role with full delinquency detail by vintage.</p>
-            </div>
-            <div class="tut-role-card-mini" style="border-left:3px solid #5a3a8b">
-              <h4 style="color:#5a3a8b">🟣 CMO — Members</h4>
-              <p>Grows membership and protects deposits. Receives the private Member Satisfaction Index each quarter.</p>
-            </div>
+            <div class="tut-role-card-mini" style="border-left:3px solid var(--ceo)"><h4 style="color:var(--ceo)">CEO — Strategy</h4><p>Sets capital targets, growth posture, and staffing. Only role that sees all four executive summaries and submits the final round command.</p></div>
+            <div class="tut-role-card-mini" style="border-left:3px solid var(--cfo)"><h4 style="color:var(--cfo)">CFO — Investments & Funding</h4><p>Controls investment portfolio and deposit pricing. Sees full ALM risk picture others don't receive automatically.</p></div>
+            <div class="tut-role-card-mini" style="border-left:3px solid var(--clo)"><h4 style="color:var(--clo)">CLO — Lending</h4><p>Sets loan volumes, rates, and credit standards. Only role with full delinquency detail by product and vintage.</p></div>
+            <div class="tut-role-card-mini" style="border-left:3px solid var(--cmo)"><h4 style="color:var(--cmo)">CMO — Members</h4><p>Grows membership and protects the deposit base. Receives the private Member Satisfaction Index each quarter.</p></div>
           </div>
         </div>
-        <!-- Step 2 -->
         <div class="tut-step-content" id="tts2">
           <h3><span class="tut-step-num">3</span> How a Round Works</h3>
-          <p>Each round represents <strong>one simulated quarter (3 months)</strong>. Here's what happens:</p>
+          <p>Each round = one simulated quarter (3 months). In a real session, rounds run over days or weeks. In tutorial mode, all four roles are unlocked so you can explore everything at once.</p>
           <ul>
-            <li><strong>Economic Briefing</strong> — New conditions published in the CU News Wire. Read it — it affects your decisions.</li>
-            <li><strong>Each role submits decisions</strong> — Use the sliders and toggles in each role's tab.</li>
-            <li><strong>CEO reviews and processes</strong> — Hit ⚡ Process Quarter to run the simulation.</li>
-            <li><strong>Results published</strong> — New financial statements, CAMEL scores, and leaderboard revealed.</li>
+            <li><strong>Read the News Wire</strong> — Economic conditions scroll at the top. Fed rate, competition, HPI — they all affect your decisions.</li>
+            <li><strong>Explore each role tab</strong> — CEO, CFO, CLO, CMO. Adjust sliders and toggles. Read the private intel boxes.</li>
+            <li><strong>Hit ⚡ Process Quarter on the CEO tab</strong> — runs the calibrated engine instantly and populates all results.</li>
+            <li><strong>Review Statements, CAMEL, Leaderboard</strong> — all update with your results.</li>
           </ul>
-          <div class="tut-callout">
-            <strong>📌 In This Tutorial</strong>
-            All four role tabs are unlocked — explore them all. Adjust sliders, then click ⚡ Process Quarter on the CEO tab to run the simulation engine and see instant results.
-          </div>
+          <div class="tut-callout"><strong>📌 Tutorial Mode</strong>In a real multiplayer session, each player only sees their own role's tab and must coordinate with teammates. Here you can see everything to learn how it all fits together.</div>
         </div>
-        <!-- Step 3 -->
         <div class="tut-step-content" id="tts3">
-          <h3><span class="tut-step-num">4</span> How You're Scored</h3>
-          <p>Your team earns an <strong>Apex Score (0–100)</strong> each quarter using the CAMEL framework your real examiner uses.</p>
+          <h3><span class="tut-step-num">4</span> How You're Scored — CAMEL + Growth</h3>
+          <p>Your Apex Score (0–100) blends the <strong>CAMEL regulatory framework (75%)</strong> with a <strong>Growth Score (25%)</strong>.</p>
           <ul>
-            <li><strong>C — Capital (25%):</strong> Is your net worth ratio strong and growing?</li>
-            <li><strong>A — Asset Quality (20%):</strong> Are your loans performing?</li>
-            <li><strong>M — Management (20%):</strong> Are you operating efficiently?</li>
-            <li><strong>E — Earnings (20%):</strong> Is the credit union profitable vs. peers?</li>
-            <li><strong>L — Liquidity (15%):</strong> Can you meet obligations?</li>
+            <li><strong>C — Capital (25%):</strong> Net worth ratio — your most critical metric.</li>
+            <li><strong>A — Asset Quality (20%):</strong> Delinquency rate and underwriting discipline.</li>
+            <li><strong>M — Management (20%):</strong> Efficiency ratio — how well you control expenses.</li>
+            <li><strong>E — Earnings (20%):</strong> ROA and NIM vs. peer benchmarks.</li>
+            <li><strong>L — Liquidity (15%):</strong> Can you fund obligations? Loan-to-share and liquidity ratio.</li>
+            <li><strong>Growth Score (25%):</strong> Member growth, asset growth, and loan portfolio growth — balanced against safety.</li>
           </ul>
-          <div class="tut-callout">
-            <strong>⚠ The Most Important Rule</strong>
-            If your Net Worth Ratio falls below 7.0%, your team is placed in Prompt Corrective Action and loses growth authority. Survival before growth.
-          </div>
+          <div class="tut-callout"><strong>⚠ The Most Important Rule</strong>If Net Worth Ratio falls below 7.0%, your institution enters Prompt Corrective Action — growth authority is locked and a Capital Restoration Plan is required. Survival before growth.</div>
         </div>
-        <!-- Step 4 -->
         <div class="tut-step-content" id="tts4">
           <h3><span class="tut-step-num">5</span> Ready to Explore</h3>
-          <p>The full simulation is live and ready. Here's what to do:</p>
+          <p>The full calibrated simulation is live. Here's what to do first:</p>
           <ul>
-            <li><strong>Browse all 4 role tabs</strong> — CEO, CFO, CLO, CMO — and read their private intel briefings.</li>
-            <li><strong>Adjust any slider or toggle</strong> — see the label explain what each decision does.</li>
-            <li><strong>Click ⚡ Process Quarter on the CEO tab</strong> — runs the calibrated financial engine instantly.</li>
-            <li><strong>Check Overview, Statements, CAMEL, Leaderboard</strong> — all populate with your results.</li>
-            <li><strong>Hover any gold-underlined term</strong> — instant tooltip definitions.</li>
+            <li><strong>Browse the CEO tab</strong> — read the economic briefing. Set capital posture and growth mode.</li>
+            <li><strong>Visit CFO</strong> — note that investment yields reflect the existing book (not new-money rates). CD pricing is the competitive battleground right now.</li>
+            <li><strong>Visit CLO</strong> — read the private delinquency intelligence. Set FICO floors and provision expense carefully.</li>
+            <li><strong>Visit CMO</strong> — read the Member Satisfaction Index. Marketing budget and channel mix affect both member count and deposit stability.</li>
+            <li><strong>Hit ⚡ Process Quarter on the CEO tab</strong> to see full results.</li>
           </ul>
-          <div class="tut-callout">
-            <strong>📖 Full Glossary Available</strong>
-            Click the <strong>📖 Glossary</strong> button in the header at any time for the complete financial terms reference.
-          </div>
+          <div class="tut-callout"><strong>📖 Glossary Always Available</strong>Click the <strong>📖 Glossary</strong> button in the header at any time. Hover any <span style="border-bottom:1px dashed var(--orange-light);color:var(--orange);">orange-underlined term</span> for instant definitions inline.</div>
         </div>
       </div>
       <div class="tut-modal-footer">
@@ -1026,14 +801,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     </div>
   </div>
 
-  <!-- Glossary drawer (tutorial version, green theme) -->
+  <!-- ── Glossary Drawer ── -->
   <div id="glossary-overlay" onclick="closeGlossary(event)">
     <div class="glossary-drawer">
       <div class="glossary-head">
-        <div>
-          <h3>📖 Terms & Training Glossary</h3>
-          <span>Every term used in the simulation, explained for credit union leaders</span>
-        </div>
+        <div><h3>📖 Terms & Training Glossary</h3><span>Every term used in the simulation, explained</span></div>
         <button class="glossary-close" onclick="closeGlossaryBtn()">✕</button>
       </div>
       <div class="glossary-search-wrap">
@@ -1051,533 +823,470 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     </div>
   </div>
 
-  <!-- News Wire -->
+  <!-- ── News Wire ── -->
   <div class="tut-newswire">
     <div class="tut-nw-label">⚡ CU NEWS WIRE</div>
     <div style="overflow:hidden;flex:1">
       <div class="tut-nw-track">
-        <span class="al">FED RAISES RATES 25bps → 5.25% — 10th hike in 14 months</span>
-        <span>·</span><span class="dn">FED FUNDS: 5.25%</span>
+        <span class="al">FED RAISES RATES 25bps → 4.75% — 8th consecutive hike</span>
+        <span>·</span><span class="dn">FED FUNDS: 4.75%</span>
         <span>·</span><span>UNEMPLOYMENT: 3.4%</span>
-        <span>·</span><span class="dn">HOME PRICES: -1.2% QoQ — correction accelerating</span>
-        <span>·</span><span class="al">CD COMPETITION: Fintechs offering 5.10% 12-month — member outflows reported</span>
-        <span>·</span><span>TUTORIAL MODE · Q2 2023 · "THE GREAT UNWIND"</span>
+        <span>·</span><span class="dn">HOME PRICES: -0.8% QoQ</span>
+        <span>·</span><span class="al">DEPOSIT COMPETITION: HIGH — Fintechs at 4.75% on 12-month CDs</span>
+        <span>·</span><span>TUTORIAL MODE · Q1 2023 · "THE GREAT UNWIND"</span>
         <span>&nbsp;&nbsp;&nbsp;</span>
-        <span class="al">FED RAISES RATES 25bps → 5.25% — 10th hike in 14 months</span>
-        <span>·</span><span class="dn">FED FUNDS: 5.25%</span>
+        <span class="al">FED RAISES RATES 25bps → 4.75% — 8th consecutive hike</span>
+        <span>·</span><span class="dn">FED FUNDS: 4.75%</span>
         <span>·</span><span>UNEMPLOYMENT: 3.4%</span>
-        <span>·</span><span class="dn">HOME PRICES: -1.2% QoQ — correction accelerating</span>
-        <span>·</span><span class="al">CD COMPETITION: Fintechs offering 5.10% 12-month — member outflows reported</span>
+        <span>·</span><span class="dn">HOME PRICES: -0.8% QoQ</span>
+        <span>·</span><span class="al">DEPOSIT COMPETITION: HIGH — Fintechs at 4.75% on 12-month CDs</span>
       </div>
     </div>
   </div>
 
-  <!-- Tutorial Game Header -->
+  <!-- ── Game Header ── -->
   <div class="tut-game-header">
     <div style="display:flex;align-items:center;gap:12px">
-      <div class="tut-gh-logo">CU</div>
+      <div class="gh-logo" style="background:var(--navy)">CU</div>
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#1a5c2e;">CU <span style="color:#8b7a2e">APEX</span> <span style="font-size:.65rem;color:#5a6b5e;font-weight:400;">v6</span></div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:#5a6b5e;letter-spacing:.05em;">Lakeside Community CU · Q2 2023</div>
+        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span> <span style="font-size:.65rem;color:var(--muted);font-weight:400;">v6</span></div>
+        <div class="gh-sub">Lakeside Community CU · Q1 2023 · Tutorial Mode</div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="tut-badge">TUTORIAL MODE</div>
-      <div class="tut-heat-wrap">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="tut-mode-badge">TUTORIAL — NO LOGIN REQUIRED</div>
+      <div class="heat-wrap">
         <span>REG HEAT</span>
-        <div class="tut-heat-bar"><div class="tut-heat-fill" id="tut-heatFill" style="width:20%"></div></div>
-        <span id="tut-heatLbl" style="color:#1a7a3e;font-weight:600">LOW</span>
+        <div class="heat-bar"><div class="heat-fill" id="tut-heatFill" style="width:20%"></div></div>
+        <span id="tut-heatLbl" style="color:var(--good);font-weight:600">LOW</span>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:8px">
-      <button class="tut-exit-btn" style="background:#f0f5f1;border:1px solid #d4e0d6;color:#5a6b5e;" onclick="openGlossary()">📖 Glossary</button>
+      <button class="tut-glossary-btn" onclick="openGlossary()">📖 Glossary</button>
       <button class="tut-exit-btn" onclick="exitTutorialMode()">← Back to Sign In</button>
     </div>
   </div>
 
-  <!-- Tutorial Tab Bar -->
+  <!-- ── Tab Bar ── -->
   <div class="tut-tab-bar">
     <button class="tut-tab-btn active" onclick="tutTab('overview',this)">📊 Overview</button>
-    <button class="tut-tab-btn" onclick="tutTab('ceo',this)"><span class="tut-rdot" style="background:#1a5c2e"></span>CEO — Strategy</button>
-    <button class="tut-tab-btn" onclick="tutTab('cfo',this)"><span class="tut-rdot" style="background:#1e6b7a"></span>CFO — Investments</button>
-    <button class="tut-tab-btn" onclick="tutTab('clo',this)"><span class="tut-rdot" style="background:#8b7a2e"></span>CLO — Lending</button>
-    <button class="tut-tab-btn" onclick="tutTab('cmo',this)"><span class="tut-rdot" style="background:#5a3a8b"></span>CMO — Members</button>
+    <button class="tut-tab-btn" onclick="tutTab('ceo',this)"><span class="tut-rdot" style="background:var(--ceo)"></span>CEO — Strategy</button>
+    <button class="tut-tab-btn" onclick="tutTab('cfo',this)"><span class="tut-rdot" style="background:var(--cfo)"></span>CFO — Investments</button>
+    <button class="tut-tab-btn" onclick="tutTab('clo',this)"><span class="tut-rdot" style="background:var(--clo)"></span>CLO — Lending</button>
+    <button class="tut-tab-btn" onclick="tutTab('cmo',this)"><span class="tut-rdot" style="background:var(--cmo)"></span>CMO — Members</button>
     <button class="tut-tab-btn" onclick="tutTab('statements',this)">📋 Statements</button>
     <button class="tut-tab-btn" onclick="tutTab('camel',this)">🏅 CAMEL</button>
     <button class="tut-tab-btn" onclick="tutTab('leaderboard',this)">🏆 Leaderboard</button>
   </div>
 
-  <!-- Tutorial Main -->
+  <!-- ── Main Content ── -->
   <div class="tut-main">
-    <div id="tut-alertPCA" class="tut-alert"></div>
-    <div id="tut-alertWarn" class="tut-alert"></div>
+    <div id="tut-alertPCA" class="alert"></div>
+    <div id="tut-alertWarn" class="alert"></div>
 
-    <!-- ══ OVERVIEW ══ -->
+    <!-- OVERVIEW -->
     <div class="tut-panel active" id="tut-panel-overview">
-      <div class="tut-sec-hdr"><h2>Executive Dashboard</h2><span>LAKESIDE COMMUNITY CU · Q2 2023 · TUTORIAL — ALL ROLES UNLOCKED</span></div>
-      <div class="tut-kpi-grid">
-        <div class="tut-kpi" id="tut-kpi-nw">
-          <div class="tut-kpi-label"><span class="tut-term">Net Worth Ratio<span class="tut-term-tip"><strong>Net Worth Ratio</strong> Total equity ÷ total assets. Primary capital metric. Must stay above 7% to avoid Prompt Corrective Action. "Well-capitalized" = 7%+.</span></span></div>
-          <div class="tut-kpi-value" id="tut-ov-nw">—</div>
-          <div class="tut-kpi-note" id="tut-ov-nw-note">Run simulation to populate</div>
-        </div>
-        <div class="tut-kpi" id="tut-kpi-roa">
-          <div class="tut-kpi-label"><span class="tut-term">Return on Assets<span class="tut-term-tip"><strong>Return on Assets (ROA)</strong> Annualized net income ÷ average total assets. Peer average: ~0.72%. Above 1.0% is excellent.</span></span></div>
-          <div class="tut-kpi-value" id="tut-ov-roa">—</div>
-          <div class="tut-kpi-note">Peer avg: 0.72%</div>
-        </div>
-        <div class="tut-kpi" id="tut-kpi-nim">
-          <div class="tut-kpi-label"><span class="tut-term">Net Interest Margin<span class="tut-term-tip"><strong>Net Interest Margin (NIM)</strong> Net interest income ÷ average earning assets. The "spread" between loan/investment yield and deposit cost. Peer avg: ~3.15%.</span></span></div>
-          <div class="tut-kpi-value" id="tut-ov-nim">—</div>
-          <div class="tut-kpi-note">Peer avg: 3.15%</div>
-        </div>
-        <div class="tut-kpi" id="tut-kpi-eff">
-          <div class="tut-kpi-label"><span class="tut-term">Efficiency Ratio<span class="tut-term-tip"><strong>Efficiency Ratio</strong> Operating expenses ÷ net revenue. Lower is better. Peer avg ~74%. Above 85% is a warning sign.</span></span></div>
-          <div class="tut-kpi-value" id="tut-ov-eff">—</div>
-          <div class="tut-kpi-note">Peer avg: 74.2% · lower=better</div>
-        </div>
+      <div class="sec-hdr"><h2>Executive Dashboard</h2><span>LAKESIDE COMMUNITY CU · Q1 2023 · TUTORIAL — ALL ROLES UNLOCKED</span></div>
+      <div class="g4" style="margin-bottom:14px">
+        <div class="kpi" id="tut-kpi-nw"><div class="kpi-label"><span class="tterm">Net Worth Ratio<span class="tterm-tip"><strong>Net Worth Ratio</strong> Total equity ÷ total assets. Must stay above 7% to avoid Prompt Corrective Action. "Well-capitalized" threshold = 7%+.</span></span></div><div class="kpi-value" id="tut-ov-nw">—</div><div class="kpi-note" id="tut-ov-nw-note">Run simulation to populate</div></div>
+        <div class="kpi" id="tut-kpi-roa"><div class="kpi-label"><span class="tterm">Return on Assets<span class="tterm-tip"><strong>ROA</strong> Annualized net income ÷ average total assets. Peer average: ~0.72%. Above 1.0% is excellent.</span></span></div><div class="kpi-value" id="tut-ov-roa">—</div><div class="kpi-note">Peer avg: 0.72%</div></div>
+        <div class="kpi" id="tut-kpi-nim"><div class="kpi-label"><span class="tterm">Net Interest Margin<span class="tterm-tip"><strong>NIM</strong> Net interest income ÷ earning assets. The spread between loan/investment yield and deposit cost. Peer avg: ~3.15%.</span></span></div><div class="kpi-value" id="tut-ov-nim">—</div><div class="kpi-note">Peer avg: 3.15%</div></div>
+        <div class="kpi" id="tut-kpi-eff"><div class="kpi-label"><span class="tterm">Efficiency Ratio<span class="tterm-tip"><strong>Efficiency Ratio</strong> Operating expenses ÷ net revenue. Lower is better. Peer avg ~74.2%. Above 85% is a warning sign.</span></span></div><div class="kpi-value" id="tut-ov-eff">—</div><div class="kpi-note">Peer avg: 74.2% · lower=better</div></div>
       </div>
-      <div class="tut-kpi-grid">
-        <div class="tut-kpi"><div class="tut-kpi-label">Total Assets</div><div class="tut-kpi-value" id="tut-ov-assets">$750.0M</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label">Net Loans</div><div class="tut-kpi-value" id="tut-ov-loans">—</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label">Total Shares</div><div class="tut-kpi-value" id="tut-ov-shares">—</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label">Members</div><div class="tut-kpi-value" id="tut-ov-members">—</div></div>
+      <div class="g4" style="margin-bottom:14px">
+        <div class="kpi"><div class="kpi-label">Total Assets</div><div class="kpi-value" id="tut-ov-assets">—</div></div>
+        <div class="kpi"><div class="kpi-label">Net Loans</div><div class="kpi-value" id="tut-ov-loans">—</div></div>
+        <div class="kpi"><div class="kpi-label">Total Shares</div><div class="kpi-value" id="tut-ov-shares">—</div></div>
+        <div class="kpi"><div class="kpi-label">Members</div><div class="kpi-value" id="tut-ov-members">—</div></div>
       </div>
-      <div class="tut-kpi-grid">
-        <div class="tut-kpi"><div class="tut-kpi-label"><span class="tut-term">Loan-to-Share Ratio<span class="tut-term-tip"><strong>Loan-to-Share Ratio</strong> Total loans ÷ total shares. Above 90% means tight liquidity. Below 70% means unused capacity.</span></span></div><div class="tut-kpi-value" id="tut-ov-lts">—</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label"><span class="tut-term">Delinquency Rate<span class="tut-term-tip"><strong>Delinquency Rate</strong> Loans 60+ days past due. Below 0.8% is healthy. Leading indicator of future charge-offs.</span></span></div><div class="tut-kpi-value" id="tut-ov-del">—</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label"><span class="tut-term">Net Charge-Off Rate<span class="tut-term-tip"><strong>Net Charge-Off Rate (NCO)</strong> Loans written off as uncollectible net of recoveries. Lagging indicator — delinquency rises first.</span></span></div><div class="tut-kpi-value" id="tut-ov-nco">—</div></div>
-        <div class="tut-kpi"><div class="tut-kpi-label"><span class="tut-term">Liquidity Ratio<span class="tut-term-tip"><strong>Liquidity Ratio</strong> Liquid assets ÷ total assets. Below 5% triggers examiner concern.</span></span></div><div class="tut-kpi-value" id="tut-ov-liq">—</div></div>
+      <div class="g4" style="margin-bottom:20px">
+        <div class="kpi"><div class="kpi-label"><span class="tterm">Loan-to-Share<span class="tterm-tip"><strong>Loan-to-Share Ratio</strong> Total loans ÷ deposits. Above 90% signals tight liquidity.</span></span></div><div class="kpi-value" id="tut-ov-lts">—</div></div>
+        <div class="kpi"><div class="kpi-label"><span class="tterm">Delinquency Rate<span class="tterm-tip"><strong>Delinquency Rate</strong> Loans 60+ days past due. Leading indicator of future charge-offs. Below 0.8% is healthy.</span></span></div><div class="kpi-value" id="tut-ov-del">—</div></div>
+        <div class="kpi"><div class="kpi-label"><span class="tterm">Net Charge-Off Rate<span class="tterm-tip"><strong>NCO Rate</strong> Loans written off net of recoveries. Lagging indicator — follows delinquency by 2–4 quarters.</span></span></div><div class="kpi-value" id="tut-ov-nco">—</div></div>
+        <div class="kpi"><div class="kpi-label"><span class="tterm">Liquidity Ratio<span class="tterm-tip"><strong>Liquidity Ratio</strong> Liquid assets ÷ total assets. Below 5% triggers examiner concern.</span></span></div><div class="kpi-value" id="tut-ov-liq">—</div></div>
       </div>
-      <div class="tut-card">
-        <div class="tut-card-title">Apex Composite Score — CAMEL Weighted</div>
-        <div class="tut-apex-wrap">
+      <div class="card">
+        <div class="card-title">Apex Composite Score — CAMEL (75%) + Growth (25%)</div>
+        <div class="apex-wrap">
           <div>
-            <div class="tut-apex-lbl">Current Apex Score</div>
-            <div class="tut-apex-num" id="tut-apexNum">—</div>
-            <div class="tut-apex-grade" id="tut-apexGrade" style="color:rgba(255,255,255,.4)">Run simulation to score</div>
+            <div class="apex-lbl">Current Apex Score</div>
+            <div class="apex-num" id="tut-apexNum">—</div>
+            <div class="apex-grade" id="tut-apexGrade" style="color:rgba(255,255,255,.4)">Run simulation to score</div>
           </div>
           <div style="flex:1">
             <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:.56rem;opacity:.5;margin-bottom:5px"><span>0</span><span>PEER AVG: 62</span><span>100</span></div>
-            <div class="tut-apex-bar-bg"><div class="tut-apex-bar" id="tut-apexBar" style="width:0%"></div></div>
-            <div class="tut-apex-break" id="tut-apexBreak">Submit all four role decisions, then hit ⚡ Process Quarter on the CEO tab.</div>
+            <div class="apex-bar-bg"><div class="apex-bar" id="tut-apexBar" style="width:0%"></div></div>
+            <div class="apex-breakdown" id="tut-apexBreak">Explore all four role tabs, then hit ⚡ Process Quarter on the CEO tab.</div>
           </div>
         </div>
       </div>
-      <div class="tut-card" style="margin-top:14px;background:linear-gradient(135deg,#f0f5f1,#fafaf8);border-color:#b8d8be;">
-        <div class="tut-card-title" style="color:#8b7a2e">🎓 Tutorial Guide — What to Do Next</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.78rem;color:#5a6b5e;line-height:1.6;">
-          <div><strong style="color:#1e2820">1. Read the News Wire</strong><br>The scrolling ticker at the top shows your economic environment. Fed is at 5.25% — high cost of funds territory.</div>
-          <div><strong style="color:#1e2820">2. Explore Each Role Tab</strong><br>Click CEO, CFO, CLO, CMO tabs above — each has unique decisions and private intel briefings.</div>
-          <div><strong style="color:#1e2820">3. Adjust Sliders & Toggles</strong><br>Change any decision — hover gold-underlined terms for instant definitions.</div>
-          <div><strong style="color:#1e2820">4. Process the Quarter</strong><br>Go to the CEO tab and hit ⚡ Process Quarter. All results appear instantly: statements, CAMEL, leaderboard.</div>
+      <div class="card" style="margin-top:14px;background:linear-gradient(135deg,var(--blue-wash),white);border-color:var(--border);">
+        <div class="card-title" style="color:var(--orange)">🎓 Tutorial Guide — What To Do</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.78rem;color:var(--muted);line-height:1.6;">
+          <div><strong style="color:var(--navy-dark)">1. Read the News Wire</strong><br>The scrolling ticker shows your economic environment. Fed at 4.75%, rising — high deposit competition pressure.</div>
+          <div><strong style="color:var(--navy-dark)">2. Explore Each Role Tab</strong><br>CEO, CFO, CLO, CMO — each has unique decisions and private intel. In real play, you'd only see your own role.</div>
+          <div><strong style="color:var(--navy-dark)">3. Adjust Sliders & Toggles</strong><br>Change any decision. Hover <span style="border-bottom:1px dashed var(--orange-light);color:var(--orange);">orange-underlined terms</span> for instant definitions.</div>
+          <div><strong style="color:var(--navy-dark)">4. Process the Quarter</strong><br>Go to the CEO tab and hit ⚡ Process Quarter. Financial statements, CAMEL scores, and leaderboard populate instantly.</div>
         </div>
       </div>
     </div>
 
-    <!-- ══ CEO ══ -->
+    <!-- CEO -->
     <div class="tut-panel" id="tut-panel-ceo">
       <div class="tut-role-hdr ceo">
-        <div class="tut-role-icon">C</div>
-        <div>
-          <h3>CEO — Strategic &amp; Capital Decisions</h3>
-          <p>You set the institutional tone. Capital targets, growth posture, and staffing are yours. You're the only executive who sees all four role summaries, and you submit the final quarter-end command.</p>
-        </div>
+        <div class="tut-role-icon" style="background:var(--ceo)">C</div>
+        <div><h3>CEO — Strategic &amp; Capital Decisions</h3><p>You set the institutional tone. Capital targets, growth posture, and staffing. You're the only executive who sees all four role summaries and submits the final quarter-end command.</p></div>
       </div>
-      <div class="tut-g2">
+      <div class="g2">
         <div>
-          <div class="tut-card">
-            <div class="tut-card-title">Capital &amp; Growth Strategy</div>
-            <div class="tut-dec-group">
-              <div class="tut-dec-group-title">Capital Posture</div>
-              <div class="tut-dec-row">
-                <div class="tut-dec-lbl">
-                  <div class="tut-dec-lbl-main"><span class="tut-term">Net Worth Target<span class="tut-term-tip"><strong>Net Worth Target</strong> The floor you're managing capital to. Higher (10%+) = prioritize safety. Closer to 7% = more capital deployed for loans but thinner buffer.</span></span></div>
-                  <div class="tut-dec-lbl-sub">Sets the capital floor your team manages toward</div>
-                </div>
-                <div class="tut-dec-ctrl">
-                  <input type="range" min="700" max="1300" value="1000" step="10" oninput="tutRng(this,'tut-ceo-nwt',0.01,'%')">
-                  <span class="tut-rval" id="tut-ceo-nwt">10.00%</span>
-                </div>
+          <div class="card" style="margin-bottom:18px">
+            <div class="card-title">Capital &amp; Growth Strategy</div>
+            <div class="dec-group">
+              <div class="dec-group-title">Capital Posture</div>
+              <div class="dec-row">
+                <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Net Worth Target<span class="tterm-tip"><strong>Net Worth Target</strong> The floor you're managing capital to. Higher (10%+) = safety priority. Closer to 7% = more capital freed for loans but thinner buffer against losses.</span></span></div><div class="dec-lbl-sub">Sets the capital floor your team manages toward</div></div>
+                <div class="dec-ctrl"><input type="range" min="700" max="1300" value="1000" step="10" oninput="tutRng(this,'tut-ceo-nwt',0.01,'%')"><span class="rval" id="tut-ceo-nwt">10.00%</span></div>
               </div>
-              <div class="tut-dec-row">
-                <div class="tut-dec-lbl">
-                  <div class="tut-dec-lbl-main"><span class="tut-term">Retained Earnings Rate<span class="tut-term-tip"><strong>Retained Earnings</strong> Portion of net income kept in equity vs. paid as member dividends. Higher retention builds capital faster. Most CUs retain 85–95%.</span></span></div>
-                  <div class="tut-dec-lbl-sub">% of net income added to equity vs. paid as member dividend</div>
-                </div>
-                <div class="tut-dec-ctrl">
-                  <input type="range" min="50" max="100" value="88" step="1" oninput="tutRng(this,'tut-ceo-ret',1,'%')">
-                  <span class="tut-rval" id="tut-ceo-ret">88%</span>
+              <div class="dec-row">
+                <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Retained Earnings Rate<span class="tterm-tip"><strong>Retained Earnings</strong> % of net income kept in equity vs. paid as member dividends. Higher retention builds capital faster. Most CUs retain 85–95%.</span></span></div><div class="dec-lbl-sub">% of net income added to equity vs. paid as member dividend</div></div>
+                <div class="dec-ctrl"><input type="range" min="50" max="100" value="88" step="1" oninput="tutRng(this,'tut-ceo-ret',1,'%')"><span class="rval" id="tut-ceo-ret">88%</span></div>
+              </div>
+            </div>
+            <div class="dec-group">
+              <div class="dec-group-title">Strategic Posture</div>
+              <div class="dec-row">
+                <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Growth Mode<span class="tterm-tip"><strong>Strategic Posture</strong> DEFENSIVE = preserve capital, restrict growth. STEADY = balanced. AGGRESSIVE = maximize growth, accept more risk. Inconsistency between posture and decisions penalizes the Management CAMEL score.</span></span></div><div class="dec-lbl-sub">Affects how all decisions are weighted in the engine</div></div>
+                <div class="tog-wrap" id="tut-tog-posture">
+                  <button class="tog-btn" onclick="tutTog('tut-tog-posture',this)">DEFENSIVE</button>
+                  <button class="tog-btn on" onclick="tutTog('tut-tog-posture',this)">STEADY</button>
+                  <button class="tog-btn" onclick="tutTog('tut-tog-posture',this)">AGGRESSIVE</button>
                 </div>
               </div>
             </div>
-            <div class="tut-dec-group">
-              <div class="tut-dec-group-title">Strategic Posture</div>
-              <div class="tut-dec-row">
-                <div class="tut-dec-lbl">
-                  <div class="tut-dec-lbl-main"><span class="tut-term">Growth Mode<span class="tut-term-tip"><strong>Strategic Posture</strong> DEFENSIVE = preserve capital. STEADY = balanced. AGGRESSIVE = maximize growth, accept more risk. Inconsistency between posture and decisions penalizes Management CAMEL score.</span></span></div>
-                  <div class="tut-dec-lbl-sub">Affects how all decisions are weighted in the engine</div>
-                </div>
-                <div class="tut-tog-wrap" id="tut-tog-posture">
-                  <button class="tut-tog-btn" onclick="tutTog('tut-tog-posture',this)">DEFENSIVE</button>
-                  <button class="tut-tog-btn on" onclick="tutTog('tut-tog-posture',this)">STEADY</button>
-                  <button class="tut-tog-btn" onclick="tutTog('tut-tog-posture',this)">AGGRESSIVE</button>
-                </div>
+            <div class="dec-group">
+              <div class="dec-group-title">Staffing &amp; Culture</div>
+              <div class="dec-row">
+                <div class="dec-lbl"><div class="dec-lbl-main">FTE Growth Target</div><div class="dec-lbl-sub">% change in headcount — affects salary expense and efficiency ratio</div></div>
+                <div class="dec-ctrl"><input type="range" min="-5" max="10" value="2" step="1" oninput="tutRng(this,'tut-ceo-fte',1,'%')"><span class="rval" id="tut-ceo-fte">2%</span></div>
               </div>
-            </div>
-            <div class="tut-dec-group">
-              <div class="tut-dec-group-title">Staffing &amp; Culture</div>
-              <div class="tut-dec-row">
-                <div class="tut-dec-lbl">
-                  <div class="tut-dec-lbl-main">FTE Growth Target</div>
-                  <div class="tut-dec-lbl-sub">% change in headcount — affects salary expense and efficiency ratio</div>
-                </div>
-                <div class="tut-dec-ctrl">
-                  <input type="range" min="-5" max="10" value="2" step="1" oninput="tutRng(this,'tut-ceo-fte',1,'%')">
-                  <span class="tut-rval" id="tut-ceo-fte">2%</span>
-                </div>
-              </div>
-              <div class="tut-dec-row">
-                <div class="tut-dec-lbl">
-                  <div class="tut-dec-lbl-main">Training &amp; Retention Investment</div>
-                  <div class="tut-dec-lbl-sub">% of salary budget — boosts Management CAMEL score</div>
-                </div>
-                <div class="tut-dec-ctrl">
-                  <input type="range" min="0" max="6" value="2" step="0.5" oninput="tutRng(this,'tut-ceo-train',1,'%')">
-                  <span class="tut-rval" id="tut-ceo-train">2.0%</span>
-                </div>
+              <div class="dec-row">
+                <div class="dec-lbl"><div class="dec-lbl-main">Training &amp; Retention Investment</div><div class="dec-lbl-sub">% of salary budget — boosts Management CAMEL score</div></div>
+                <div class="dec-ctrl"><input type="range" min="0" max="6" value="2" step="0.5" oninput="tutRng(this,'tut-ceo-train',1,'%')"><span class="rval" id="tut-ceo-train">2.0%</span></div>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <div class="tut-intel">
-            <strong>📊 CEO ECONOMIC BRIEFING — Q2 2023</strong>
-            Fed raised rates 25bps to 5.25%. Yield curve remains inverted (2yr at 4.9%, 10yr at 3.84%). Competitors offering 5.10% on 12-month CDs — your CFO needs to respond or risk deposit outflows. Auto loan demand remains strong despite high rates.
+          <div class="intel-box">
+            <strong>📊 CEO ECONOMIC BRIEFING — Q1 2023</strong>
+            Fed raised rates 25bps to 4.75% — 8th consecutive hike. Yield curve inverted (2yr at 4.8%, 10yr at 3.9%). Competitors offering 4.75%+ on 12-month CDs; your CFO must respond. Loan demand moderating but still positive. NCUA peer avg net worth ratio: 10.6%.
           </div>
-          <div class="tut-info">
-            <strong>TEAM STATUS (TUTORIAL)</strong>
-            <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:#1e6b7a;display:inline-block"></span> CFO decisions: ready ✓</span>
-            <span style="display:flex;align-items:center;gap:8px;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:#8b7a2e;display:inline-block"></span> CLO decisions: ready ✓</span>
-            <span style="display:flex;align-items:center;gap:8px;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:#5a3a8b;display:inline-block"></span> CMO decisions: ready ✓</span>
+          <div class="info-box">
+            <strong>TEAM STATUS (TUTORIAL — ALL ROLES UNLOCKED)</strong>
+            <span style="display:flex;align-items:center;gap:8px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:var(--cfo);display:inline-block"></span>CFO: explore tab to set decisions</span>
+            <span style="display:flex;align-items:center;gap:8px;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:var(--clo);display:inline-block"></span>CLO: explore tab to set decisions</span>
+            <span style="display:flex;align-items:center;gap:8px;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;"><span style="width:8px;height:8px;border-radius:50%;background:var(--cmo);display:inline-block"></span>CMO: explore tab to set decisions</span>
           </div>
-          <button class="tut-run-btn" onclick="tutRunSim()">⚡ Process Q2 2023 — Submit All Decisions</button>
+          <button class="tut-run-btn" onclick="tutRunSim()">⚡ Process Q1 2023 — Submit All Decisions</button>
         </div>
       </div>
     </div>
 
-    <!-- ══ CFO ══ -->
+    <!-- CFO -->
     <div class="tut-panel" id="tut-panel-cfo">
       <div class="tut-role-hdr cfo">
-        <div class="tut-role-icon" style="background:#1e6b7a">F</div>
-        <div>
-          <h3>CFO — Investment Portfolio &amp; Funding Decisions</h3>
-          <p>You control the liability side of the balance sheet and the investment portfolio. You see the full ALM risk picture — including interest rate sensitivity data your teammates don't receive automatically.</p>
-        </div>
+        <div class="tut-role-icon" style="background:var(--cfo)">F</div>
+        <div><h3>CFO — Investment Portfolio &amp; Funding Decisions</h3><p>You control the liability side of the balance sheet and the investment portfolio. You see the full ALM risk picture — including interest rate sensitivity data your teammates don't receive automatically.</p></div>
       </div>
-      <div class="tut-g2">
-        <div class="tut-card">
-          <div class="tut-card-title">Investment Portfolio &amp; Wholesale Funding</div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Investment Allocation (% of investment portfolio)</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Cash &amp; Fed Funds<span class="tut-term-tip"><strong>Fed Funds / Cash Equivalents</strong> Overnight deposits at Fed. Zero duration risk, currently yielding ~5.1%. Pure liquidity — low yield in normal times, high yield right now.</span></span></div><div class="tut-dec-lbl-sub">Zero duration risk · currently yielding ~5.1%</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="5" max="40" value="15" step="1" oninput="tutRng(this,'tut-cfo-cash',1,'%')"><span class="tut-rval" id="tut-cfo-cash">15%</span></div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Investment Portfolio &amp; Wholesale Funding</div>
+          <div class="dec-group">
+            <div class="dec-group-title">Portfolio Mix (% of investment portfolio)</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Cash &amp; Fed Funds<span class="tterm-tip"><strong>Cash / Fed Funds</strong> Overnight deposits. Zero duration risk. Reprices daily with Fed Funds rate — currently yielding ~4.75%. Best liquidity, best yield in this environment.</span></span></div><div class="dec-lbl-sub">Zero duration · reprices daily at Fed Funds ~4.75%</div></div>
+              <div class="dec-ctrl"><input type="range" min="5" max="40" value="15" step="1" oninput="tutRng(this,'tut-cfo-cash',1,'%')"><span class="rval" id="tut-cfo-cash">15%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Short Treasuries &lt;2yr<span class="tut-term-tip"><strong>Short-Term Treasuries</strong> U.S. bonds under 2 years. Very low credit risk, low duration risk. Yielding ~4.9%. Good for liquidity while earning a return.</span></span></div><div class="tut-dec-lbl-sub">Low rate risk · current yield ~4.9%</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="60" value="30" step="5" oninput="tutRng(this,'tut-cfo-treas',1,'%')"><span class="tut-rval" id="tut-cfo-treas">30%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Short Treasuries &lt;2yr<span class="tterm-tip"><strong>Short Treasuries</strong> U.S. government bonds under 2 years. Existing book avg yield ~3.2% (purchased 2020–2022 at lower rates). Low duration risk — good for liquidity.</span></span></div><div class="dec-lbl-sub">Book avg yield ~3.2% · low rate risk</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="60" value="30" step="5" oninput="tutRng(this,'tut-cfo-treas',1,'%')"><span class="rval" id="tut-cfo-treas">30%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Agency MBS<span class="tut-term-tip"><strong>Agency Mortgage-Backed Securities</strong> Bundles of government-guaranteed mortgages. Higher yield ~5.2% but carry duration risk — when rates rise, bond prices fall, creating AOCI losses that reduce your net worth ratio.</span></span></div><div class="tut-dec-lbl-sub">Higher yield ~5.2% · duration risk → watch AOCI impact on capital</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="60" value="40" step="5" oninput="tutRng(this,'tut-cfo-mbs',1,'%')"><span class="tut-rval" id="tut-cfo-mbs">40%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Agency MBS<span class="tterm-tip"><strong>Agency MBS</strong> Mortgage-backed securities. Existing book avg yield ~2.7% (bought 2019–2022). High duration risk — rising rates create AOCI losses that directly reduce your net worth ratio, even without any cash loss.</span></span></div><div class="dec-lbl-sub">Book avg yield ~2.7% · ⚠ high duration risk → AOCI losses reduce capital</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="50" value="30" step="5" oninput="tutRng(this,'tut-cfo-mbs',1,'%')"><span class="rval" id="tut-cfo-mbs">30%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Municipal Bonds<span class="tut-term-tip"><strong>Municipal Bonds</strong> State/local government debt. Tax-exempt but lower yield (~3.8%). Medium duration risk. Good for ALM balance if heavily concentrated in short maturities elsewhere.</span></span></div><div class="tut-dec-lbl-sub">Tax-exempt ~3.8% · medium duration risk</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="30" value="15" step="5" oninput="tutRng(this,'tut-cfo-muni',1,'%')"><span class="tut-rval" id="tut-cfo-muni">15%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Municipal Bonds<span class="tterm-tip"><strong>Municipal Bonds</strong> State/local government debt. Tax-exempt. Existing book avg ~2.5%. Medium duration risk. Useful for ALM balance but adds to AOCI exposure.</span></span></div><div class="dec-lbl-sub">Book avg yield ~2.5% · tax-exempt · medium duration risk</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="40" value="25" step="5" oninput="tutRng(this,'tut-cfo-muni',1,'%')"><span class="rval" id="tut-cfo-muni">25%</span></div>
             </div>
           </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title"><span class="tut-term">FHLB Borrowings<span class="tut-term-tip"><strong>FHLB Advances</strong> Loans from the Federal Home Loan Bank. Examiners flag heavy reliance (>15% of assets) as a liquidity concern since wholesale funding is less stable than member deposits.</span></span> (% of earning assets)</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">FHLB Reliance Level</div><div class="tut-dec-lbl-sub">Current: $52M (7.0% of assets) · above 15% triggers examiner concern</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="20" value="7" step="1" oninput="tutRng(this,'tut-cfo-fhlb',1,'%')"><span class="tut-rval" id="tut-cfo-fhlb">7%</span></div>
+          <div class="dec-group">
+            <div class="dec-group-title"><span class="tterm">FHLB Borrowings<span class="tterm-tip"><strong>FHLB Advances</strong> Loans from the Federal Home Loan Bank. Useful for funding gaps. Examiners flag heavy reliance (>15% of assets) as a liquidity concern — wholesale funding is less stable than member deposits.</span></span> (% of earning assets)</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Reliance Level</div><div class="dec-lbl-sub">Current: $52M (7% of assets) · above 15% triggers examiner concern</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="25" value="7" step="1" oninput="tutRng(this,'tut-cfo-fhlb',1,'%')"><span class="rval" id="tut-cfo-fhlb">7%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">FHLB Term</div><div class="tut-dec-lbl-sub">Shorter term = more flexibility. Longer term = locks in cost certainty.</div></div>
-              <div class="tut-tog-wrap" id="tut-tog-fhlbterm">
-                <button class="tut-tog-btn on" onclick="tutTog('tut-tog-fhlbterm',this)">OVERNIGHT</button>
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">1 YR</button>
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">3 YR</button>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Term</div><div class="dec-lbl-sub">Overnight = most flexible. Longer term = locks in rate certainty.</div></div>
+              <div class="tog-wrap" id="tut-tog-fhlbterm">
+                <button class="tog-btn on" onclick="tutTog('tut-tog-fhlbterm',this)">OVERNIGHT</button>
+                <button class="tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">1 YR</button>
+                <button class="tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">3 YR</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="tut-card">
-          <div class="tut-card-title">Deposit Rate Strategy</div>
-          <div class="tut-intel">
-            <strong>🔍 CFO ALM INTELLIGENCE (EYES ONLY)</strong>
-            Duration gap: +2.8 years (assets longer than liabilities). AOCI mark currently -$3.7M — rising rates will widen this further if MBS allocation stays high. Competitor 12-month CD rates: 5.10%. Your current rate: 4.80%. Estimated at-risk deposits: $48M in certificates repricing this quarter.
+        <div class="card">
+          <div class="card-title">Deposit Rate Strategy</div>
+          <div class="intel-box">
+            <strong>⚠ CFO ALM INTELLIGENCE (EYES ONLY)</strong>
+            Duration gap: +3.1 years (assets longer than liabilities). AOCI currently -$8.2M from prior rate hikes — further MBS/muni exposure will compound this. Competitor 12-month CD rate: 5.20%. Your current rate: 4.65%. Estimated at-risk deposits repricing this quarter: ~$62M in certificates.
           </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Deposit Pricing (annual rates)</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Share Draft (Checking)</div><div class="tut-dec-lbl-sub">Peer avg: 0.18% · rate-insensitive product</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="100" value="20" step="5" oninput="tutRng(this,'tut-cfo-sd',0.01,'%')"><span class="tut-rval" id="tut-cfo-sd">0.20%</span></div>
+          <div class="dec-group">
+            <div class="dec-group-title">Deposit Pricing (annual rates)</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Share Draft (Checking)</div><div class="dec-lbl-sub">Market avg: 0.08% · rate-insensitive product</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="50" value="5" step="1" oninput="tutRng(this,'tut-cfo-sd',0.01,'%')"><span class="rval" id="tut-cfo-sd">0.05%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Regular Shares (Savings)</div><div class="tut-dec-lbl-sub">Peer avg: 0.55%</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="200" value="55" step="5" oninput="tutRng(this,'tut-cfo-rs',0.01,'%')"><span class="tut-rval" id="tut-cfo-rs">0.55%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Regular Shares (Savings)</div><div class="dec-lbl-sub">Market avg: 0.55%</div></div>
+              <div class="dec-ctrl"><input type="range" min="10" max="150" value="50" step="5" oninput="tutRng(this,'tut-cfo-rs',0.01,'%')"><span class="rval" id="tut-cfo-rs">0.50%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Money Market</div><div class="tut-dec-lbl-sub">Market rate: 1.85% · members shopping aggressively</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="50" max="400" value="175" step="5" oninput="tutRng(this,'tut-cfo-mm',0.01,'%')"><span class="tut-rval" id="tut-cfo-mm">1.75%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Money Market</div><div class="dec-lbl-sub">Market avg: 2.00% · members actively shopping</div></div>
+              <div class="dec-ctrl"><input type="range" min="50" max="350" value="170" step="10" oninput="tutRng(this,'tut-cfo-mm',0.01,'%')"><span class="rval" id="tut-cfo-mm">1.70%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">12-Month Certificate<span class="tut-term-tip"><strong>Share Certificates</strong> The CU equivalent of CDs. Fixed-rate, fixed-term deposits. The most rate-sensitive product — members actively compare rates and move significant balances for even 20–50bps differences.</span></span></div><div class="tut-dec-lbl-sub">Market: 5.10% · below market = deposit outflow risk</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="200" max="600" value="480" step="5" oninput="tutRng(this,'tut-cfo-cert12',0.01,'%')"><span class="tut-rval" id="tut-cfo-cert12">4.80%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">12-Month Certificate<span class="tterm-tip"><strong>Share Certificates</strong> The CU equivalent of CDs. The most rate-sensitive deposit product. Members move significant balances for even 20–50bps. Market at 5.20% — this is the battleground for deposit retention.</span></span></div><div class="dec-lbl-sub">Market: 5.20% — THE deposit battleground right now</div></div>
+              <div class="dec-ctrl"><input type="range" min="200" max="600" value="465" step="5" oninput="tutRng(this,'tut-cfo-cert12',0.01,'%')"><span class="rval" id="tut-cfo-cert12">4.65%</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">36-Month Certificate</div><div class="tut-dec-lbl-sub">Market: 4.75% · locks in longer-term funding</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="200" max="600" value="455" step="5" oninput="tutRng(this,'tut-cfo-cert36',0.01,'%')"><span class="tut-rval" id="tut-cfo-cert36">4.55%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">36-Month Certificate</div><div class="dec-lbl-sub">Market avg: 4.40%</div></div>
+              <div class="dec-ctrl"><input type="range" min="150" max="550" value="390" step="5" oninput="tutRng(this,'tut-cfo-cert36',0.01,'%')"><span class="rval" id="tut-cfo-cert36">3.90%</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══ CLO ══ -->
+    <!-- CLO -->
     <div class="tut-panel" id="tut-panel-clo">
       <div class="tut-role-hdr clo">
-        <div class="tut-role-icon" style="background:#8b7a2e">L</div>
-        <div>
-          <h3>CLO — Loan Portfolio &amp; Credit Decisions</h3>
-          <p>You control loan volumes, rates, and credit standards. You are the only role with full delinquency trend detail by product and vintage — use it to manage the portfolio proactively.</p>
-        </div>
+        <div class="tut-role-icon" style="background:var(--clo)">L</div>
+        <div><h3>CLO — Loan Portfolio &amp; Credit Decisions</h3><p>You grow the asset side. Loan volume, pricing, and credit standards are yours. You receive full delinquency data by product and vintage that others only see in summary.</p></div>
       </div>
-      <div class="tut-g2">
-        <div class="tut-card">
-          <div class="tut-card-title">Loan Origination Strategy</div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Auto Loans · Market rate: 7.50%</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Auto Loan Volume (Qtr, $M)</div><div class="tut-dec-lbl-sub">Current run rate ~$30M/qtr · strong demand despite rates</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="10" max="60" value="32" step="1" oninput="tutRng(this,'tut-clo-autov',1,'M','$')"><span class="tut-rval" id="tut-clo-autov">$32M</span></div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Loan Volume &amp; Pricing</div>
+          <div class="dec-group">
+            <div class="dec-group-title">Origination Targets &amp; Rates</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Consumer Auto Volume ($M/qtr)</div><div class="dec-lbl-sub">Market rate: 7.20% · still strong demand despite high rates</div></div>
+              <div class="dec-ctrl"><input type="range" min="5" max="45" value="18" step="1" oninput="tutRng(this,'tut-clo-autov',1,'M','$')"><span class="rval" id="tut-clo-autov">$18M</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Auto Loan Rate</div><div class="tut-dec-lbl-sub">Below market = competitive, boosts volume but squeezes margin</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="400" max="1000" value="720" step="5" oninput="tutRng(this,'tut-clo-autor',0.01,'%')"><span class="tut-rval" id="tut-clo-autor">7.20%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Auto Loan Rate</div><div class="dec-lbl-sub">Below market = competitive volume, squeezes NIM</div></div>
+              <div class="dec-ctrl"><input type="range" min="500" max="1000" value="715" step="5" oninput="tutRng(this,'tut-clo-autor',0.01,'%')"><span class="rval" id="tut-clo-autor">7.15%</span></div>
             </div>
-          </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Mortgage Loans · Market rate: 7.10%</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Mortgage Volume (Qtr, $M)</div><div class="tut-dec-lbl-sub">Demand suppressed at these rate levels — realistic expectation: $6–12M</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="0" max="30" value="8" step="1" oninput="tutRng(this,'tut-clo-mortv',1,'M','$')"><span class="tut-rval" id="tut-clo-mortv">$8M</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">First Mortgage Volume ($M/qtr)</div><div class="dec-lbl-sub">Market rate: 7.10% · ⚠ adds long-duration assets to balance sheet</div></div>
+              <div class="dec-ctrl"><input type="range" min="0" max="30" value="8" step="1" oninput="tutRng(this,'tut-clo-mortv',1,'M','$')"><span class="rval" id="tut-clo-mortv">$8M</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Mortgage Rate</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="500" max="900" value="695" step="5" oninput="tutRng(this,'tut-clo-mortr',0.01,'%')"><span class="tut-rval" id="tut-clo-mortr">6.95%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Mortgage Rate</div></div>
+              <div class="dec-ctrl"><input type="range" min="500" max="900" value="695" step="5" oninput="tutRng(this,'tut-clo-mortr',0.01,'%')"><span class="rval" id="tut-clo-mortr">6.95%</span></div>
             </div>
-          </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Unsecured Personal · Market rate: 13.50%</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Personal Loan Volume<span class="tut-term-tip"><strong>Unsecured Personal Loans</strong> No collateral backing. Highest rate but also highest expected loss rate. FICO floors critical — below-620 FICO segment has meaningfully higher delinquency.</span></span> (Qtr, $M)</div><div class="tut-dec-lbl-sub">Highest risk/reward product · monitor FICO floors carefully</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="1" max="20" value="7" step="1" oninput="tutRng(this,'tut-clo-persv',1,'M','$')"><span class="tut-rval" id="tut-clo-persv">$7M</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Personal Loan Volume ($M/qtr)</div><div class="dec-lbl-sub">Market: 13.50% · highest risk/reward — FICO floors critical</div></div>
+              <div class="dec-ctrl"><input type="range" min="1" max="20" value="7" step="1" oninput="tutRng(this,'tut-clo-persv',1,'M','$')"><span class="rval" id="tut-clo-persv">$7M</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Personal Loan Rate</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="800" max="1800" value="1290" step="5" oninput="tutRng(this,'tut-clo-persr',0.01,'%')"><span class="tut-rval" id="tut-clo-persr">12.90%</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Personal Loan Rate</div></div>
+              <div class="dec-ctrl"><input type="range" min="800" max="1800" value="1250" step="5" oninput="tutRng(this,'tut-clo-persr',0.01,'%')"><span class="rval" id="tut-clo-persr">12.50%</span></div>
             </div>
           </div>
         </div>
-        <div class="tut-card">
-          <div class="tut-card-title">Credit Standards &amp; Loss Management</div>
-          <div class="tut-intel">
-            <strong>🔍 CLO PORTFOLIO INTELLIGENCE (EYES ONLY)</strong>
-            Auto 60+ day delinquency: <strong>0.68%</strong> (▲ 8bps vs. last quarter). Vintage 2022 auto loans showing elevated stress — originated at peak demand with loosened FICO floors. Mortgage portfolio performing well at 0.21%. Unsecured personal: 1.42% — watch the 580–620 FICO segment. Peer avg total delinquency: 0.72%.
+        <div>
+          <div class="intel-box">
+            <strong>🔍 CLO PORTFOLIO INTELLIGENCE — EYES ONLY</strong>
+            Auto 60+ day delinquency: <strong>0.68%</strong> (▲ 8bps vs last quarter). Vintage 2022 auto loans showing elevated stress — originated at peak demand with loosened FICO floors.<br>
+            Mortgage delinquency: <strong>0.21%</strong> — performing well<br>
+            Personal loan delinquency: <strong>1.42%</strong> — watch 580–620 FICO segment<br>
+            Peer avg total delinquency: 0.72%
           </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Underwriting Standards</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Minimum FICO — Auto<span class="tut-term-tip"><strong>FICO Score Threshold</strong> Minimum credit score to qualify. Lower thresholds = more volume but higher expected delinquency. 720+ = prime, 660–720 = near-prime, below 620 = subprime with meaningfully higher loss rates.</span></span></div><div class="tut-dec-lbl-sub">Lower = more volume but rising delinquency risk</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="580" max="720" value="640" step="10" oninput="tutRng(this,'tut-clo-fico',1,'')"><span class="tut-rval" id="tut-clo-fico">640</span></div>
+          <div class="card">
+            <div class="card-title">Credit Standards &amp; Loss Management</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Min FICO — Auto<span class="tterm-tip"><strong>FICO Threshold</strong> Minimum credit score to qualify. Lower = more volume but higher expected delinquency. 720+ = prime. 660–720 = near-prime. Below 620 = subprime with meaningfully higher loss rates.</span></span></div><div class="dec-lbl-sub">Lower = more volume, higher delinquency risk</div></div>
+              <div class="dec-ctrl"><input type="range" min="580" max="720" value="640" step="10" oninput="tutRng(this,'tut-clo-fico',1,'')"><span class="rval" id="tut-clo-fico">640</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Max LTV — Mortgage<span class="tut-term-tip"><strong>Loan-to-Value Ratio (LTV)</strong> Loan balance ÷ property value. Higher LTV = less borrower equity = higher loss severity if default occurs. With home prices falling -1.2% QoQ, high-LTV loans face real underwater risk.</span></span></div><div class="tut-dec-lbl-sub">With HPI falling, high LTV = real loss severity risk</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="75" max="97" value="90" step="1" oninput="tutRng(this,'tut-clo-ltv',1,'%')"><span class="tut-rval" id="tut-clo-ltv">90%</span></div>
+            <div class="dec-row" style="margin-top:10px">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Max LTV — Mortgage<span class="tterm-tip"><strong>Loan-to-Value (LTV)</strong> Loan balance ÷ property value. Higher LTV = less borrower equity = higher loss severity if default. With HPI falling, high-LTV loans face real underwater risk.</span></span></div><div class="dec-lbl-sub">With HPI falling, high LTV = real loss severity risk</div></div>
+              <div class="dec-ctrl"><input type="range" min="75" max="97" value="90" step="1" oninput="tutRng(this,'tut-clo-ltv',1,'%')"><span class="rval" id="tut-clo-ltv">90%</span></div>
             </div>
-          </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Loss Provisioning</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Provision Expense (annualized bps)<span class="tut-term-tip"><strong>Provision for Loan Losses</strong> Expense recorded each quarter to build the ALLL reserve. Too little = examiner flags under-reserved. Too much = unnecessarily suppresses earnings. Current ALLL coverage: 1.05%. Peer avg: 1.10%.</span></span></div><div class="tut-dec-lbl-sub">Current ALLL coverage: 1.05% · Peer avg: 1.10% · keep above peer</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="20" max="120" value="60" step="5" oninput="tutRng(this,'tut-clo-prov',1,'bps')"><span class="tut-rval" id="tut-clo-prov">60bps</span></div>
+            <div class="dec-row" style="margin-top:10px">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Provision Expense (bps)<span class="tterm-tip"><strong>Provision for Loan Losses</strong> Quarterly expense to build the ALLL reserve. Too little = examiner flags under-reserved. Too much = suppresses earnings unnecessarily. Current ALLL coverage: 1.05%. Peer avg: 1.10%.</span></span></div><div class="dec-lbl-sub">Current ALLL coverage 1.05% · peer avg 1.10%</div></div>
+              <div class="dec-ctrl"><input type="range" min="20" max="120" value="60" step="5" oninput="tutRng(this,'tut-clo-prov',1,'bps')"><span class="rval" id="tut-clo-prov">60bps</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══ CMO ══ -->
+    <!-- CMO -->
     <div class="tut-panel" id="tut-panel-cmo">
       <div class="tut-role-hdr cmo">
-        <div class="tut-role-icon" style="background:#5a3a8b">M</div>
-        <div>
-          <h3>CMO — Member Growth &amp; Deposit Strategy</h3>
-          <p>You grow the membership base and protect deposits. You receive the private Member Satisfaction Index each quarter — a leading indicator of attrition and deposit stability.</p>
-        </div>
+        <div class="tut-role-icon" style="background:var(--cmo)">M</div>
+        <div><h3>CMO — Member Growth &amp; Deposit Strategy</h3><p>You grow the membership base and protect the deposit base. You receive the private Member Satisfaction Index each quarter — a leading indicator of attrition and deposit stability.</p></div>
       </div>
-      <div class="tut-g2">
-        <div class="tut-card">
-          <div class="tut-card-title">Member Acquisition &amp; Retention</div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Marketing Investment</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Total Marketing Budget (Qtr, $K)</div><div class="tut-dec-lbl-sub">Current run rate $420K/qtr · peer avg $380K/qtr</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="150" max="1000" value="450" step="25" oninput="tutRng(this,'tut-cmo-mktg',1,'K','$')"><span class="tut-rval" id="tut-cmo-mktg">$450K</span></div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Member Acquisition &amp; Experience</div>
+          <div class="dec-group">
+            <div class="dec-group-title">Marketing Investment</div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Marketing Budget (Qtr, $K)</div><div class="dec-lbl-sub">Current run rate $450K · peer avg $380K</div></div>
+              <div class="dec-ctrl"><input type="range" min="150" max="1000" value="450" step="25" oninput="tutRng(this,'tut-cmo-mktg',1,'K','$')"><span class="rval" id="tut-cmo-mktg">$450K</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Digital vs. Community Split<span class="tut-term-tip"><strong>Channel Mix Strategy</strong> Digital = lower cost-per-acquisition, reaches younger members. Community = deeper relationships and higher-value member retention. Optimal mix depends on your field of membership demographics.</span></span></div><div class="tut-dec-lbl-sub">Digital = lower cost-per-acq · Community = deeper loyalty</div></div>
-              <div class="tut-tog-wrap" id="tut-tog-channel">
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-channel',this)">70% DIGITAL</button>
-                <button class="tut-tog-btn on" onclick="tutTog('tut-tog-channel',this)">50 / 50</button>
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-channel',this)">70% COMMUNITY</button>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Channel Mix<span class="tterm-tip"><strong>Channel Mix</strong> Digital = lower cost-per-acquisition, reaches younger members. Community = deeper relationships, supports retention of high-value established members.</span></span></div><div class="dec-lbl-sub">Digital = lower cost-per-acq · Community = deeper loyalty</div></div>
+              <div class="tog-wrap" id="tut-tog-channel">
+                <button class="tog-btn" onclick="tutTog('tut-tog-channel',this)">70% DIGITAL</button>
+                <button class="tog-btn on" onclick="tutTog('tut-tog-channel',this)">50/50</button>
+                <button class="tog-btn" onclick="tutTog('tut-tog-channel',this)">70% COMMUNITY</button>
               </div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">New Member Target (Qtr)</div><div class="tut-dec-lbl-sub">Current run rate ~680/qtr · breakeven attrition: ~420</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="300" max="1500" value="750" step="50" oninput="tutRng(this,'tut-cmo-newmem',1,'')"><span class="tut-rval" id="tut-cmo-newmem">750</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">New Member Target (Qtr)</div><div class="dec-lbl-sub">Current run rate ~680/qtr · breakeven attrition ~480</div></div>
+              <div class="dec-ctrl"><input type="range" min="300" max="1500" value="750" step="50" oninput="tutRng(this,'tut-cmo-newmem',1,'')"><span class="rval" id="tut-cmo-newmem">750</span></div>
             </div>
-          </div>
-          <div class="tut-dec-group">
-            <div class="tut-dec-group-title">Digital &amp; Member Experience</div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main">Digital Banking Investment (Qtr, $K)</div><div class="tut-dec-lbl-sub">Drives satisfaction score — especially among younger members</div></div>
-              <div class="tut-dec-ctrl"><input type="range" min="50" max="500" value="180" step="25" oninput="tutRng(this,'tut-cmo-digital',1,'K','$')"><span class="tut-rval" id="tut-cmo-digital">$180K</span></div>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main">Digital Banking Investment ($K/qtr)</div><div class="dec-lbl-sub">Drives satisfaction score — reduces attrition especially among younger members</div></div>
+              <div class="dec-ctrl"><input type="range" min="50" max="500" value="180" step="25" oninput="tutRng(this,'tut-cmo-digital',1,'K','$')"><span class="rval" id="tut-cmo-digital">$180K</span></div>
             </div>
-            <div class="tut-dec-row">
-              <div class="tut-dec-lbl"><div class="tut-dec-lbl-main"><span class="tut-term">Financial Wellness Program<span class="tut-term-tip"><strong>Financial Wellness Programs</strong> Member education and credit counseling. Builds long-term loyalty, reduces member financial stress (which reduces loan delinquency), and earns regulatory goodwill in CAMEL Management assessments.</span></span></div><div class="tut-dec-lbl-sub">Regulatory goodwill + long-term member retention</div></div>
-              <div class="tut-tog-wrap" id="tut-tog-wellness">
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-wellness',this)">OFF</button>
-                <button class="tut-tog-btn on" onclick="tutTog('tut-tog-wellness',this)">BASIC</button>
-                <button class="tut-tog-btn" onclick="tutTog('tut-tog-wellness',this)">FULL</button>
+            <div class="dec-row">
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Financial Wellness Program<span class="tterm-tip"><strong>Financial Wellness Programs</strong> Member education and credit counseling. Builds loyalty, reduces member financial stress (which reduces delinquency), earns regulatory goodwill in CAMEL Management assessments.</span></span></div><div class="dec-lbl-sub">Regulatory goodwill + long-term retention</div></div>
+              <div class="tog-wrap" id="tut-tog-wellness">
+                <button class="tog-btn" onclick="tutTog('tut-tog-wellness',this)">OFF</button>
+                <button class="tog-btn on" onclick="tutTog('tut-tog-wellness',this)">BASIC</button>
+                <button class="tog-btn" onclick="tutTog('tut-tog-wellness',this)">FULL</button>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <div class="tut-intel">
+          <div class="intel-box">
             <strong>👁 MEMBER SATISFACTION INDEX — CMO EYES ONLY</strong>
-            Overall satisfaction: <strong>74/100</strong> (▼ 3pts this quarter — digital banking friction noted)<br>
-            Deposit satisfaction: <strong>61/100</strong> — Members actively comparing CD rates; several moved funds to online banks.<br>
-            Loan experience: <strong>82/100</strong> — Strong.<br>
-            Attrition risk — High-value members (&gt;$50K deposit): <span style="color:#8b2020;font-weight:600">ELEVATED</span><br><br>
-            <span style="font-size:.7rem;color:#6a5010">Recommendation: CFO must address the CD rate gap this quarter or expect accelerated deposit outflow from highest-balance members.</span>
+            Overall: <strong>74/100</strong> (▼ 3pts — digital banking friction noted)<br>
+            Deposit satisfaction: <strong>61/100</strong> — members actively comparing CD rates; several reported moving funds to online banks<br>
+            Loan experience: <strong>82/100</strong> — strong<br>
+            High-value member attrition risk (&gt;$50K deposit): <span style="color:var(--bad);font-weight:600">ELEVATED</span><br><br>
+            <span style="font-size:.7rem;color:var(--warn)">Recommendation: CFO must close the CD rate gap this quarter or expect accelerated outflow from highest-balance members.</span>
           </div>
-          <div class="tut-info">
+          <div class="info-box">
             <strong>MEMBERSHIP TREND</strong>
             Current members: <strong>48,240</strong><br>
-            Net change last quarter: <span style="color:#1a7a3e">+312</span><br>
-            Projected attrition this quarter: <span style="color:#8b2020">~420</span> (rate shopping)<br>
-            Breakeven new member target: ~420 new members
+            Net change last quarter: <span style="color:var(--good)">+312</span><br>
+            Projected attrition this quarter: <span style="color:var(--bad)">~480</span> (rate shopping + digital friction)<br>
+            Breakeven new member target: ~480
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══ STATEMENTS ══ -->
+    <!-- STATEMENTS -->
     <div class="tut-panel" id="tut-panel-statements">
-      <div class="tut-sec-hdr"><h2>Financial Statements</h2><span>LAKESIDE COMMUNITY CU — Q2 2023 PROJECTED</span></div>
-      <div class="tut-g2">
-        <div class="tut-card">
-          <div class="tut-card-title">Balance Sheet</div>
-          <table class="tut-stmt">
-            <tr><th>Account</th><th>Q2 2023</th><th>Q1 2023</th></tr>
-            <tr class="sec"><td colspan="3">ASSETS</td></tr>
-            <tr class="ind"><td>Cash &amp; Equivalents</td><td id="tut-bs-cash">—</td><td>$38.2M</td></tr>
-            <tr class="ind"><td>Investments</td><td id="tut-bs-inv">—</td><td>$187.4M</td></tr>
-            <tr class="ind"><td>Loans (net of ALLL)</td><td id="tut-bs-loans">—</td><td>$482.6M</td></tr>
-            <tr class="ind"><td>NCUSIF Deposit</td><td id="tut-bs-ncusif">—</td><td>$5.8M</td></tr>
-            <tr class="ind"><td>Fixed Assets &amp; Other</td><td id="tut-bs-fixed">—</td><td>$24.1M</td></tr>
-            <tr class="total"><td>Total Assets</td><td id="tut-bs-total">—</td><td>$738.1M</td></tr>
-            <tr class="sec"><td colspan="3">LIABILITIES</td></tr>
-            <tr class="ind"><td>Share Draft (Checking)</td><td id="tut-bs-sd">—</td><td>$98.4M</td></tr>
-            <tr class="ind"><td>Regular Shares</td><td id="tut-bs-rs">—</td><td>$142.6M</td></tr>
-            <tr class="ind"><td>Money Market</td><td id="tut-bs-mm">—</td><td>$118.2M</td></tr>
-            <tr class="ind"><td>Share Certificates</td><td id="tut-bs-cert">—</td><td>$198.7M</td></tr>
-            <tr class="ind"><td>FHLB Borrowings</td><td id="tut-bs-fhlb">—</td><td>$52.0M</td></tr>
-            <tr class="ind"><td>Other Liabilities</td><td>$8.4M</td><td>$8.4M</td></tr>
-            <tr class="sub"><td>Total Liabilities</td><td id="tut-bs-liab">—</td><td>$618.3M</td></tr>
-            <tr class="sec"><td colspan="3">EQUITY</td></tr>
-            <tr class="ind"><td>Regular Reserves</td><td>$42.1M</td><td>$42.1M</td></tr>
-            <tr class="ind"><td>Undivided Earnings</td><td id="tut-bs-ue">—</td><td>$81.4M</td></tr>
-            <tr class="ind"><td><span class="tut-term">AOCI<span class="tut-term-tip"><strong>AOCI</strong> Accumulated Other Comprehensive Income — unrealized gains/losses on investments. When rates rise, bond values fall, creating negative AOCI that reduces net worth ratio even though no cash was lost.</span></span></td><td id="tut-bs-aoci" class="neg">—</td><td class="neg">-$3.7M</td></tr>
-            <tr class="total"><td>Total Equity (Net Worth)</td><td id="tut-bs-equity">—</td><td>$119.8M</td></tr>
-          </table>
-        </div>
-        <div class="tut-card">
-          <div class="tut-card-title">Income Statement (Quarterly)</div>
-          <table class="tut-stmt">
-            <tr><th>Account</th><th>Q2 2023</th><th>Q1 2023</th></tr>
-            <tr class="sec"><td colspan="3">INTEREST INCOME</td></tr>
-            <tr class="ind"><td>Loan Interest Income</td><td id="tut-is-li">—</td><td>$8.84M</td></tr>
-            <tr class="ind"><td>Investment Income</td><td id="tut-is-ii">—</td><td>$2.21M</td></tr>
-            <tr class="sub"><td>Total Interest Income</td><td id="tut-is-tii">—</td><td>$11.05M</td></tr>
-            <tr class="sec"><td colspan="3">INTEREST EXPENSE</td></tr>
-            <tr class="ind"><td>Dividends on Shares</td><td id="tut-is-dos">—</td><td>$2.84M</td></tr>
-            <tr class="ind"><td>Borrowing Costs (FHLB)</td><td id="tut-is-bc">—</td><td>$0.69M</td></tr>
-            <tr class="sub"><td>Total Interest Expense</td><td id="tut-is-tie">—</td><td>$3.53M</td></tr>
-            <tr class="total"><td>Net Interest Income</td><td id="tut-is-nii">—</td><td>$7.52M</td></tr>
-            <tr class="sec"><td colspan="3">NON-INTEREST</td></tr>
-            <tr class="ind"><td>Fee Income</td><td id="tut-is-fee">—</td><td>$1.42M</td></tr>
-            <tr class="ind"><td class="neg">Provision for Losses</td><td id="tut-is-prov" class="neg">—</td><td class="neg">-$0.74M</td></tr>
-            <tr class="ind"><td class="neg">Operating Expense</td><td id="tut-is-opex" class="neg">—</td><td class="neg">-$6.91M</td></tr>
-            <tr class="total"><td>Net Income</td><td id="tut-is-ni">—</td><td>$1.29M</td></tr>
-          </table>
+      <div class="sec-hdr"><h2>Financial Statements</h2><span>LAKESIDE COMMUNITY CU — Q1 2023 PROJECTED</span></div>
+      <div id="tut-no-results" class="info-box"><strong>AWAITING SIMULATION RUN</strong> Process the quarter on the CEO tab to populate financial statements.</div>
+      <div id="tut-stmt-content" style="display:none">
+        <div class="g2">
+          <div class="card">
+            <div class="card-title">Balance Sheet</div>
+            <table class="stmt">
+              <tr><th>Account</th><th>Q1 2023</th><th>YE 2022</th></tr>
+              <tr class="sec"><td colspan="3">ASSETS</td></tr>
+              <tr class="ind"><td>Cash &amp; Equivalents</td><td id="tut-bs-cash">—</td><td>$38.2M</td></tr>
+              <tr class="ind"><td>Investments</td><td id="tut-bs-inv">—</td><td>$187.4M</td></tr>
+              <tr class="ind"><td><span class="tterm">Loans (net of ALLL)<span class="tterm-tip"><strong>Net Loans</strong> Gross loan portfolio minus the Allowance for Loan &amp; Lease Losses reserve.</span></span></td><td id="tut-bs-loans">—</td><td>$482.6M</td></tr>
+              <tr class="ind"><td>Other Assets</td><td id="tut-bs-other">—</td><td>$29.9M</td></tr>
+              <tr class="tot"><td>Total Assets</td><td id="tut-bs-total">—</td><td>$738.1M</td></tr>
+              <tr class="sec"><td colspan="3">LIABILITIES</td></tr>
+              <tr class="ind"><td>Share Draft (Checking)</td><td id="tut-bs-sd">—</td><td>$98.4M</td></tr>
+              <tr class="ind"><td>Regular Shares</td><td id="tut-bs-rs">—</td><td>$142.6M</td></tr>
+              <tr class="ind"><td>Money Market</td><td id="tut-bs-mm">—</td><td>$118.2M</td></tr>
+              <tr class="ind"><td>Share Certificates</td><td id="tut-bs-cert">—</td><td>$198.7M</td></tr>
+              <tr class="ind"><td>FHLB Borrowings</td><td id="tut-bs-fhlb">—</td><td>$52.0M</td></tr>
+              <tr class="sub"><td>Total Liabilities</td><td id="tut-bs-liab">—</td><td>$618.3M</td></tr>
+              <tr class="sec"><td colspan="3">EQUITY</td></tr>
+              <tr class="ind"><td>Regular Reserves</td><td>$42.1M</td><td>$42.1M</td></tr>
+              <tr class="ind"><td>Undivided Earnings</td><td id="tut-bs-ue">—</td><td>$41.4M</td></tr>
+              <tr class="ind"><td><span class="tterm">AOCI<span class="tterm-tip"><strong>AOCI</strong> Accumulated Other Comprehensive Income — unrealized gains/losses on investments. Rising rates cause bond prices to fall, creating negative AOCI that reduces net worth ratio even though no cash was lost.</span></span></td><td id="tut-bs-aoci" class="neg">—</td><td class="neg">-$8.2M</td></tr>
+              <tr class="tot"><td>Total Equity (Net Worth)</td><td id="tut-bs-equity">—</td><td>$75.3M</td></tr>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-title">Income Statement (Quarterly)</div>
+            <table class="stmt">
+              <tr><th>Account</th><th>Q1 2023</th><th>Q4 2022</th></tr>
+              <tr class="sec"><td colspan="3">INTEREST INCOME</td></tr>
+              <tr class="ind"><td>Loan Interest Income</td><td id="tut-is-li">—</td><td>$7.31M</td></tr>
+              <tr class="ind"><td>Investment Income</td><td id="tut-is-ii">—</td><td>$1.48M</td></tr>
+              <tr class="sub"><td>Total Interest Income</td><td id="tut-is-tii">—</td><td>$8.79M</td></tr>
+              <tr class="sec"><td colspan="3">INTEREST EXPENSE</td></tr>
+              <tr class="ind"><td>Dividends on Shares</td><td id="tut-is-dos">—</td><td>$2.12M</td></tr>
+              <tr class="ind"><td>Borrowing Costs (FHLB)</td><td id="tut-is-bc">—</td><td>$0.56M</td></tr>
+              <tr class="sub"><td>Total Interest Expense</td><td id="tut-is-tie">—</td><td>$2.68M</td></tr>
+              <tr class="tot"><td>Net Interest Income</td><td id="tut-is-nii">—</td><td>$6.11M</td></tr>
+              <tr class="sec"><td colspan="3">NON-INTEREST</td></tr>
+              <tr class="ind"><td>Fee Income</td><td id="tut-is-fee">—</td><td>$1.38M</td></tr>
+              <tr class="ind"><td class="neg">Provision for Losses</td><td id="tut-is-prov" class="neg">—</td><td class="neg">-$0.84M</td></tr>
+              <tr class="ind"><td class="neg">Operating Expense</td><td id="tut-is-opex" class="neg">—</td><td class="neg">-$5.61M</td></tr>
+              <tr class="tot"><td>Net Income</td><td id="tut-is-ni">—</td><td>$1.04M</td></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ══ CAMEL ══ -->
+    <!-- CAMEL -->
     <div class="tut-panel" id="tut-panel-camel">
-      <div class="tut-sec-hdr"><h2>CAMEL Scorecard</h2><span>REGULATOR-REALISTIC COMPOSITE</span></div>
-      <div class="tut-camel-grid">
-        <div class="tut-camel-card"><div class="tut-camel-letter" style="color:#1e6b7a">C</div><div class="tut-camel-name">Capital</div><div class="tut-camel-score" id="tut-cc-s">—</div><div class="tut-camel-bar-bg"><div class="tut-camel-bar" id="tut-cc-b" style="width:0%;background:#1e6b7a"></div></div></div>
-        <div class="tut-camel-card"><div class="tut-camel-letter" style="color:#8b7a2e">A</div><div class="tut-camel-name">Asset Quality</div><div class="tut-camel-score" id="tut-ca-s">—</div><div class="tut-camel-bar-bg"><div class="tut-camel-bar" id="tut-ca-b" style="width:0%;background:#8b7a2e"></div></div></div>
-        <div class="tut-camel-card"><div class="tut-camel-letter" style="color:#1a5c2e">M</div><div class="tut-camel-name">Management</div><div class="tut-camel-score" id="tut-cm-s">—</div><div class="tut-camel-bar-bg"><div class="tut-camel-bar" id="tut-cm-b" style="width:0%;background:#1a5c2e"></div></div></div>
-        <div class="tut-camel-card"><div class="tut-camel-letter" style="color:#1a7a3e">E</div><div class="tut-camel-name">Earnings</div><div class="tut-camel-score" id="tut-ce-s">—</div><div class="tut-camel-bar-bg"><div class="tut-camel-bar" id="tut-ce-b" style="width:0%;background:#1a7a3e"></div></div></div>
-        <div class="tut-camel-card"><div class="tut-camel-letter" style="color:#5a3a8b">L</div><div class="tut-camel-name">Liquidity</div><div class="tut-camel-score" id="tut-cl-s">—</div><div class="tut-camel-bar-bg"><div class="tut-camel-bar" id="tut-cl-b" style="width:0%;background:#5a3a8b"></div></div></div>
+      <div class="sec-hdr"><h2>CAMEL Scorecard</h2><span>REGULATOR-REALISTIC COMPOSITE</span></div>
+      <div class="camel-grid">
+        <div class="camel-card"><div class="camel-letter" style="color:var(--cfo)">C</div><div class="camel-name">Capital</div><div class="camel-score" id="tut-cc-s">—</div><div class="camel-bar-bg"><div class="camel-bar" id="tut-cc-b" style="width:0%;background:var(--cfo)"></div></div></div>
+        <div class="camel-card"><div class="camel-letter" style="color:var(--orange)">A</div><div class="camel-name">Asset Quality</div><div class="camel-score" id="tut-ca-s">—</div><div class="camel-bar-bg"><div class="camel-bar" id="tut-ca-b" style="width:0%;background:var(--orange)"></div></div></div>
+        <div class="camel-card"><div class="camel-letter" style="color:var(--ceo)">M</div><div class="camel-name">Management</div><div class="camel-score" id="tut-cm-s">—</div><div class="camel-bar-bg"><div class="camel-bar" id="tut-cm-b" style="width:0%;background:var(--ceo)"></div></div></div>
+        <div class="camel-card"><div class="camel-letter" style="color:var(--good)">E</div><div class="camel-name">Earnings</div><div class="camel-score" id="tut-ce-s">—</div><div class="camel-bar-bg"><div class="camel-bar" id="tut-ce-b" style="width:0%;background:var(--good)"></div></div></div>
+        <div class="camel-card"><div class="camel-letter" style="color:var(--cmo)">L</div><div class="camel-name">Liquidity</div><div class="camel-score" id="tut-cl-s">—</div><div class="camel-bar-bg"><div class="camel-bar" id="tut-cl-b" style="width:0%;background:var(--cmo)"></div></div></div>
       </div>
-      <div class="tut-card">
-        <div class="tut-card-title">Apex Composite Score</div>
-        <div class="tut-apex-wrap">
+      <div class="card">
+        <div class="card-title">Apex Composite Score — CAMEL (75%) + Growth (25%)</div>
+        <div class="apex-wrap">
           <div>
-            <div class="tut-apex-lbl">Current Apex Score</div>
-            <div class="tut-apex-num" id="tut-apex-camel-num">—</div>
-            <div class="tut-apex-grade" id="tut-apex-camel-grade" style="color:rgba(255,255,255,.4)">Run simulation to score</div>
+            <div class="apex-lbl">Current Apex Score</div>
+            <div class="apex-num" id="tut-apex-camel-num">—</div>
+            <div class="apex-grade" id="tut-apex-camel-grade" style="color:rgba(255,255,255,.4)">Run simulation to score</div>
           </div>
           <div style="flex:1">
             <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:.56rem;opacity:.5;margin-bottom:5px"><span>0</span><span>PEER AVG: 62</span><span>100</span></div>
-            <div class="tut-apex-bar-bg"><div class="tut-apex-bar" id="tut-apex-camel-bar" style="width:0%"></div></div>
+            <div class="apex-bar-bg"><div class="apex-bar" id="tut-apex-camel-bar" style="width:0%"></div></div>
+            <div class="apex-breakdown" id="tut-apex-camel-break">Process the quarter to generate your score.</div>
           </div>
         </div>
       </div>
-      <div class="tut-card">
-        <div class="tut-card-title">Regulator Examiner Commentary</div>
-        <div id="tut-exam-comments"><div style="font-size:.78rem;color:#5a6b5e;text-align:center;padding:20px 0;">Process the quarter to generate examiner commentary.</div></div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-title">Regulator Examiner Commentary</div>
+        <div id="tut-exam-comments"><div class="info-box"><strong>AWAITING RESULTS</strong>Process the quarter on the CEO tab to generate examiner commentary.</div></div>
       </div>
     </div>
 
-    <!-- ══ LEADERBOARD ══ -->
+    <!-- LEADERBOARD -->
     <div class="tut-panel" id="tut-panel-leaderboard">
-      <div class="tut-sec-hdr"><h2>Competitive Leaderboard</h2><span>SIMULATED PEER INSTITUTIONS · Q2 2023</span></div>
-      <div class="tut-lb-hdr"><div>RANK</div><div>INSTITUTION</div><div>APEX</div><div>NET WORTH</div><div>ROA</div><div>ASSETS</div></div>
+      <div class="sec-hdr"><h2>Competitive Leaderboard</h2><span id="tut-lb-sub">SIMULATED PEER INSTITUTIONS · Q1 2023</span></div>
+      <div class="lb-hdr"><div>RANK</div><div>INSTITUTION</div><div>APEX</div><div>NET WORTH</div><div>GROWTH</div><div>MEMBERS Δ</div></div>
       <div id="tut-lb-rows"></div>
-      <div class="tut-info" style="margin-top:16px">
+      <div class="info-box" style="margin-top:16px">
         <strong>ABOUT THE LEADERBOARD</strong>
-        In a real session, you'd see competing teams here. Peer institutions above use real NCUA call report data as benchmarks. Your Apex Score updates each time you process a quarter. Run multiple scenarios to explore how different decisions affect your ranking.
+        In a real multiplayer session, competing teams appear here in real time. Peer institutions above are benchmarked from actual NCUA call report data. Your Apex Score reflects both regulatory health (CAMEL 75%) and growth performance (25%). Run different scenarios to see how decisions shift your ranking.
       </div>
     </div>
 
@@ -3573,464 +3282,222 @@ async function loadMySessions() {
 
 // ════════════════════════════════════
 // V6 TUTORIAL MODE — No Login Required
+// Uses identical calibrated engine as v5 runSimEngine()
 // ════════════════════════════════════
 
 function enterTutorialMode() {
   show('tutorial');
   document.getElementById('tut-modal-overlay').classList.remove('hidden');
-  // Reset modal state
   TUT.step = 0;
   tutUpdateModal();
-  // Init leaderboard with placeholder data
-  tutRenderLB(0, 16.22, 0.76, 750);
+  tutRenderLB(0, 10.2, 0, 738.1);
 }
+function exitTutorialMode() { show('auth'); }
 
-function exitTutorialMode() {
-  show('auth');
-}
-
-const TUT = { step: 0, totalSteps: 5 };
+const TUT = { step:0, total:5 };
 
 function tutModalNav(dir) {
-  TUT.step = Math.max(0, Math.min(TUT.totalSteps - 1, TUT.step + dir));
+  TUT.step = Math.max(0, Math.min(TUT.total-1, TUT.step+dir));
   tutUpdateModal();
 }
-
 function tutUpdateModal() {
-  // Update step content
-  for(let i = 0; i < TUT.totalSteps; i++) {
-    const el = document.getElementById('tts'+i);
-    if(el) el.classList.toggle('on', i === TUT.step);
-    const dot = document.getElementById('td'+i);
-    if(dot) dot.classList.toggle('on', i === TUT.step);
+  for(let i=0;i<TUT.total;i++){
+    document.getElementById('tts'+i)?.classList.toggle('on', i===TUT.step);
+    document.getElementById('td'+i)?.classList.toggle('on', i===TUT.step);
   }
-  // Update buttons
-  const back = document.getElementById('tut-back-btn');
-  const next = document.getElementById('tut-next-btn');
-  if(back) back.style.visibility = TUT.step === 0 ? 'hidden' : 'visible';
-  if(next) {
-    if(TUT.step === TUT.totalSteps - 1) {
-      next.textContent = "Let's Go! →";
-      next.onclick = closeTutModal;
-    } else {
-      next.textContent = 'Next →';
-      next.onclick = () => tutModalNav(1);
-    }
+  const back=document.getElementById('tut-back-btn');
+  const next=document.getElementById('tut-next-btn');
+  if(back) back.style.visibility = TUT.step===0?'hidden':'visible';
+  if(next){
+    if(TUT.step===TUT.total-1){ next.textContent="Let's Go! →"; next.onclick=closeTutModal; }
+    else { next.textContent='Next →'; next.onclick=()=>tutModalNav(1); }
   }
 }
+function closeTutModal(){ document.getElementById('tut-modal-overlay').classList.add('hidden'); }
 
-function closeTutModal() {
-  document.getElementById('tut-modal-overlay').classList.add('hidden');
-}
-
-// Tutorial tab switching
 function tutTab(name, btn) {
-  document.querySelectorAll('.tut-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tut-tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tut-panel-'+name).classList.add('active');
+  document.querySelectorAll('.tut-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tut-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tut-panel-'+name)?.classList.add('active');
   if(btn) btn.classList.add('active');
 }
 
-// Tutorial slider + toggle helpers
 function tutRng(el, id, mult, suffix, prefix='') {
-  const v = parseFloat(el.value) * mult;
-  const display = mult < 0.1 ? v.toFixed(2) : mult === 1 && suffix === '' ? Math.round(v) : v % 1 === 0 ? v.toFixed(0) : v.toFixed(1);
-  const out = document.getElementById(id);
-  if(out) out.textContent = prefix + display + suffix;
-  const pct = (el.value - el.min) / (el.max - el.min) * 100;
-  el.style.background = `linear-gradient(90deg, #1a5c2e ${pct}%, #d4e0d6 ${pct}%)`;
+  const v = parseFloat(el.value)*mult;
+  const display = mult<0.1?v.toFixed(2):mult===1&&suffix===''?Math.round(v):v%1===0?v.toFixed(0):v.toFixed(1);
+  const out=document.getElementById(id); if(out) out.textContent=prefix+display+suffix;
+  const pct=(el.value-el.min)/(el.max-el.min)*100;
+  el.style.background=`linear-gradient(90deg,var(--navy) ${pct}%,var(--border) ${pct}%)`;
 }
-
 function tutTog(id, btn) {
-  document.querySelectorAll('#'+id+' .tut-tog-btn').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('#'+id+' .tog-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 }
+function tutTogVal(id){ return document.querySelector('#'+id+' .tog-btn.on')?.textContent.trim()||''; }
+function tutGetR(id){ const el=document.querySelector(`input[oninput*="'${id}'"]`); return el?parseFloat(el.value):0; }
 
-function tutTogVal(id) {
-  return document.querySelector('#'+id+' .tut-tog-btn.on')?.textContent.trim() || '';
+// Glossary
+const GLOSSARY=[
+  {term:'Net Worth Ratio',cat:'capital',def:'Total equity divided by total assets. The primary capital adequacy metric regulators use. Must stay above 7% to avoid Prompt Corrective Action. "Well-capitalized" = 7%+.',why:'Why it matters: Capital is your shock absorber. A thin ratio means any unexpected loss can threaten solvency — regulators use this as their first screen of institutional health.',formula:'Total Equity ÷ Total Assets'},
+  {term:'Return on Assets (ROA)',cat:'earnings',def:'Annualized net income divided by average total assets. The primary profitability metric for credit unions. Peer average: ~0.72%. Above 1.0% is excellent.',why:'Why it matters: ROA tells you how efficiently you\'re generating profit from your asset base. Low ROA = thin margin of error. Negative ROA = burning capital.',formula:'(Net Income × 4) ÷ Total Assets'},
+  {term:'Net Interest Margin (NIM)',cat:'earnings',def:'Net interest income divided by average earning assets. The spread between what you earn on loans/investments and what you pay on deposits. Peer avg: ~3.15%.',why:'Why it matters: NIM compression is the primary earnings risk when deposit rates rise faster than loan yields.',formula:'Net Interest Income ÷ Average Earning Assets'},
+  {term:'Efficiency Ratio',cat:'mgmt',def:'Operating expenses divided by net revenue (NII + non-interest income). Lower is better. Peer avg: ~74.2%. Above 85% is a warning sign.',why:'Why it matters: A high efficiency ratio means you have little room for revenue shortfalls. At 90%+ efficiency, any revenue miss immediately produces losses.',formula:'Operating Expense ÷ (NII + Non-Interest Income)'},
+  {term:'Allowance for Loan & Lease Losses (ALLL)',cat:'asset',def:'A balance sheet reserve representing estimated future credit losses. Funded by the quarterly provision expense. Peer avg coverage ratio: ~1.10%.',why:'Why it matters: Too thin = examiner concern. Too thick = unnecessarily suppressed earnings. Getting it right requires honest loss forecasting.',formula:'ALLL ÷ Gross Loans = Coverage Ratio'},
+  {term:'Delinquency Rate',cat:'asset',def:'Percentage of loans 60+ days past due to total loans. A leading indicator of future charge-offs. Below 0.8% is healthy. Above 1.5% warrants examiner attention.',why:'Why it matters: FICO floor decisions today show up in delinquency 2–4 quarters later. It\'s the early warning system for credit quality deterioration.',formula:'60+ Day Past Due Loans ÷ Total Loans'},
+  {term:'Net Charge-Off Rate (NCO)',cat:'asset',def:'Loans written off as uncollectible, net of recoveries, as a percentage of average loans. Lagging indicator — delinquency rises first. Peer avg ~0.34%.',why:'Why it matters: Charge-offs are actual realized losses — they directly reduce equity and earnings.',formula:'(Charge-Offs – Recoveries) ÷ Average Loans'},
+  {term:'Loan-to-Share Ratio',cat:'liquidity',def:'Total loans divided by total shares/deposits. Above 90% signals tight liquidity. Below 70% suggests significant earning capacity is unused.',why:'Why it matters: Managing the tension between yield (high ratio) and liquidity (low ratio) is core to balance sheet strategy.',formula:'Total Loans ÷ Total Shares & Deposits'},
+  {term:'FHLB Advances',cat:'liquidity',def:'Secured borrowings from the Federal Home Loan Bank. Examiners flag heavy reliance (>15% of assets) as a liquidity concern since wholesale funding is less stable than member deposits.',why:'Why it matters: FHLB is useful for managing liquidity gaps, but dependence on it is a vulnerability. During 2008, CUs with heavy FHLB reliance were most exposed.',formula:null},
+  {term:'Liquidity Ratio',cat:'liquidity',def:'Liquid assets (cash + short-term investments) as a percentage of total assets. Below 5% triggers examiner concern.',why:'Why it matters: Liquidity crises move faster than any other institutional risk. You either have it or you don\'t.',formula:'(Cash + Short Investments) ÷ Total Assets'},
+  {term:'AOCI',cat:'capital',def:'Accumulated Other Comprehensive Income. Unrealized gains/losses on the investment portfolio marked to market. When rates rise, bond prices fall, creating a negative AOCI that directly reduces net worth ratio even though no cash was lost.',why:'Why it matters: In 2022–2023, AOCI losses destroyed net worth ratios at institutions holding long-duration bonds. Investment portfolio decisions affect capital ratios, not just earnings.',formula:'Unrealized Gain/(Loss) on Investment Portfolio'},
+  {term:'Provision for Loan Losses',cat:'earnings',def:'Quarterly income statement expense used to build the ALLL reserve. Too little: ALLL becomes under-reserved (examiner red flag). Too much: earnings unnecessarily suppressed.',why:'Why it matters: Provisioning discipline requires honest assessment of portfolio risk — not optimism, not excessive pessimism.',formula:'Provision = Target ALLL – Current ALLL + Charge-Offs'},
+  {term:'Prompt Corrective Action (PCA)',cat:'capital',def:'The regulatory framework that restricts a credit union\'s activities when net worth falls below thresholds. Below 7% = "Adequately Capitalized" — growth restricted, Capital Restoration Plan required.',why:'Why it matters: Once a CU enters PCA territory, the examiner — not management — effectively starts making strategic decisions.',formula:null},
+  {term:'Share Certificates',cat:'general',def:'The credit union equivalent of Certificates of Deposit (CDs). Fixed-rate, fixed-term deposits. The most rate-sensitive product — members actively compare rates and move significant balances for even 20–50bps differences.',why:'Why it matters: Certificate pricing is where CUs win or lose the deposit competition war. Too low = outflow. Too high = NIM compression.',formula:null},
+  {term:'Growth Score',cat:'general',def:'A 0–100 score blending member growth (40%), asset growth (30%), and loan portfolio growth (30%), weighted against safety. Contributes 25% of the overall Apex Score (CAMEL is 75%).',why:'Why it matters: The simulation rewards growth alongside safety — a CU that\'s financially sound but shrinking in members and loans is underperforming its potential.',formula:'Apex = CAMEL Composite × 0.75 + Growth Score × 0.25'},
+];
+let activeCat='all';
+function renderGlossary(filter='',cat='all'){
+  const list=document.getElementById('gloss-list'); if(!list)return;
+  const f=GLOSSARY.filter(g=>(cat==='all'||g.cat===cat)&&(!filter||g.term.toLowerCase().includes(filter.toLowerCase())||g.def.toLowerCase().includes(filter.toLowerCase())));
+  list.innerHTML=f.length?f.map(g=>`<div class="glossary-item"><div class="glossary-term"><h4>${g.term}</h4><span class="glossary-cat-badge cat-${g.cat}">${g.cat.toUpperCase()}</span></div><div class="glossary-def">${g.def}${g.why?`<span class="why">${g.why}</span>`:''} ${g.formula?`<div class="glossary-formula">Formula: ${g.formula}</div>`:''}</div></div>`).join(''):'<div style="color:var(--muted);font-size:.8rem;padding:20px 0;text-align:center;">No terms match your search.</div>';
 }
-
-function tutGetR(id) {
-  const el = document.querySelector(`input[oninput*="'${id}'"]`);
-  return el ? parseFloat(el.value) : 0;
-}
-
-function tutFmt(n, d=1) {
-  if(Math.abs(n) >= 1000) return '$'+(n/1000).toFixed(d)+'B';
-  if(Math.abs(n) >= 1)    return '$'+n.toFixed(d)+'M';
-  return '$'+(n*1000).toFixed(0)+'K';
-}
-function tutFmtP(n, d=2) { return n.toFixed(d)+'%'; }
-
-function tutSet(id, v) { const e=document.getElementById(id); if(e) e.textContent=v; }
+function filterGloss(){renderGlossary(document.getElementById('gloss-search')?.value||'',activeCat);}
+function setCat(cat,el){activeCat=cat;document.querySelectorAll('.gloss-cat').forEach(e=>e.classList.remove('on'));el.classList.add('on');filterGloss();}
+function openGlossary(){const o=document.getElementById('glossary-overlay');if(o){o.classList.add('open');renderGlossary('',activeCat);}}
+function closeGlossaryBtn(){document.getElementById('glossary-overlay')?.classList.remove('open');}
+function closeGlossary(e){if(e.target===document.getElementById('glossary-overlay'))closeGlossaryBtn();}
 
 // ── Tutorial Simulation Engine ──
-// Uses same calibrated math as v5 calibrated engine
+// Identical calibration to v5 runSimEngine() — same START values, yields, CAMEL thresholds, Growth Score
 function tutRunSim() {
-  const d = {
-    nwTarget:    tutGetR('tut-ceo-nwt') / 100,
-    retainRate:  tutGetR('tut-ceo-ret') / 100,
-    posture:     tutTogVal('tut-tog-posture'),
-    fteGrowth:   tutGetR('tut-ceo-fte') / 100,
-    training:    tutGetR('tut-ceo-train') / 100,
-    cashPct:     tutGetR('tut-cfo-cash')   / 100,
-    treasPct:    tutGetR('tut-cfo-treas')  / 100,
-    mbsPct:      tutGetR('tut-cfo-mbs')    / 100,
-    muniPct:     tutGetR('tut-cfo-muni')   / 100,
-    fhlbPct:     tutGetR('tut-cfo-fhlb')   / 100,
-    fhlbTerm:    tutTogVal('tut-tog-fhlbterm'),
-    rSD:         tutGetR('tut-cfo-sd')     / 10000,
-    rRS:         tutGetR('tut-cfo-rs')     / 10000,
-    rMM:         tutGetR('tut-cfo-mm')     / 10000,
-    rC12:        tutGetR('tut-cfo-cert12') / 10000,
-    rC36:        tutGetR('tut-cfo-cert36') / 10000,
-    autoV:  tutGetR('tut-clo-autov'),  autoR:  tutGetR('tut-clo-autor')  / 10000,
-    mortV:  tutGetR('tut-clo-mortv'),  mortR:  tutGetR('tut-clo-mortr')  / 10000,
-    persV:  tutGetR('tut-clo-persv'),  persR:  tutGetR('tut-clo-persr')  / 10000,
-    fico:   tutGetR('tut-clo-fico'),
-    ltv:    tutGetR('tut-clo-ltv')    / 100,
-    provBps:tutGetR('tut-clo-prov')   / 10000,
-    mktg:   tutGetR('tut-cmo-mktg')   / 1000,
-    channel:tutTogVal('tut-tog-channel'),
-    newMem: tutGetR('tut-cmo-newmem'),
-    digital:tutGetR('tut-cmo-digital')/ 1000,
-    wellness:tutTogVal('tut-tog-wellness'),
-  };
+  const ceo={ nwt:tutGetR('tut-ceo-nwt'), ret:tutGetR('tut-ceo-ret'), posture:tutTogVal('tut-tog-posture'), fte:tutGetR('tut-ceo-fte'), train:tutGetR('tut-ceo-train') };
+  const cfo={ cash:tutGetR('tut-cfo-cash'), treas:tutGetR('tut-cfo-treas'), mbs:tutGetR('tut-cfo-mbs'), muni:tutGetR('tut-cfo-muni'), fhlb:tutGetR('tut-cfo-fhlb'), fhlbterm:tutTogVal('tut-tog-fhlbterm'), sd:tutGetR('tut-cfo-sd'), rs:tutGetR('tut-cfo-rs'), mm:tutGetR('tut-cfo-mm'), cert12:tutGetR('tut-cfo-cert12'), cert36:tutGetR('tut-cfo-cert36') };
+  const clo={ autov:tutGetR('tut-clo-autov'), autor:tutGetR('tut-clo-autor'), mortv:tutGetR('tut-clo-mortv'), mortr:tutGetR('tut-clo-mortr'), persv:tutGetR('tut-clo-persv'), persr:tutGetR('tut-clo-persr'), fico:tutGetR('tut-clo-fico'), ltv:tutGetR('tut-clo-ltv'), prov:tutGetR('tut-clo-prov') };
+  const cmo={ mktg:tutGetR('tut-cmo-mktg'), channel:tutTogVal('tut-tog-channel'), newmem:tutGetR('tut-cmo-newmem'), digital:tutGetR('tut-cmo-digital'), wellness:tutTogVal('tut-tog-wellness') };
 
-  // ── Economic Environment: Q2 2023, The Great Unwind ──
-  const econ = {
-    fedRate: 0.0525,
-    invYield: { cash:0.051, treas:0.049, mbs:0.052, muni:0.038 },
-    depositPressure: 1.18,
-    delinqMult: 1.09,
-    loanDemandMult: 0.96,
-    hpiChange: -0.012,
-    mktCert12: 0.051,
-    mktMM: 0.0185,
-  };
+  // Economic environment: Q1 2023 "The Great Unwind" (matching v5 scenario)
+  const econ = { delinq_mult:1.08, loan_demand:0.98, deposit_competition:'high' };
 
-  const START = {
-    loans_gross:489.4, alll:6.8,
-    sd:98.4, rs:142.6, mm:118.2, cert:198.7,
-    fhlb:52.0, reserves:42.1, undivided:81.4, aoci:-3.7,
-    members:48240, investments:187.4, cash:38.2, ncusif:5.8, fixed:24.1, other:8.4,
-  };
-
-  // ── Loans ──
-  const originations = (d.autoV + d.mortV + d.persV) * econ.loanDemandMult;
-  const payoffs = START.loans_gross * 0.058;
-  const newLoansGross = START.loans_gross + originations - payoffs;
-  const provision = newLoansGross * d.provBps / 4;
-  const nco = newLoansGross * 0.0012;
-  const newALLL = Math.max(START.alll + provision - nco, 4.5);
-  const newLoansNet = newLoansGross - newALLL;
-
-  // ── Investments ──
-  const totalInv = START.investments * 1.01;
-  const invYield = d.cashPct*econ.invYield.cash + d.treasPct*econ.invYield.treas +
-                   d.mbsPct*econ.invYield.mbs   + d.muniPct*econ.invYield.muni;
-  const invIncome = totalInv * invYield / 4;
-  const durationRisk = d.mbsPct*0.65 + d.muniPct*0.45;
-  const aociDelta = -totalInv * durationRisk * 0.007;
-  const newAOCI = START.aoci + aociDelta;
-
-  // ── Deposits ──
-  const cert12Gap = econ.mktCert12 - d.rC12;
-  const mmGap     = econ.mktMM     - d.rMM;
-  const certAttr  = cert12Gap > 0 ? START.cert * cert12Gap * 2.4 * econ.depositPressure : START.cert * cert12Gap * 0.4;
-  const mmAttr    = mmGap     > 0 ? START.mm   * mmGap    * 1.6 * econ.depositPressure : START.mm   * mmGap    * 0.3;
-  const newCert   = Math.max(START.cert - certAttr, START.cert * 0.7);
-  const newMM     = Math.max(START.mm   - mmAttr,   START.mm   * 0.75);
-  const newSD     = START.sd * 0.994;
-  const rsRateGap = 0.0055 - d.rRS;
-  const newRS     = START.rs * (1 - Math.max(0, rsRateGap * 0.7));
-  const totalShares = newSD + newRS + newMM + newCert;
-
-  // ── FHLB ──
-  const newFHLB = (newLoansGross + totalInv) * d.fhlbPct;
-  const fhlbRate = d.fhlbTerm==='OVERNIGHT' ? 0.053 : d.fhlbTerm==='1 YR' ? 0.051 : 0.048;
-  const fhlbCost = newFHLB * fhlbRate / 4;
-
-  // ── Income ──
-  const blendOrig = originations > 0 ? (d.autoV*d.autoR + d.mortV*d.mortR + d.persV*d.persR) / originations : 0.072;
-  const portfolioYield = (START.loans_gross*0.075 + originations*blendOrig) / newLoansGross;
-  const loanIncome = newLoansGross * portfolioYield / 4;
-  const depExp = (newSD*d.rSD + newRS*d.rRS + newMM*d.rMM + newCert*(d.rC12*0.6+d.rC36*0.4)) / 4;
-  const totalIntIncome = loanIncome + invIncome;
-  const totalIntExp    = depExp + fhlbCost;
-  const nii = totalIntIncome - totalIntExp;
-
-  // ── Non-Interest ──
-  const feeInc   = totalShares / 558 * 1.65 + newLoansGross / 482.6 * 0.09;
-  const baseSal  = 5.1;
-  const salaries = baseSal * (1 + d.fteGrowth) * (1 + d.training * 0.25);
-  const occupancy= 0.62;
-  const tech     = d.digital + 0.36;
-  const mktgEx   = d.mktg;
-  const wellEx   = d.wellness==='FULL' ? 0.08 : d.wellness==='BASIC' ? 0.035 : 0;
-  const otherEx  = 0.22;
-  const totalOpex= salaries + occupancy + tech + mktgEx + wellEx + otherEx;
-  const netIncome= nii + feeInc - provision - totalOpex;
-
-  // ── Equity ──
-  const retained    = netIncome * d.retainRate;
-  const newUndivided= START.undivided + retained;
-  const totalEquity = START.reserves + newUndivided + newAOCI;
-  const cashAdj     = 12.0;
-  const totalAssets = cashAdj + totalInv + newLoansNet + START.ncusif + START.fixed;
-
-  // ── Ratios ──
-  const nwRatio  = totalEquity / totalAssets;
-  const roa      = (netIncome * 4) / totalAssets;
-  const nim      = (nii * 4) / totalAssets;
-  const effRatio = totalOpex / Math.max(nii + feeInc, 0.01);
-  const lts      = newLoansGross / totalShares;
-  const liqRatio = (totalInv * (d.cashPct + d.treasPct * 0.8) + cashAdj) / totalAssets;
-  const ficoRisk = Math.max(0, (660 - d.fico) / 660) * 0.004;
-  const delinq   = (0.006 + ficoRisk) * econ.delinqMult;
-  const ncoRate  = delinq * 0.27;
-
-  // ── Members ──
-  const chanMult  = d.channel==='70% DIGITAL' ? 1.10 : d.channel==='70% COMMUNITY' ? 0.97 : 1.0;
-  const budgMult  = Math.min(1.35, d.mktg / 0.42);
-  const acqd      = Math.round(parseFloat(d.newMem) * Math.min(budgMult, 1.18) * chanMult);
-  const attrition = Math.round(420 + (cert12Gap > 0 ? cert12Gap * 2800 : 0));
-  const members   = START.members + acqd - attrition;
-
-  // ── CAMEL Scoring (identical calibration to v5) ──
-  let cC = nwRatio>=0.11?95 : nwRatio>=0.10?88 : nwRatio>=0.09?78 : nwRatio>=0.08?68 : nwRatio>=0.07?50 : 20;
-  if(newAOCI < -9)    cC = Math.max(cC-12, 20);
-  if(netIncome < 0)   cC = Math.max(cC-18, 15);
-
-  let cA = delinq>0.02?55 : delinq>0.015?72 : delinq>0.01?82 : delinq>0.007?90 : 96;
-  if(d.fico < 600)    cA = Math.max(cA-14, 30);
-  if(d.ltv  > 0.95)   cA = Math.max(cA-8,  40);
-
-  let cM = effRatio<0.65?94 : effRatio<0.72?84 : effRatio<0.80?72 : effRatio<0.90?56 : 36;
-  if(d.training > 0.02)      cM = Math.min(cM+5, 98);
-  if(d.wellness !== 'OFF')   cM = Math.min(cM+4, 98);
-
-  let cE = roa>0.01?92 : roa>0.007?82 : roa>0.004?68 : roa>0?46 : 18;
-  if(nim > 0.036)             cE = Math.min(cE+5, 98);
-
-  let cL = liqRatio>0.10?90 : liqRatio>0.07?78 : liqRatio>0.05?62 : 40;
-  if(d.fhlbPct > 0.15)        cL = Math.max(cL-14, 28);
-  if(lts > 0.95)              cL = Math.max(cL-8,  28);
-
-  const apex = Math.round(cC*0.25 + cA*0.20 + cM*0.20 + cE*0.20 + cL*0.15);
-
-  const heat = Math.min(100, Math.max(0,
-    (nwRatio<0.08?55 : nwRatio<0.09?25 : 8) +
-    (delinq>0.015?22 : delinq>0.01?10 : 0) +
-    (effRatio>0.85?18 : 0)
-  ));
-
-  tutRenderResults({
-    bs:{cash:cashAdj,inv:totalInv,loans:newLoansNet,ncusif:5.8,fixed:24.1,total:totalAssets,
-        sd:newSD,rs:newRS,mm:newMM,cert:newCert,fhlb:newFHLB,
-        liab:newSD+newRS+newMM+newCert+newFHLB+8.4,
-        ue:newUndivided,aoci:newAOCI,equity:totalEquity},
-    is:{li:loanIncome,ii:invIncome,tii:totalIntIncome,
-        dos:depExp,bc:fhlbCost,tie:totalIntExp,
-        nii,fee:feeInc,prov:-provision,opex:-totalOpex,ni:netIncome},
-    nwRatio,roa,nim,effRatio,lts,delinq,ncoRate,liqRatio,
-    camel:{c:cC,a:cA,m:cM,e:cE,l:cL},apex,heat,members,totalShares,totalAssets,newLoansNet,
-    fhlbPct:d.fhlbPct,
-  });
-
-  // Switch to overview to show results
+  // Run the same engine as the multiplayer game
+  const result = runSimEngine({CEO:ceo,CFO:cfo,CLO:clo,CMO:cmo}, econ);
+  tutDisplayResults(result);
   tutTab('overview', document.querySelector('.tut-tab-btn'));
 }
 
-function tutRenderResults(r) {
-  const {bs, is, camel} = r;
+function tutDisplayResults(r) {
+  const {bs,is,ratios,camel,apex} = r;
 
-  // ── Overview KPIs ──
-  function setKPI(elId, noteId, val, good, warn, fmt_, note, inverted=false) {
-    const el = document.getElementById(elId); if(!el) return;
-    const ne = document.getElementById(noteId);
-    el.textContent = fmt_(val);
-    const cls = inverted
-      ? (val<=good?'good':val<=warn?'warn':'bad')
-      : (val>=good?'good':val>=warn?'warn':'bad');
-    el.className = 'tut-kpi-value ' + cls;
-    const kpi = el.closest('.tut-kpi');
-    if(kpi) kpi.className = 'tut-kpi' + (cls==='bad'?' bad':cls==='warn'?' warn':'');
-    if(ne) ne.textContent = note;
+  // Show statements content
+  const noRes=document.getElementById('tut-no-results');
+  const stmts=document.getElementById('tut-stmt-content');
+  if(noRes) noRes.style.display='none';
+  if(stmts) stmts.style.display='block';
+
+  const fmtP=(v,d=2)=>v.toFixed(d)+'%';
+  function tSet(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+  function tKPI(elId,noteId,val,good,warn,fmtFn,note,inv=false){
+    const el=document.getElementById(elId);if(!el)return;
+    el.textContent=fmtFn(val);
+    const cls=inv?(val<=good?'good':val<=warn?'warn':'bad'):(val>=good?'good':val>=warn?'warn':'bad');
+    el.className='kpi-value '+cls;
+    el.closest('.kpi').className='kpi '+(cls==='bad'?'bad':cls==='warn'?'warn':'');
+    if(noteId)tSet(noteId,note);
   }
-  setKPI('tut-ov-nw','tut-ov-nw-note', r.nwRatio*100, 9, 7, v=>tutFmtP(v),
-    r.nwRatio>=0.10?'✓ Well-capitalized':r.nwRatio>=0.07?'Adequately capitalized':'⚠ Below well-capitalized');
-  setKPI('tut-ov-roa',null, r.roa*100, 0.72, 0.3, v=>tutFmtP(v), null);
-  setKPI('tut-ov-nim',null, r.nim*100, 3.15, 2.5, v=>tutFmtP(v), null);
-  setKPI('tut-ov-eff',null, r.effRatio*100, 0, 74.2, v=>tutFmtP(v), null, true);
+  tKPI('tut-ov-nw','tut-ov-nw-note',ratios.nwRatio*100,9,7,v=>fmtP(v),ratios.nwRatio>=0.10?'✓ Well-capitalized':ratios.nwRatio>=0.07?'Adequately capitalized':'⚠ Below well-capitalized');
+  tKPI('tut-ov-roa',null,ratios.roa*100,0.72,0.3,v=>fmtP(v),null);
+  tKPI('tut-ov-nim',null,ratios.nim*100,3.15,2.5,v=>fmtP(v),null);
+  tKPI('tut-ov-eff',null,ratios.effRatio*100,0,74.2,v=>fmtP(v,1),null,true);
 
-  tutSet('tut-ov-assets', tutFmt(r.totalAssets));
-  tutSet('tut-ov-loans',  tutFmt(r.newLoansNet));
-  tutSet('tut-ov-shares', tutFmt(r.totalShares));
-  tutSet('tut-ov-members', r.members.toLocaleString());
+  tSet('tut-ov-assets',fmt(bs.total)); tSet('tut-ov-loans',fmt(bs.loans));
+  tSet('tut-ov-shares',fmt(ratios.totalShares||558)); tSet('tut-ov-members',(ratios.members||48000).toLocaleString());
 
-  function setR(id, val, good, warn, fmt_, inv=false) {
-    const el = document.getElementById(id); if(!el) return;
-    el.textContent = fmt_(val);
-    const cls = inv?(val<=good?'good':val<=warn?'warn':'bad'):(val>=good?'good':val>=warn?'warn':'bad');
-    el.className = 'tut-kpi-value ' + cls;
-    const kpi = el.closest('.tut-kpi');
-    if(kpi) kpi.className = 'tut-kpi' + (cls==='bad'?' bad':cls==='warn'?' warn':'');
+  function tR(id,val,good,warn,fmtFn,inv=false){
+    const el=document.getElementById(id);if(!el)return;
+    el.textContent=fmtFn(val);
+    const cls=inv?(val<=good?'good':val<=warn?'warn':'bad'):(val>=good?'good':val>=warn?'warn':'bad');
+    el.className='kpi-value '+cls;
+    el.closest('.kpi').className='kpi '+(cls==='bad'?'bad':cls==='warn'?'warn':'');
   }
-  setR('tut-ov-lts',  r.lts*100,      0,   90,  v=>tutFmtP(v), true);
-  setR('tut-ov-del',  r.delinq*100,   0.8, 1.5, v=>tutFmtP(v), true);
-  setR('tut-ov-nco',  r.ncoRate*100,  0.3, 0.8, v=>tutFmtP(v), true);
-  setR('tut-ov-liq',  r.liqRatio*100, 8,   5,   v=>tutFmtP(v));
+  tR('tut-ov-lts',ratios.lts*100,0,90,v=>fmtP(v,1),true);
+  tR('tut-ov-del',ratios.delinq*100,0.8,1.5,v=>fmtP(v),true);
+  tR('tut-ov-nco',ratios.ncoRate*100,0.3,0.8,v=>fmtP(v),true);
+  tR('tut-ov-liq',ratios.liqRatio*100,8,5,v=>fmtP(v,1));
 
-  // ── Apex ──
-  tutSet('tut-apexNum', r.apex);
-  const ab = document.getElementById('tut-apexBar');
-  if(ab) ab.style.width = r.apex+'%';
-  const grade = r.apex>=82?'STRONG — CAMEL 1':r.apex>=67?'SATISFACTORY — CAMEL 2':r.apex>=52?'FAIR — CAMEL 3':r.apex>=37?'MARGINAL — CAMEL 4':'UNSATISFACTORY — CAMEL 5';
-  const gc = r.apex>=82?'#6dd68a':r.apex>=67?'#9fd6f0':r.apex>=52?'#f0d680':'#f28b82';
-  const ag = document.getElementById('tut-apexGrade');
-  if(ag){ ag.textContent = grade; ag.style.color = gc; }
-  tutSet('tut-apexBreak', `C: ${camel.c} (×25%) | A: ${camel.a} (×20%) | M: ${camel.m} (×20%) | E: ${camel.e} (×20%) | L: ${camel.l} (×15%)`);
+  // Apex
+  tSet('tut-apexNum',apex); tSet('tut-apex-camel-num',apex);
+  const apexBars=['tut-apexBar','tut-apex-camel-bar'];
+  apexBars.forEach(id=>{const el=document.getElementById(id);if(el)el.style.width=apex+'%';});
+  const grade=apex>=82?'STRONG':apex>=67?'SATISFACTORY':apex>=52?'FAIR':apex>=37?'MARGINAL':'UNSATISFACTORY';
+  const gc=apex>=82?'#6dd68a':apex>=67?'#9fd6f0':apex>=52?'#f0d680':'#f28b82';
+  ['tut-apexGrade','tut-apex-camel-grade'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=grade;el.style.color=gc;}});
+  const breakStr=`CAMEL (75%): ${ratios.camelComposite||'—'} pts  |  Growth (25%): ${ratios.growthScore||'—'} pts  |  Members: ${(ratios.memberGrowth||0)>=0?'+':''}${ratios.memberGrowth||0}  |  Asset Growth: ${ratios.assetGrowth||'—'}%`;
+  tSet('tut-apexBreak',breakStr); tSet('tut-apex-camel-break',breakStr);
 
-  // ── Balance Sheet ──
-  ['cash','inv','loans','ncusif','fixed','total','sd','rs','mm','cert','fhlb','liab','ue','equity']
-    .forEach(k=>tutSet('tut-bs-'+k, tutFmt(bs[k])));
-  const aociEl = document.getElementById('tut-bs-aoci');
-  if(aociEl){ aociEl.textContent = bs.aoci<0?'-'+tutFmt(Math.abs(bs.aoci)):tutFmt(bs.aoci); aociEl.className = bs.aoci<0?'neg':'pos';}
+  // Balance sheet
+  ['cash','inv','loans','other','total','sd','rs','mm','cert','fhlb','liab','ue','equity'].forEach(k=>tSet('tut-bs-'+k,fmt(bs[k]||0)));
+  const aEl=document.getElementById('tut-bs-aoci');
+  if(aEl){aEl.textContent=bs.aoci<0?'-'+fmt(Math.abs(bs.aoci)):fmt(bs.aoci);aEl.className=bs.aoci<0?'neg':'pos';}
 
-  // ── Income Statement ──
-  ['li','ii','tii','dos','bc','tie','nii','fee'].forEach(k=>tutSet('tut-is-'+k, tutFmt(is[k])));
-  tutSet('tut-is-prov', '-'+tutFmt(Math.abs(is.prov)));
-  tutSet('tut-is-opex', '-'+tutFmt(Math.abs(is.opex)));
-  const niEl = document.getElementById('tut-is-ni');
-  if(niEl){ niEl.textContent = is.ni>=0?tutFmt(is.ni):'-'+tutFmt(Math.abs(is.ni)); niEl.className = is.ni>=0?'pos':'neg'; }
+  // Income statement
+  ['li','ii','tii','dos','bc','tie','nii','fee'].forEach(k=>tSet('tut-is-'+k,fmt(is[k]||0)));
+  tSet('tut-is-prov','-'+fmt(Math.abs(is.prov||0)));
+  tSet('tut-is-opex','-'+fmt(Math.abs(is.opex||0)));
+  const niEl=document.getElementById('tut-is-ni');
+  if(niEl){niEl.textContent=is.ni>=0?fmt(is.ni):'-'+fmt(Math.abs(is.ni));niEl.className=is.ni>=0?'pos':'neg';}
 
-  // ── CAMEL ──
-  const camKeys = ['c','a','m','e','l'];
-  const camColors = ['#1e6b7a','#8b7a2e','#1a5c2e','#1a7a3e','#5a3a8b'];
-  camKeys.forEach((k,i) => {
-    const s = camel[k];
-    const se = document.getElementById('tut-c'+k+'-s'); if(se){ se.textContent=s+'/100'; se.style.color=s>=80?'#1a7a3e':s>=60?'#8b6a1e':'#8b2020'; }
-    const sb = document.getElementById('tut-c'+k+'-b'); if(sb){ sb.style.width=s+'%'; sb.style.background=camColors[i]; }
+  // CAMEL bars
+  [['c','var(--cfo)'],['a','var(--orange)'],['m','var(--ceo)'],['e','var(--good)'],['l','var(--cmo)']].forEach(([k,col])=>{
+    const s=camel[k]||0;
+    const se=document.getElementById('tut-c'+k+'-s');if(se){se.textContent=s+'/100';se.style.color=s>=80?'var(--good)':s>=60?'var(--warn)':'var(--bad)';}
+    const sb=document.getElementById('tut-c'+k+'-b');if(sb){sb.style.width=s+'%';sb.style.background=col;}
   });
-  tutSet('tut-apex-camel-num', r.apex);
-  const acb = document.getElementById('tut-apex-camel-bar'); if(acb) acb.style.width=r.apex+'%';
-  const acg = document.getElementById('tut-apex-camel-grade'); if(acg){ acg.textContent=grade; acg.style.color=gc; }
 
-  // ── Examiner commentary ──
-  const lines = [];
-  const addLine=(cls,icon,text)=>lines.push(`<div class="tut-ex-line ${cls}"><span>${icon}</span><span>${text}</span></div>`);
-  if(r.nwRatio<0.07) addLine('fail','🚨',`CAPITAL: Net worth ratio of ${tutFmtP(r.nwRatio*100)} is below 7%. Prompt Corrective Action conditions met. Capital Restoration Plan required immediately.`);
-  else if(r.nwRatio<0.08) addLine('caution','⚠',`CAPITAL: Net worth ratio of ${tutFmtP(r.nwRatio*100)} is below the well-capitalized threshold. Expect heightened examiner scrutiny.`);
-  else addLine('pass','✅',`CAPITAL: Net worth ratio of ${tutFmtP(r.nwRatio*100)} is ${r.nwRatio>=0.10?'strong':'adequate'}. Capital position supports current risk profile.`);
+  // Examiner commentary — reuse same logic as main game
+  const lines=[];
+  const addLine=(cls,icon,txt)=>lines.push(`<div class="ex-line ${cls}"><span style="flex-shrink:0">${icon}</span><span>${txt}</span></div>`);
+  if(ratios.nwRatio<0.07)addLine('fail','🚨',`CAPITAL: Net worth ${fmtP(ratios.nwRatio*100)} — below 7%. Prompt Corrective Action conditions met.`);
+  else if(ratios.nwRatio<0.08)addLine('caution','⚠',`CAPITAL: Net worth ${fmtP(ratios.nwRatio*100)} — below well-capitalized threshold. Examiner scrutiny elevated.`);
+  else addLine('pass','✅',`CAPITAL: Net worth ${fmtP(ratios.nwRatio*100)} — ${ratios.nwRatio>=0.10?'strong and well above':'adequate above'} regulatory minimums.`);
+  addLine(ratios.delinq>0.015?'fail':ratios.delinq>0.009?'caution':'pass',ratios.delinq>0.015?'🚨':ratios.delinq>0.009?'⚠':'✅',`ASSET QUALITY: Delinquency ${fmtP(ratios.delinq*100)} is ${ratios.delinq>0.015?'elevated — vintage analysis and enhanced collections expected':ratios.delinq>0.009?'slightly above peer range':'within healthy range'}.`);
+  addLine(ratios.effRatio>0.85?'fail':ratios.effRatio>0.742?'caution':'pass',ratios.effRatio>0.85?'🚨':ratios.effRatio>0.742?'⚠':'✅',`MANAGEMENT: Efficiency ratio ${fmtP(ratios.effRatio*100,1)} is ${ratios.effRatio>0.742?'above':'below'} peer average (74.2%).`);
+  addLine(ratios.roa<0.003?'fail':ratios.roa<0.007?'caution':'pass',ratios.roa<0.003?'🚨':ratios.roa<0.007?'⚠':'✅',`EARNINGS: ROA ${fmtP(ratios.roa*100)} is ${ratios.roa>=0.0072?'above':'below'} peer average (0.72%).`);
+  addLine(ratios.liqRatio<0.05?'fail':'pass',ratios.liqRatio<0.05?'🚨':'✅',`LIQUIDITY: Liquidity ratio ${fmtP(ratios.liqRatio*100,1)}. Loan-to-share ${fmtP(ratios.lts*100,1)}.`);
+  const ec=document.getElementById('tut-exam-comments'); if(ec)ec.innerHTML=lines.join('');
 
-  if(r.delinq>0.015) addLine('fail','🚨',`ASSET QUALITY: Delinquency of ${tutFmtP(r.delinq*100)} is elevated. Examiner would expect vintage analysis and enhanced collections.`);
-  else if(r.delinq>0.009) addLine('caution','⚠',`ASSET QUALITY: Delinquency of ${tutFmtP(r.delinq*100)} is slightly above peer average. Monitor trends and ensure ALLL is adequately reserved.`);
-  else addLine('pass','✅',`ASSET QUALITY: Delinquency of ${tutFmtP(r.delinq*100)} is within healthy range. Underwriting discipline appears appropriate.`);
+  // Alerts
+  const pca=document.getElementById('tut-alertPCA');
+  const wrn=document.getElementById('tut-alertWarn');
+  if(pca){if(ratios.nwRatio<0.07){pca.className='alert bad';pca.innerHTML='🚨 <strong>PROMPT CORRECTIVE ACTION</strong> — Net worth below 7.0%. Growth decisions locked next round.';}else pca.className='alert';}
+  if(wrn){if(ratios.nwRatio>=0.07&&ratios.nwRatio<0.08){wrn.className='alert warn';wrn.innerHTML='⚠ <strong>SUPERVISORY CONCERN</strong> — Net worth below well-capitalized threshold (8.0%).';}else wrn.className='alert';}
 
-  if(r.effRatio>0.85) addLine('fail','🚨',`MANAGEMENT: Efficiency ratio of ${tutFmtP(r.effRatio*100)} signals poor expense control. Any revenue shortfall immediately produces losses.`);
-  else if(r.effRatio>0.74) addLine('caution','⚠',`MANAGEMENT: Efficiency ratio of ${tutFmtP(r.effRatio*100)} is above peer average (74.2%). Expense discipline should be examined.`);
-  else addLine('pass','✅',`MANAGEMENT: Efficiency ratio of ${tutFmtP(r.effRatio*100)} reflects strong operational discipline. Below peer average.`);
+  // Heat gauge
+  const hf=document.getElementById('tut-heatFill');if(hf)hf.style.width=ratios.heat+'%';
+  const hl=document.getElementById('tut-heatLbl');
+  if(hl){hl.textContent=ratios.heat<22?'LOW':ratios.heat<45?'MODERATE':ratios.heat<68?'ELEVATED':'HIGH';hl.style.color=ratios.heat<22?'var(--good)':ratios.heat<45?'var(--warn)':'var(--bad)';}
 
-  if(r.roa<0.003) addLine('fail','🚨',`EARNINGS: ROA of ${tutFmtP(r.roa*100)} is significantly below peer average. Earnings insufficient to sustain capital growth.`);
-  else if(r.roa<0.007) addLine('caution','⚠',`EARNINGS: ROA of ${tutFmtP(r.roa*100)} is below the 0.72% peer average. NIM compression from rising deposit costs appears to be a factor.`);
-  else addLine('pass','✅',`EARNINGS: ROA of ${tutFmtP(r.roa*100)} is ${r.roa>=0.0072?'above':'at'} peer average. Earnings are supporting capital growth adequately.`);
-
-  if(r.liqRatio<0.05) addLine('fail','🚨',`LIQUIDITY: Liquidity ratio of ${tutFmtP(r.liqRatio*100)} is tight. With FHLB reliance elevated, a contingency funding plan should be on file.`);
-  else addLine('pass','✅',`LIQUIDITY: Liquidity position appears adequate. Loan-to-share ratio of ${tutFmtP(r.lts*100)} is within acceptable bounds.`);
-
-  const ec = document.getElementById('tut-exam-comments');
-  if(ec) ec.innerHTML = lines.join('');
-
-  // ── Alert banners ──
-  const pca = document.getElementById('tut-alertPCA');
-  const wrn = document.getElementById('tut-alertWarn');
-  if(pca){ if(r.nwRatio < 0.07){ pca.className='tut-alert bad'; pca.innerHTML='🚨 <strong>PROMPT CORRECTIVE ACTION</strong> — Net worth below 7.0%. Growth decisions locked for next round.'; } else { pca.className='tut-alert'; } }
-  if(wrn){ if(r.nwRatio>=0.07 && r.nwRatio<0.08){ wrn.className='tut-alert warn'; wrn.innerHTML='⚠ <strong>SUPERVISORY CONCERN</strong> — Net worth below well-capitalized threshold (8.0%). CAMEL Capital score penalized.'; } else { wrn.className='tut-alert'; } }
-
-  // ── Heat gauge ──
-  const hf = document.getElementById('tut-heatFill'); if(hf) hf.style.width = r.heat+'%';
-  const hl = document.getElementById('tut-heatLbl');
-  if(hl){ hl.textContent=r.heat<22?'LOW':r.heat<45?'MODERATE':r.heat<68?'ELEVATED':'HIGH'; hl.style.color=r.heat<22?'#1a7a3e':r.heat<45?'#8b6a1e':'#8b2020'; }
-
-  // ── Leaderboard ──
-  tutRenderLB(r.apex, r.nwRatio*100, r.roa*100, r.totalAssets);
+  tutRenderLB(apex, ratios.nwRatio*100, ratios.growthScore||0, ratios.memberGrowth||0);
 }
 
-function tutRenderLB(myApex, myNW, myROA, myAssets) {
-  const teams = [
-    {name:'Lakeside Community CU', apex:myApex, nw:myNW, roa:myROA, assets:myAssets, mine:true},
-    {name:'Summit Federal CU',     apex:71,  nw:9.82, roa:0.74, assets:812.4},
-    {name:'Riverdale CU',          apex:68,  nw:8.91, roa:0.61, assets:634.2},
-    {name:'Pioneer Members CU',    apex:64,  nw:9.14, roa:0.55, assets:441.7},
-    {name:'Northshore CU',         apex:58,  nw:8.02, roa:0.38, assets:523.6},
-    {name:'Bayside FCU',           apex:44,  nw:7.31, roa:0.12, assets:298.1},
+function tutRenderLB(myApex, myNW, myGrowth, myDelta) {
+  const teams=[
+    {name:'Lakeside Community CU',apex:myApex,nw:myNW,growth:myGrowth,delta:myDelta,mine:true},
+    {name:'Summit Federal CU',    apex:71,nw:9.82,growth:68,delta:+290},
+    {name:'Riverdale CU',         apex:68,nw:8.91,growth:62,delta:+180},
+    {name:'Pioneer Members CU',   apex:64,nw:9.14,growth:55,delta:+95},
+    {name:'Northshore CU',        apex:58,nw:8.02,growth:44,delta:-40},
+    {name:'Bayside FCU',          apex:44,nw:7.31,growth:28,delta:-210},
   ].sort((a,b)=>b.apex-a.apex);
-  const medals = ['🥇','🥈','🥉'];
-  const rankCls = ['g1','g2','g3'];
-  const el = document.getElementById('tut-lb-rows');
-  if(el) el.innerHTML = teams.map((t,i)=>`
-    <div class="tut-lb-row${t.mine?' me':''}">
-      <div class="tut-lb-rank ${i<3?rankCls[i]:''}">${i<3?medals[i]:'#'+(i+1)}</div>
-      <div class="tut-lb-cu">${t.name}${t.mine?'<small>(YOUR TEAM)</small>':''}</div>
-      <div class="tut-lb-v ${t.apex>=70?'good':t.apex>=55?'':'bad'}">${Math.round(t.apex)}</div>
-      <div class="tut-lb-v ${t.nw>=9?'good':t.nw>=7?'':'bad'}">${t.nw.toFixed(2)}%</div>
-      <div class="tut-lb-v ${t.roa>=0.65?'good':t.roa>=0.30?'':'bad'}">${t.roa.toFixed(2)}%</div>
-      <div class="tut-lb-v">${tutFmt(t.assets)}</div>
+  const medals=['🥇','🥈','🥉'];
+  const el=document.getElementById('tut-lb-rows');
+  if(el) el.innerHTML=teams.map((t,i)=>`
+    <div class="lb-row${t.mine?' me':''}">
+      <div class="lb-rank ${i<3?['g1','g2','g3'][i]:''}">${i<3?medals[i]:'#'+(i+1)}</div>
+      <div class="lb-cu">${t.name}${t.mine?'<small>(YOU)</small>':''}</div>
+      <div class="lb-v ${t.apex>=70?'good':t.apex<50?'bad':''}" style="font-weight:700">${Math.round(t.apex)}</div>
+      <div class="lb-v ${t.nw>=9?'good':t.nw<7?'bad':''}">${t.nw.toFixed(2)}%</div>
+      <div class="lb-v ${t.growth>=65?'good':t.growth<45?'bad':''}">${t.growth}</div>
+      <div class="lb-v ${t.delta>=0?'good':'bad'}">${t.delta>=0?'+':''}${t.delta}</div>
     </div>`).join('');
 }
-
-// ── Glossary (shared, used in tutorial mode) ──
-const GLOSSARY = [
-  { term:'Net Worth Ratio', cat:'capital', def:'Total equity divided by total assets. The primary capital adequacy metric regulators use. Must stay above 7% to avoid Prompt Corrective Action. "Well-capitalized" = 7%+.', why:'Why it matters: Capital is your shock absorber. A thin capital ratio means any unexpected loss can threaten solvency. Regulators use this as their first screen of institutional health.', formula:'Total Equity ÷ Total Assets' },
-  { term:'Return on Assets (ROA)', cat:'earnings', def:'Annualized net income divided by average total assets. The primary profitability metric for credit unions. Peer average: ~0.72%. Above 1.0% is considered excellent.', why:'Why it matters: ROA tells you how efficiently you\'re generating profit from your asset base. Low ROA = thin margin of error. Negative ROA = you\'re burning capital.', formula:'(Net Income × 4) ÷ Total Assets' },
-  { term:'Net Interest Margin (NIM)', cat:'earnings', def:'Net interest income divided by average earning assets. The "spread" between what you earn on loans/investments and what you pay on deposits. Core profitability driver. Peer avg: ~3.15%.', why:'Why it matters: NIM compression is the primary earnings risk when deposit rates rise faster than loan yields. Managing NIM means managing the balance between competitive deposit pricing and loan portfolio yield.', formula:'Net Interest Income ÷ Average Earning Assets' },
-  { term:'Efficiency Ratio', cat:'mgmt', def:'Operating expenses divided by net revenue (NII + non-interest income). Lower is better — it measures how many cents of expense you spend to generate each dollar of revenue. Peer avg: ~74%. Above 90% is a warning sign.', why:'Why it matters: A high efficiency ratio means you have little margin for revenue shortfalls. A CU spending $0.85 per dollar earned has almost no room before losses begin.', formula:'Operating Expense ÷ (NII + Non-Interest Income)' },
-  { term:'Allowance for Loan & Lease Losses (ALLL)', cat:'asset', def:'A balance sheet reserve representing estimated future credit losses. Funded by the quarterly provision expense. Peer avg coverage ratio: ~1.10%. Examiners flag under-reserved institutions.', why:'Why it matters: The ALLL is your shock absorber for loan losses. Too thin = examiner concern. Too thick = unnecessarily suppressed earnings.', formula:'ALLL ÷ Gross Loans = Coverage Ratio' },
-  { term:'Delinquency Rate', cat:'asset', def:'Percentage of loans 60+ days past due to total loans. A leading indicator of future charge-offs. Below 0.8% is healthy. Above 1.5% warrants examiner attention.', why:'Why it matters: What your CLO does with FICO floors today shows up in delinquency 2–4 quarters later. It\'s the early warning system for credit quality deterioration.', formula:'60+ Day Past Due Loans ÷ Total Loans' },
-  { term:'Net Charge-Off Rate (NCO)', cat:'asset', def:'Loans written off as uncollectible, net of recoveries, as a percentage of average loans. Lagging indicator — delinquency rises first.', why:'Why it matters: Charge-offs are actual, realized losses — they directly reduce equity and earnings.', formula:'(Charge-Offs – Recoveries) ÷ Average Loans' },
-  { term:'Loan-to-Share Ratio', cat:'liquidity', def:'Total loans divided by total shares/deposits. Above 90% signals tight liquidity. Below 70% suggests significant earning asset capacity is unused.', why:'Why it matters: Managing this tension between yield (high LTS) and liquidity (low LTS) is core to CFO strategy.', formula:'Total Loans ÷ Total Shares & Deposits' },
-  { term:'FHLB Advances', cat:'liquidity', def:'Secured borrowings from the Federal Home Loan Bank. Examiners flag heavy reliance (>15% of assets) as a liquidity concern since wholesale funding is less stable than member deposits.', why:'Why it matters: FHLB is useful for managing liquidity gaps, but dependence on it is a vulnerability. During 2008, CUs with heavy FHLB reliance were most exposed.', formula:null },
-  { term:'Liquidity Ratio', cat:'liquidity', def:'Liquid assets (cash + short-term investments) as a percentage of total assets. Below 5% triggers examiner concern.', why:'Why it matters: Liquidity is binary — you either have it or you don\'t. Liquidity crises move faster than any other institutional risk.', formula:'(Cash + Short Investments) ÷ Total Assets' },
-  { term:'AOCI', cat:'capital', def:'Accumulated Other Comprehensive Income. Unrealized gains/losses on the investment portfolio marked to market. When rates rise, bond prices fall, creating a negative AOCI that directly reduces net worth ratio.', why:'Why it matters: In 2022–2023, AOCI losses destroyed net worth ratios at institutions holding long-duration bonds.', formula:'Unrealized Gain/(Loss) on Investment Portfolio' },
-  { term:'Provision for Loan Losses', cat:'earnings', def:'Quarterly income statement expense used to build the ALLL reserve. Too little: ALLL becomes under-reserved. Too much: earnings unnecessarily suppressed.', why:'Why it matters: Provisioning discipline requires honest assessment of portfolio risk — not optimism, not excessive pessimism.', formula:'Provision = Target ALLL – Current ALLL + Charge-Offs' },
-  { term:'Prompt Corrective Action (PCA)', cat:'capital', def:'The regulatory framework that restricts activities when net worth falls below thresholds. At 7% = "Adequately Capitalized." Below 6% = "Undercapitalized" — growth restricted, Capital Restoration Plan required.', why:'Why it matters: Once a CU enters PCA territory, the examiner — not management — effectively starts making strategic decisions.', formula:null },
-  { term:'Share Certificates', cat:'general', def:'The credit union equivalent of Certificates of Deposit (CDs). Fixed-rate, fixed-term deposits. The most rate-sensitive deposit product — members actively compare rates.', why:'Why it matters: Certificate pricing is where CUs win or lose the deposit competition war. Too low = outflow. Too high = NIM compression.', formula:null },
-  { term:'NII (Net Interest Income)', cat:'earnings', def:'Total interest income earned minus total interest expense paid. The core revenue stream for credit unions. Most CUs derive 75–85% of total revenue from NII.', why:'Why it matters: NII is the foundation everything else is built on. If NIM compresses while expenses stay flat, NII falls, ROA falls, and capital growth slows.', formula:'Total Interest Income – Total Interest Expense' },
-];
-let activeCat = 'all';
-
-function renderGlossary(filter='', cat='all') {
-  const list = document.getElementById('gloss-list');
-  if(!list) return;
-  const filtered = GLOSSARY.filter(g => {
-    const matchCat = cat==='all' || g.cat===cat;
-    const matchText = !filter || g.term.toLowerCase().includes(filter.toLowerCase()) || g.def.toLowerCase().includes(filter.toLowerCase());
-    return matchCat && matchText;
-  });
-  list.innerHTML = filtered.length ? filtered.map(g => `
-    <div class="glossary-item">
-      <div class="glossary-term">
-        <h4>${g.term}</h4>
-        <span class="glossary-cat-badge cat-${g.cat}">${g.cat.toUpperCase()}</span>
-      </div>
-      <div class="glossary-def">
-        ${g.def}
-        ${g.why ? `<span class="why">${g.why}</span>` : ''}
-        ${g.formula ? `<div class="glossary-formula">Formula: ${g.formula}</div>` : ''}
-      </div>
-    </div>`).join('') : '<div style="color:#5a6b5e;font-size:.8rem;padding:20px 0;text-align:center;">No terms match your search.</div>';
-}
-function filterGloss() { renderGlossary(document.getElementById('gloss-search')?.value || '', activeCat); }
-function setCat(cat, el) {
-  activeCat = cat;
-  document.querySelectorAll('.gloss-cat').forEach(e => e.classList.remove('on'));
-  el.classList.add('on');
-  filterGloss();
-}
-function openGlossary()  { const o=document.getElementById('glossary-overlay'); if(o){o.classList.add('open'); renderGlossary('',activeCat);} }
-function closeGlossaryBtn() { document.getElementById('glossary-overlay')?.classList.remove('open'); }
-function closeGlossary(e) { if(e.target===document.getElementById('glossary-overlay')) closeGlossaryBtn(); }
 
 // ════════════════════════════════════
 // INIT
