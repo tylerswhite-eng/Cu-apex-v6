@@ -1,0 +1,11 @@
+{
+  "name": "cu-apex-v6",
+  "version": "6.0.0",
+  "description": "CU APEX — Credit Union Leadership Simulation",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["credit-union", "simulation", "fintech", "education"],
+  "license": "UNLICENSED"
+}
