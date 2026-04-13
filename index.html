@@ -461,13 +461,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .tut-glossary-btn:hover{background:var(--orange);color:white;}
 
 /* Tutorial tab bar — identical to main game */
-.tut-tab-bar{position:fixed;top:92px;left:0;right:0;z-index:180;background:white;border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;overflow-x:auto;}
-.tut-tab-btn{padding:10px 14px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .18s;margin-bottom:-1px;display:flex;align-items:center;gap:6px;}
+.tut-tab-bar{position:fixed;top:92px;left:0;right:0;z-index:180;background:white;border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;overflow-x:auto;height:42px;align-items:stretch;}
+.tut-tab-btn{padding:0 14px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .18s;display:flex;align-items:center;gap:6px;height:100%;}
 .tut-tab-btn.active{color:var(--navy-dark);border-bottom-color:var(--navy);font-weight:600;}
 .tut-rdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 
 /* Tutorial main content */
-.tut-main{padding-top:120px;padding-bottom:60px;max-width:1380px;margin:0 auto;padding-left:28px;padding-right:28px;}
+.tut-main{padding-top:148px;padding-bottom:60px;max-width:1380px;margin:0 auto;padding-left:28px;padding-right:28px;}
 .tut-panel{display:none;}
 .tut-panel.active{display:block;}
 
@@ -505,9 +505,22 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .glossary-def .why{font-style:italic;color:var(--blue);margin-top:4px;display:block;}
 .glossary-formula{font-family:'IBM Plex Mono',monospace;font-size:.68rem;background:var(--blue-wash);padding:5px 9px;border-radius:4px;color:var(--navy-dark);margin-top:6px;display:inline-block;}
 
-/* Tutorial inline term tooltips */
+/* Tutorial inline term tooltips — fixed positioning avoids all clipping */
 .tterm{position:relative;border-bottom:1px dashed var(--orange-light);cursor:help;color:inherit;}
-.tterm-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy-dark);color:white;border-radius:8px;padding:10px 12px;width:240px;font-size:.7rem;line-height:1.55;z-index:300;box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;font-style:normal;font-weight:400;}
+.tterm-tip{
+  display:none;
+  position:fixed;
+  background:var(--navy-dark);color:white;
+  border-radius:8px;padding:10px 14px;
+  width:260px;max-width:90vw;
+  font-size:.7rem;line-height:1.6;
+  z-index:2000;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+  pointer-events:none;
+  font-style:normal;font-weight:400;
+  /* position set by JS on hover */
+  top:0;left:0;
+}
 .tterm:hover .tterm-tip{display:block;}
 
 /* Tutorial-specific role header (reuses .role-hdr pattern with tutorial prefix to avoid conflicts) */
@@ -1821,7 +1834,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -3497,6 +3510,36 @@ function tutRenderLB(myApex, myNW, myGrowth, myDelta) {
       <div class="lb-v ${t.growth>=65?'good':t.growth<45?'bad':''}">${t.growth}</div>
       <div class="lb-v ${t.delta>=0?'good':'bad'}">${t.delta>=0?'+':''}${t.delta}</div>
     </div>`).join('');
+}
+
+// ── Tutorial tooltip positioning (fixed, never clipped) ──
+document.addEventListener('mouseover', function(e) {
+  const term = e.target.closest('.tterm');
+  if (!term) return;
+  const tip = term.querySelector('.tterm-tip');
+  if (!tip) return;
+  positionTip(term, tip);
+});
+document.addEventListener('mousemove', function(e) {
+  const term = e.target.closest('.tterm');
+  if (!term) return;
+  const tip = term.querySelector('.tterm-tip');
+  if (!tip || tip.style.display === 'none') return;
+  positionTip(term, tip);
+});
+function positionTip(term, tip) {
+  const r = term.getBoundingClientRect();
+  const tipW = 260;
+  const tipH = tip.offsetHeight || 120;
+  const margin = 8;
+  // Prefer above; fall back to below if not enough room
+  let top = r.top - tipH - margin;
+  if (top < 140) top = r.bottom + margin; // below fixed nav
+  // Horizontal: center on term, clamp to viewport
+  let left = r.left + r.width/2 - tipW/2;
+  left = Math.max(10, Math.min(left, window.innerWidth - tipW - 10));
+  tip.style.top = top + 'px';
+  tip.style.left = left + 'px';
 }
 
 // ════════════════════════════════════
