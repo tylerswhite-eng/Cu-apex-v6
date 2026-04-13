@@ -913,7 +913,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
         <div class="kpi"><div class="kpi-label">Members</div><div class="kpi-value" id="tut-ov-members">—</div></div>
       </div>
       <div class="g4" style="margin-bottom:20px">
-        <div class="kpi"><div class="kpi-label"><span class="tterm">Loan-to-Share<span class="tterm-tip"><strong>Loan-to-Share Ratio</strong> Total loans ÷ deposits. Above 90% signals tight liquidity.</span></span></div><div class="kpi-value" id="tut-ov-lts">—</div></div>
+        <div class="kpi"><div class="kpi-label"><span class="tterm">Loan-to-Share<span class="tterm-tip"><strong>Loan-to-Share Ratio</strong> Total loans ÷ deposits. Examiners assess this alongside your liquidity ratio and FHLB reliance — a high LTS with adequate liquid assets and low wholesale funding is acceptable. Only penalized when combined with a thin liquidity buffer.</span></span></div><div class="kpi-value" id="tut-ov-lts">—</div></div>
         <div class="kpi"><div class="kpi-label"><span class="tterm">Delinquency Rate<span class="tterm-tip"><strong>Delinquency Rate</strong> Loans 60+ days past due. Leading indicator of future charge-offs. Below 0.8% is healthy.</span></span></div><div class="kpi-value" id="tut-ov-del">—</div></div>
         <div class="kpi"><div class="kpi-label"><span class="tterm">Net Charge-Off Rate<span class="tterm-tip"><strong>NCO Rate</strong> Loans written off net of recoveries. Lagging indicator — follows delinquency by 2–4 quarters.</span></span></div><div class="kpi-value" id="tut-ov-nco">—</div></div>
         <div class="kpi"><div class="kpi-label"><span class="tterm">Liquidity Ratio<span class="tterm-tip"><strong>Liquidity Ratio</strong> Liquid assets ÷ total assets. Below 5% triggers examiner concern.</span></span></div><div class="kpi-value" id="tut-ov-liq">—</div></div>
@@ -979,12 +979,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
             <div class="dec-group">
               <div class="dec-group-title">Staffing &amp; Culture</div>
               <div class="dec-row">
-                <div class="dec-lbl"><div class="dec-lbl-main">FTE Growth Target</div><div class="dec-lbl-sub">% change in headcount — affects salary expense and efficiency ratio</div></div>
-                <div class="dec-ctrl"><input type="range" min="-5" max="10" value="2" step="1" oninput="tutRng(this,'tut-ceo-fte',1,'%')"><span class="rval" id="tut-ceo-fte">2%</span></div>
-              </div>
-              <div class="dec-row">
-                <div class="dec-lbl"><div class="dec-lbl-main">Training &amp; Retention Investment</div><div class="dec-lbl-sub">% of salary budget — boosts Management CAMEL score</div></div>
-                <div class="dec-ctrl"><input type="range" min="0" max="6" value="2" step="0.5" oninput="tutRng(this,'tut-ceo-train',1,'%')"><span class="rval" id="tut-ceo-train">2.0%</span></div>
+                <div class="dec-lbl"><div class="dec-lbl-main">Staffing Posture</div><div class="dec-lbl-sub">LEAN = cost discipline, lower efficiency ratio · STEADY = maintain current headcount &amp; training · INVEST = grow staff &amp; training, boosts Management CAMEL</div></div>
+                <div class="tog-wrap" id="tut-tog-staffing">
+                  <button class="tog-btn" onclick="tutTog('tut-tog-staffing',this)">LEAN</button>
+                  <button class="tog-btn on" onclick="tutTog('tut-tog-staffing',this)">STEADY</button>
+                  <button class="tog-btn" onclick="tutTog('tut-tog-staffing',this)">INVEST</button>
+                </div>
               </div>
             </div>
           </div>
@@ -1013,39 +1013,23 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       </div>
       <div class="g2">
         <div class="card">
-          <div class="card-title">Investment Portfolio &amp; Wholesale Funding</div>
+          <div class="card-title">Investment Strategy &amp; Wholesale Funding</div>
           <div class="dec-group">
-            <div class="dec-group-title">Portfolio Mix (% of investment portfolio)</div>
+            <div class="dec-group-title">Investment Duration Posture</div>
             <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Cash &amp; Fed Funds<span class="tterm-tip"><strong>Cash / Fed Funds</strong> Overnight deposits. Zero duration risk. Reprices daily with Fed Funds rate — currently yielding ~4.75%. Best liquidity, best yield in this environment.</span></span></div><div class="dec-lbl-sub">Zero duration · reprices daily at Fed Funds ~4.75%</div></div>
-              <div class="dec-ctrl"><input type="range" min="5" max="40" value="15" step="1" oninput="tutRng(this,'tut-cfo-cash',1,'%')"><span class="rval" id="tut-cfo-cash">15%</span></div>
-            </div>
-            <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Short Treasuries &lt;2yr<span class="tterm-tip"><strong>Short Treasuries</strong> U.S. government bonds under 2 years. Existing book avg yield ~3.2% (purchased 2020–2022 at lower rates). Low duration risk — good for liquidity.</span></span></div><div class="dec-lbl-sub">Book avg yield ~3.2% · low rate risk</div></div>
-              <div class="dec-ctrl"><input type="range" min="0" max="60" value="30" step="5" oninput="tutRng(this,'tut-cfo-treas',1,'%')"><span class="rval" id="tut-cfo-treas">30%</span></div>
-            </div>
-            <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Agency MBS<span class="tterm-tip"><strong>Agency MBS</strong> Mortgage-backed securities. Existing book avg yield ~2.7% (bought 2019–2022). High duration risk — rising rates create AOCI losses that directly reduce your net worth ratio, even without any cash loss.</span></span></div><div class="dec-lbl-sub">Book avg yield ~2.7% · ⚠ high duration risk → AOCI losses reduce capital</div></div>
-              <div class="dec-ctrl"><input type="range" min="0" max="50" value="30" step="5" oninput="tutRng(this,'tut-cfo-mbs',1,'%')"><span class="rval" id="tut-cfo-mbs">30%</span></div>
-            </div>
-            <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Municipal Bonds<span class="tterm-tip"><strong>Municipal Bonds</strong> State/local government debt. Tax-exempt. Existing book avg ~2.5%. Medium duration risk. Useful for ALM balance but adds to AOCI exposure.</span></span></div><div class="dec-lbl-sub">Book avg yield ~2.5% · tax-exempt · medium duration risk</div></div>
-              <div class="dec-ctrl"><input type="range" min="0" max="40" value="25" step="5" oninput="tutRng(this,'tut-cfo-muni',1,'%')"><span class="rval" id="tut-cfo-muni">25%</span></div>
+              <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">Portfolio Duration<span class="tterm-tip"><strong>Duration Posture</strong> SHORT = mostly cash &amp; short Treasuries — low yield, zero AOCI risk. BALANCED = diversified mix. LONG = heavy MBS/munis — higher book yield but creates AOCI losses when rates rise, directly reducing your net worth ratio even though no cash is lost.</span></span></div><div class="dec-lbl-sub">SHORT = safe, low yield · BALANCED = diversified · LONG = higher yield but ⚠ AOCI losses reduce capital in rising-rate environment</div></div>
+              <div class="tog-wrap" id="tut-tog-duration">
+                <button class="tog-btn" onclick="tutTog('tut-tog-duration',this)">SHORT</button>
+                <button class="tog-btn on" onclick="tutTog('tut-tog-duration',this)">BALANCED</button>
+                <button class="tog-btn" onclick="tutTog('tut-tog-duration',this)">LONG</button>
+              </div>
             </div>
           </div>
           <div class="dec-group">
             <div class="dec-group-title"><span class="tterm">FHLB Borrowings<span class="tterm-tip"><strong>FHLB Advances</strong> Loans from the Federal Home Loan Bank. Useful for funding gaps. Examiners flag heavy reliance (>15% of assets) as a liquidity concern — wholesale funding is less stable than member deposits.</span></span> (% of earning assets)</div>
             <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Reliance Level</div><div class="dec-lbl-sub">Current: $52M (7% of assets) · above 15% triggers examiner concern</div></div>
+              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Reliance Level</div><div class="dec-lbl-sub">Current: $52M (7% of assets) · above 15% triggers examiner concern · penalizes Liquidity CAMEL when combined with thin buffer</div></div>
               <div class="dec-ctrl"><input type="range" min="0" max="25" value="7" step="1" oninput="tutRng(this,'tut-cfo-fhlb',1,'%')"><span class="rval" id="tut-cfo-fhlb">7%</span></div>
-            </div>
-            <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Term</div><div class="dec-lbl-sub">Overnight = most flexible. Longer term = locks in rate certainty.</div></div>
-              <div class="tog-wrap" id="tut-tog-fhlbterm">
-                <button class="tog-btn on" onclick="tutTog('tut-tog-fhlbterm',this)">OVERNIGHT</button>
-                <button class="tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">1 YR</button>
-                <button class="tog-btn" onclick="tutTog('tut-tog-fhlbterm',this)">3 YR</button>
-              </div>
             </div>
           </div>
         </div>
@@ -1053,7 +1037,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           <div class="card-title">Deposit Rate Strategy</div>
           <div class="intel-box">
             <strong>⚠ CFO ALM INTELLIGENCE (EYES ONLY)</strong>
-            Duration gap: +3.1 years (assets longer than liabilities). AOCI currently -$8.2M from prior rate hikes — further MBS/muni exposure will compound this. Competitor 12-month CD rate: 5.20%. Your current rate: 4.65%. Estimated at-risk deposits repricing this quarter: ~$62M in certificates.
+            Duration gap: +3.1 years (assets longer than liabilities). AOCI currently -$8.2M from prior rate hikes — LONG duration posture will compound this further. Competitor 12-month CD rate: 5.20%. Your current rate: 4.65%. Estimated at-risk deposits repricing this quarter: ~$62M in certificates.
           </div>
           <div class="dec-group">
             <div class="dec-group-title">Deposit Pricing (annual rates)</div>
@@ -1072,10 +1056,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
             <div class="dec-row">
               <div class="dec-lbl"><div class="dec-lbl-main"><span class="tterm">12-Month Certificate<span class="tterm-tip"><strong>Share Certificates</strong> The CU equivalent of CDs. The most rate-sensitive deposit product. Members move significant balances for even 20–50bps. Market at 5.20% — this is the battleground for deposit retention.</span></span></div><div class="dec-lbl-sub">Market: 5.20% — THE deposit battleground right now</div></div>
               <div class="dec-ctrl"><input type="range" min="200" max="600" value="465" step="5" oninput="tutRng(this,'tut-cfo-cert12',0.01,'%')"><span class="rval" id="tut-cfo-cert12">4.65%</span></div>
-            </div>
-            <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main">36-Month Certificate</div><div class="dec-lbl-sub">Market avg: 4.40%</div></div>
-              <div class="dec-ctrl"><input type="range" min="150" max="550" value="390" step="5" oninput="tutRng(this,'tut-cfo-cert36',0.01,'%')"><span class="rval" id="tut-cfo-cert36">3.90%</span></div>
             </div>
           </div>
         </div>
@@ -1834,7 +1814,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2314,11 +2294,13 @@ function renderCEOPanel(submitted) {
             <button class="tog-btn ${(d.posture||'STEADY')==='AGGRESSIVE'?'on':''}" onclick="tog('tog-posture',this)">AGGRESSIVE</button>
           </div></div>
       </div>
-      <div class="dec-group"><div class="dec-group-title">Staffing</div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">FTE Growth Target</div><div class="dec-lbl-sub">% change in headcount</div></div>
-          <div class="dec-ctrl"><input type="range" id="ceo-fte" min="-5" max="10" value="${d.fte||2}" step="1" oninput="rng(this,'ceo-fte-v',1,'%')"><span class="rval" id="ceo-fte-v">${d.fte||2}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Training Investment</div><div class="dec-lbl-sub">% of salary budget — boosts Management CAMEL</div></div>
-          <div class="dec-ctrl"><input type="range" id="ceo-train" min="0" max="6" value="${d.train||2}" step="0.5" oninput="rng(this,'ceo-train-v',1,'%')"><span class="rval" id="ceo-train-v">${d.train||2}%</span></div></div>
+      <div class="dec-group"><div class="dec-group-title">Staffing &amp; Culture</div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Staffing Posture</div><div class="dec-lbl-sub">LEAN = cost discipline · STEADY = maintain · INVEST = grow headcount &amp; training</div></div>
+          <div class="tog-wrap" id="tog-staffing">
+            <button class="tog-btn ${(d.staffing||'STEADY')==='LEAN'?'on':''}" onclick="tog('tog-staffing',this)">LEAN</button>
+            <button class="tog-btn ${(d.staffing||'STEADY')==='STEADY'?'on':''}" onclick="tog('tog-staffing',this)">STEADY</button>
+            <button class="tog-btn ${(d.staffing||'STEADY')==='INVEST'?'on':''}" onclick="tog('tog-staffing',this)">INVEST</button>
+          </div></div>
       </div>
       <button class="submit-btn ceo-btn" onclick="submitDecisions()" ${submitted?'disabled':''}>
         ${submitted ? '✅ Decisions Submitted' : '💾 Save CEO Decisions'}
@@ -2356,26 +2338,18 @@ function renderCFOPanel(submitted) {
     <p>Control investments, deposit pricing, and wholesale funding. You see ALM risk your teammates don't receive automatically.</p></div></div>
   <div class="g2">
     <div class="card">
-      <div class="card-title">Investment Allocation &amp; Funding</div>
-      <div class="dec-group"><div class="dec-group-title">Portfolio Mix (% of investment portfolio)</div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Cash &amp; Fed Funds</div><div class="dec-lbl-sub">Zero duration · currently yielding ~${APP.round?.economic_state?.fed_rate||5.0}%</div></div>
-          <div class="dec-ctrl"><input type="range" id="cfo-cash" min="5" max="40" value="${d.cash||15}" step="1" oninput="rng(this,'cfo-cash-v',1,'%')"><span class="rval" id="cfo-cash-v">${d.cash||15}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Short Treasuries &lt;2yr</div><div class="dec-lbl-sub">Low rate risk · yield ~4.9%</div></div>
-          <div class="dec-ctrl"><input type="range" id="cfo-treas" min="0" max="60" value="${d.treas||30}" step="5" oninput="rng(this,'cfo-treas-v',1,'%')"><span class="rval" id="cfo-treas-v">${d.treas||30}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Agency MBS</div><div class="dec-lbl-sub">Higher yield ~5.2% · duration &amp; prepayment risk</div></div>
-          <div class="dec-ctrl"><input type="range" id="cfo-mbs" min="0" max="50" value="${d.mbs||30}" step="5" oninput="rng(this,'cfo-mbs-v',1,'%')"><span class="rval" id="cfo-mbs-v">${d.mbs||30}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Municipal Bonds</div><div class="dec-lbl-sub">Tax-exempt · 5–10yr duration</div></div>
-          <div class="dec-ctrl"><input type="range" id="cfo-muni" min="0" max="40" value="${d.muni||25}" step="5" oninput="rng(this,'cfo-muni-v',1,'%')"><span class="rval" id="cfo-muni-v">${d.muni||25}%</span></div></div>
+      <div class="card-title">Investment Strategy &amp; Funding</div>
+      <div class="dec-group"><div class="dec-group-title">Investment Duration Posture</div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Portfolio Duration</div><div class="dec-lbl-sub">SHORT = cash &amp; short Treasuries, low yield, zero AOCI risk · BALANCED = diversified mix · LONG = higher yield but MBS/muni exposure creates AOCI losses when rates rise</div></div>
+          <div class="tog-wrap" id="tog-duration">
+            <button class="tog-btn ${(d.duration||'BALANCED')==='SHORT'?'on':''}" onclick="tog('tog-duration',this)">SHORT</button>
+            <button class="tog-btn ${(d.duration||'BALANCED')==='BALANCED'?'on':''}" onclick="tog('tog-duration',this)">BALANCED</button>
+            <button class="tog-btn ${(d.duration||'BALANCED')==='LONG'?'on':''}" onclick="tog('tog-duration',this)">LONG</button>
+          </div></div>
       </div>
       <div class="dec-group"><div class="dec-group-title">FHLB Wholesale Funding</div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">FHLB Usage</div><div class="dec-lbl-sub">% of assets · examiner flags above 15%</div></div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">FHLB Usage</div><div class="dec-lbl-sub">% of assets · examiner flags above 15% · useful for funding gaps but reduces liquidity score</div></div>
           <div class="dec-ctrl"><input type="range" id="cfo-fhlb" min="0" max="25" value="${d.fhlb||7}" step="1" oninput="rng(this,'cfo-fhlb-v',1,'%')"><span class="rval" id="cfo-fhlb-v">${d.fhlb||7}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">FHLB Term</div><div class="dec-lbl-sub">Longer = rate protection, higher cost</div></div>
-          <div class="tog-wrap" id="tog-fhlbterm">
-            <button class="tog-btn ${(d.fhlbterm||'OVERNIGHT')==='OVERNIGHT'?'on':''}" onclick="tog('tog-fhlbterm',this)">OVERNIGHT</button>
-            <button class="tog-btn ${(d.fhlbterm||'OVERNIGHT')==='1 YR'?'on':''}" onclick="tog('tog-fhlbterm',this)">1 YR</button>
-            <button class="tog-btn ${(d.fhlbterm||'OVERNIGHT')==='3 YR'?'on':''}" onclick="tog('tog-fhlbterm',this)">3 YR</button>
-          </div></div>
       </div>
       <button class="submit-btn cfo-btn" onclick="submitDecisions()" ${submitted?'disabled':''}>
         ${submitted ? '✅ Decisions Submitted' : '💾 Save CFO Decisions'}
@@ -2385,19 +2359,17 @@ function renderCFOPanel(submitted) {
       <div class="card-title">Deposit Pricing</div>
       <div class="intel-box">
         <strong>⚠ CFO MARKET ALERT</strong>
-        Deposit competition is <strong>${(APP.round?.economic_state?.deposit_competition||'moderate').toUpperCase()}</strong> this quarter. Rate below market on certificates will drive outflows. Monitor your 12-month CD rate vs. the 5.10% market rate.
+        Deposit competition is <strong>${(APP.round?.economic_state?.deposit_competition||'moderate').toUpperCase()}</strong> this quarter. Rate below market on certificates will drive outflows. Monitor your 12-month CD rate vs. the 5.20% market rate.
       </div>
       <div class="dec-group"><div class="dec-group-title">Rates by Product</div>
         <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Share Draft (Checking)</div><div class="dec-lbl-sub">Market avg: 0.08%</div></div>
           <div class="dec-ctrl"><input type="range" id="cfo-sd" min="0" max="50" value="${d.sd||5}" step="1" oninput="rng(this,'cfo-sd-v',0.01,'%')"><span class="rval" id="cfo-sd-v">${((d.sd||5)*0.01).toFixed(2)}%</span></div></div>
         <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Regular Shares</div><div class="dec-lbl-sub">Market avg: 0.55%</div></div>
           <div class="dec-ctrl"><input type="range" id="cfo-rs" min="10" max="150" value="${d.rs||50}" step="5" oninput="rng(this,'cfo-rs-v',0.01,'%')"><span class="rval" id="cfo-rs-v">${((d.rs||50)*0.01).toFixed(2)}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Money Market</div><div class="dec-lbl-sub">Market avg: 1.85%</div></div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Money Market</div><div class="dec-lbl-sub">Market avg: 2.00%</div></div>
           <div class="dec-ctrl"><input type="range" id="cfo-mm" min="50" max="350" value="${d.mm||170}" step="10" oninput="rng(this,'cfo-mm-v',0.01,'%')"><span class="rval" id="cfo-mm-v">${((d.mm||170)*0.01).toFixed(2)}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">12-Month Certificate</div><div class="dec-lbl-sub">Market: 5.10% — THE battleground</div></div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">12-Month Certificate</div><div class="dec-lbl-sub">Market: 5.20% — THE deposit battleground</div></div>
           <div class="dec-ctrl"><input type="range" id="cfo-cert12" min="200" max="600" value="${d.cert12||465}" step="5" oninput="rng(this,'cfo-cert12-v',0.01,'%')"><span class="rval" id="cfo-cert12-v">${((d.cert12||465)*0.01).toFixed(2)}%</span></div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">36-Month Certificate</div><div class="dec-lbl-sub">Market: 4.40%</div></div>
-          <div class="dec-ctrl"><input type="range" id="cfo-cert36" min="150" max="550" value="${d.cert36||390}" step="5" oninput="rng(this,'cfo-cert36-v',0.01,'%')"><span class="rval" id="cfo-cert36-v">${((d.cert36||390)*0.01).toFixed(2)}%</span></div></div>
       </div>
     </div>
   </div>`;
@@ -2528,8 +2500,8 @@ async function submitDecisions() {
 function collectDecisions(role) {
   const g = (id, fallback=0) => { const el=document.getElementById(id); return el?parseFloat(el.value):fallback; };
   const t = (id, fallback='') => { const el=document.querySelector('#'+id+' .tog-btn.on'); return el?el.textContent.trim():fallback; };
-  if(role==='CEO') return { nwt:g('ceo-nwt',1000), ret:g('ceo-ret',88), posture:t('tog-posture','STEADY'), fte:g('ceo-fte',2), train:g('ceo-train',2) };
-  if(role==='CFO') return { cash:g('cfo-cash',15), treas:g('cfo-treas',30), mbs:g('cfo-mbs',30), muni:g('cfo-muni',25), fhlb:g('cfo-fhlb',7), fhlbterm:t('tog-fhlbterm','OVERNIGHT'), sd:g('cfo-sd',5), rs:g('cfo-rs',50), mm:g('cfo-mm',170), cert12:g('cfo-cert12',465), cert36:g('cfo-cert36',390) };
+  if(role==='CEO') return { nwt:g('ceo-nwt',1000), ret:g('ceo-ret',88), posture:t('tog-posture','STEADY'), staffing:t('tog-staffing','STEADY') };
+  if(role==='CFO') return { duration:t('tog-duration','BALANCED'), fhlb:g('cfo-fhlb',7), sd:g('cfo-sd',5), rs:g('cfo-rs',50), mm:g('cfo-mm',170), cert12:g('cfo-cert12',465) };
   if(role==='CLO') return { autov:g('clo-autov',18), autor:g('clo-autor',715), mortv:g('clo-mortv',8), mortr:g('clo-mortr',695), persv:g('clo-persv',7), persr:g('clo-persr',1290), fico:g('clo-fico',640), ltv:g('clo-ltv',90), prov:g('clo-prov',60) };
   if(role==='CMO') return { mktg:g('cmo-mktg',450), channel:t('tog-channel','50/50'), newmem:g('cmo-newmem',750), digital:g('cmo-digital',180), wellness:t('tog-wellness','BASIC') };
   return {};
@@ -2630,15 +2602,31 @@ function runSimEngine(decMap, econ) {
 
   const d = {
     nwTarget:(ceo.nwt||1000)/100, retainRate:(ceo.ret||88)/100,
-    posture:ceo.posture||'STEADY', fteGrowth:(ceo.fte||2)/100, training:(ceo.train||2)/100,
-    cashPct:(cfo.cash||15)/100, treasPct:(cfo.treas||30)/100,
-    mbsPct:(cfo.mbs||30)/100,   muniPct:(cfo.muni||25)/100,
-    fhlbPct:(cfo.fhlb||7)/100,  fhlbTerm:cfo.fhlbterm||'OVERNIGHT',
+    posture:ceo.posture||'STEADY',
+
+    // Staffing Posture toggle → translate to fte/training equivalents
+    // LEAN=-1% FTE, 1% training  STEADY=+2% FTE, 2% training  INVEST=+5% FTE, 4% training
+    fteGrowth: ceo.staffing==='LEAN'?-0.01 : ceo.staffing==='INVEST'?0.05 : 0.02,
+    training:  ceo.staffing==='LEAN'?0.01  : ceo.staffing==='INVEST'?0.04 : 0.02,
+
+    // Duration Posture toggle → translate to portfolio allocations
+    // SHORT: 35% cash, 55% treas, 5% MBS, 5% muni
+    // BALANCED: 15% cash, 30% treas, 30% MBS, 25% muni
+    // LONG: 5% cash, 15% treas, 50% MBS, 30% muni
+    cashPct:  cfo.duration==='SHORT'?0.35 : cfo.duration==='LONG'?0.05 : 0.15,
+    treasPct: cfo.duration==='SHORT'?0.55 : cfo.duration==='LONG'?0.15 : 0.30,
+    mbsPct:   cfo.duration==='SHORT'?0.05 : cfo.duration==='LONG'?0.50 : 0.30,
+    muniPct:  cfo.duration==='SHORT'?0.05 : cfo.duration==='LONG'?0.30 : 0.25,
+
+    fhlbPct:(cfo.fhlb||7)/100,
+    fhlbTerm:'OVERNIGHT',  // simplified — fixed rate
     rSD:(cfo.sd||5)/10000,   rRS:(cfo.rs||50)/10000,
-    rMM:(cfo.mm||170)/10000, rC12:(cfo.cert12||465)/10000, rC36:(cfo.cert36||390)/10000,
-    autoV:clo.autov||18,   autoR:(clo.autor||680)/10000,   // Auto 6.80% default (realistic 2023)
-    mortV:clo.mortv||8,    mortR:(clo.mortr||710)/10000,   // Mortgage 7.10% (2023 market)
-    persV:clo.persv||7,    persR:(clo.persr||1250)/10000,  // Personal 12.50%
+    rMM:(cfo.mm||170)/10000, rC12:(cfo.cert12||465)/10000,
+    rC36:(cfo.cert12||465)/10000 * 0.88,  // 36-month tied to 12-month at 88% of rate
+
+    autoV:clo.autov||18,   autoR:(clo.autor||680)/10000,
+    mortV:clo.mortv||8,    mortR:(clo.mortr||710)/10000,
+    persV:clo.persv||7,    persR:(clo.persr||1250)/10000,
     fico:clo.fico||640, ltv:(clo.ltv||90)/100, provBps:(clo.prov||60)/10000,
     mktg:(cmo.mktg||450)/1000, channel:cmo.channel||'50/50',
     newMem:cmo.newmem||750, digital:(cmo.digital||180)/1000, wellness:cmo.wellness||'BASIC',
@@ -2686,7 +2674,7 @@ function runSimEngine(decMap, econ) {
   const totalShares = newSD + newRS + newMM + newCert;
 
   // ── BORROWINGS ───────────────────────────────────────────────────
-  const fhlbRate  = d.fhlbTerm==='OVERNIGHT'?0.054:d.fhlbTerm==='1 YR'?0.052:0.049;
+  const fhlbRate  = 0.053;  // overnight Fed Funds proxy — simplified
   const newFHLB   = (newLoansGross + totalInv) * d.fhlbPct;
   const fhlbCost  = newFHLB * fhlbRate / 4;
 
@@ -2748,11 +2736,17 @@ function runSimEngine(decMap, econ) {
   if(nim>0.034) cE=Math.min(cE+5,96);
   if(nim<0.024) cE=Math.max(cE-8,15);
 
-  let cL = liqRatio>0.10?90:liqRatio>0.07?78:liqRatio>0.05?62:42;
-  if(d.fhlbPct>0.18) cL=Math.max(cL-16,26);
+  // ── LIQUIDITY CAMEL — composite scoring ───────────────────────────
+  // LTS alone is NOT a penalty trigger. What matters is the combination:
+  // a CU at 95% LTS with strong liqRatio and low FHLB is fine.
+  // Stress = high LTS + low liquidity buffer + high wholesale funding dependency.
+  let cL = liqRatio>0.10?90:liqRatio>0.07?78:liqRatio>0.05?64:liqRatio>0.03?46:30;
+  // FHLB reliance adds wholesale funding risk regardless of LTS
+  if(d.fhlbPct>0.18) cL=Math.max(cL-18,24);
   else if(d.fhlbPct>0.12) cL=Math.max(cL-8, 30);
-  if(lts>0.95) cL=Math.max(cL-8,28);
-  if(lts>1.00) cL=Math.max(cL-8,22);
+  // LTS only penalizes when COMBINED with low liquidity — high LTS + adequate buffer is fine
+  if(lts>1.00 && liqRatio<0.06) cL=Math.max(cL-14,22);  // truly stretched: loans > deposits AND thin liquidity
+  else if(lts>0.95 && liqRatio<0.05) cL=Math.max(cL-8,28);  // tight but not extreme
 
   const camelComposite = cC*0.25+cA*0.20+cM*0.20+cE*0.20+cL*0.15;
 
@@ -2831,7 +2825,7 @@ function renderResults() {
     const cls=inv?(val<=good?'good':val<=warn?'warn':'bad'):(val>=good?'good':val>=warn?'warn':'bad');
     el.className='kpi-value '+cls; el.closest('.kpi').className='kpi '+(cls==='bad'?'bad':cls==='warn'?'warn':'');
   }
-  setR('ov-lts',r.lts*100,0,90,v=>v.toFixed(1)+'%',true);
+  setR('ov-lts',r.lts*100,0,100,v=>v.toFixed(1)+'%',true);  // LTS alone not penalized until >100%
   setR('ov-del',r.delinq*100,0.8,1.5,v=>v.toFixed(2)+'%',true);
   setR('ov-nco',r.ncoRate*100,0.3,0.8,v=>v.toFixed(2)+'%',true);
   setR('ov-liq',r.liqRatio*100,8,5,v=>v.toFixed(1)+'%');
@@ -2876,7 +2870,7 @@ function renderResults() {
   if(r.effRatio>0.85) addLine('fail','🚨',`MANAGEMENT: Efficiency ratio ${(r.effRatio*100).toFixed(1)}% signals expense control issues. Revenue shortfall would produce immediate losses.`);
   else addLine(r.effRatio>0.742?'caution':'pass',r.effRatio>0.742?'⚠':'✅',`MANAGEMENT: Efficiency ratio ${(r.effRatio*100).toFixed(1)}% is ${r.effRatio>0.742?'above':'below'} peer average (74.2%).`);
   addLine(r.roa<0.003?'fail':r.roa<0.007?'caution':'pass',r.roa<0.003?'🚨':r.roa<0.007?'⚠':'✅',`EARNINGS: ROA ${(r.roa*100).toFixed(2)}% is ${r.roa>=0.0072?'above':'below'} peer average (0.72%).`);
-  addLine(r.liqRatio<0.05?'fail':'pass',r.liqRatio<0.05?'🚨':'✅',`LIQUIDITY: Liquidity ratio ${(r.liqRatio*100).toFixed(1)}%. Loan-to-share ${(r.lts*100).toFixed(1)}%.`);
+  addLine(r.liqRatio<0.05?'fail':'pass',r.liqRatio<0.05?'🚨':'✅',`LIQUIDITY: Liquidity ratio ${(r.liqRatio*100).toFixed(1)}%. Loan-to-share ${(r.lts*100).toFixed(1)}% — ${r.lts>1.00&&r.liqRatio<0.06?'loans exceed deposits with thin buffer — funding risk elevated':r.lts>0.95?'above 95% but liquidity buffer is '+((r.liqRatio*100).toFixed(1)>5?'adequate':'thin'):'within acceptable range'}.`);
   document.getElementById('exam-comments').innerHTML=lines.join('');
 
   // Alerts
@@ -3358,7 +3352,7 @@ const GLOSSARY=[
   {term:'Allowance for Loan & Lease Losses (ALLL)',cat:'asset',def:'A balance sheet reserve representing estimated future credit losses. Funded by the quarterly provision expense. Peer avg coverage ratio: ~1.10%.',why:'Why it matters: Too thin = examiner concern. Too thick = unnecessarily suppressed earnings. Getting it right requires honest loss forecasting.',formula:'ALLL ÷ Gross Loans = Coverage Ratio'},
   {term:'Delinquency Rate',cat:'asset',def:'Percentage of loans 60+ days past due to total loans. A leading indicator of future charge-offs. Below 0.8% is healthy. Above 1.5% warrants examiner attention.',why:'Why it matters: FICO floor decisions today show up in delinquency 2–4 quarters later. It\'s the early warning system for credit quality deterioration.',formula:'60+ Day Past Due Loans ÷ Total Loans'},
   {term:'Net Charge-Off Rate (NCO)',cat:'asset',def:'Loans written off as uncollectible, net of recoveries, as a percentage of average loans. Lagging indicator — delinquency rises first. Peer avg ~0.34%.',why:'Why it matters: Charge-offs are actual realized losses — they directly reduce equity and earnings.',formula:'(Charge-Offs – Recoveries) ÷ Average Loans'},
-  {term:'Loan-to-Share Ratio',cat:'liquidity',def:'Total loans divided by total shares/deposits. Above 90% signals tight liquidity. Below 70% suggests significant earning capacity is unused.',why:'Why it matters: Managing the tension between yield (high ratio) and liquidity (low ratio) is core to balance sheet strategy.',formula:'Total Loans ÷ Total Shares & Deposits'},
+  {term:'Loan-to-Share Ratio',cat:'liquidity',def:'Total loans divided by total shares/deposits. Examiners assess this alongside liquidity ratio and FHLB reliance — a high ratio with adequate liquid assets and low wholesale funding is manageable. Many well-run CUs operate above 90%. The risk emerges when high LTS combines with a thin liquidity buffer and heavy wholesale funding dependence.',why:'Why it matters: The danger is not the LTS ratio alone — it\'s the combination of high LTS, low liquid assets, and wholesale funding dependence that creates real vulnerability.',formula:'Total Loans ÷ Total Shares & Deposits'},
   {term:'FHLB Advances',cat:'liquidity',def:'Secured borrowings from the Federal Home Loan Bank. Examiners flag heavy reliance (>15% of assets) as a liquidity concern since wholesale funding is less stable than member deposits.',why:'Why it matters: FHLB is useful for managing liquidity gaps, but dependence on it is a vulnerability. During 2008, CUs with heavy FHLB reliance were most exposed.',formula:null},
   {term:'Liquidity Ratio',cat:'liquidity',def:'Liquid assets (cash + short-term investments) as a percentage of total assets. Below 5% triggers examiner concern.',why:'Why it matters: Liquidity crises move faster than any other institutional risk. You either have it or you don\'t.',formula:'(Cash + Short Investments) ÷ Total Assets'},
   {term:'AOCI',cat:'capital',def:'Accumulated Other Comprehensive Income. Unrealized gains/losses on the investment portfolio marked to market. When rates rise, bond prices fall, creating a negative AOCI that directly reduces net worth ratio even though no cash was lost.',why:'Why it matters: In 2022–2023, AOCI losses destroyed net worth ratios at institutions holding long-duration bonds. Investment portfolio decisions affect capital ratios, not just earnings.',formula:'Unrealized Gain/(Loss) on Investment Portfolio'},
@@ -3382,8 +3376,8 @@ function closeGlossary(e){if(e.target===document.getElementById('glossary-overla
 // ── Tutorial Simulation Engine ──
 // Identical calibration to v5 runSimEngine() — same START values, yields, CAMEL thresholds, Growth Score
 function tutRunSim() {
-  const ceo={ nwt:tutGetR('tut-ceo-nwt'), ret:tutGetR('tut-ceo-ret'), posture:tutTogVal('tut-tog-posture'), fte:tutGetR('tut-ceo-fte'), train:tutGetR('tut-ceo-train') };
-  const cfo={ cash:tutGetR('tut-cfo-cash'), treas:tutGetR('tut-cfo-treas'), mbs:tutGetR('tut-cfo-mbs'), muni:tutGetR('tut-cfo-muni'), fhlb:tutGetR('tut-cfo-fhlb'), fhlbterm:tutTogVal('tut-tog-fhlbterm'), sd:tutGetR('tut-cfo-sd'), rs:tutGetR('tut-cfo-rs'), mm:tutGetR('tut-cfo-mm'), cert12:tutGetR('tut-cfo-cert12'), cert36:tutGetR('tut-cfo-cert36') };
+  const ceo={ nwt:tutGetR('tut-ceo-nwt'), ret:tutGetR('tut-ceo-ret'), posture:tutTogVal('tut-tog-posture'), staffing:tutTogVal('tut-tog-staffing') };
+  const cfo={ duration:tutTogVal('tut-tog-duration'), fhlb:tutGetR('tut-cfo-fhlb'), sd:tutGetR('tut-cfo-sd'), rs:tutGetR('tut-cfo-rs'), mm:tutGetR('tut-cfo-mm'), cert12:tutGetR('tut-cfo-cert12') };
   const clo={ autov:tutGetR('tut-clo-autov'), autor:tutGetR('tut-clo-autor'), mortv:tutGetR('tut-clo-mortv'), mortr:tutGetR('tut-clo-mortr'), persv:tutGetR('tut-clo-persv'), persr:tutGetR('tut-clo-persr'), fico:tutGetR('tut-clo-fico'), ltv:tutGetR('tut-clo-ltv'), prov:tutGetR('tut-clo-prov') };
   const cmo={ mktg:tutGetR('tut-cmo-mktg'), channel:tutTogVal('tut-tog-channel'), newmem:tutGetR('tut-cmo-newmem'), digital:tutGetR('tut-cmo-digital'), wellness:tutTogVal('tut-tog-wellness') };
 
@@ -3430,7 +3424,7 @@ function tutDisplayResults(r) {
     el.className='kpi-value '+cls;
     el.closest('.kpi').className='kpi '+(cls==='bad'?'bad':cls==='warn'?'warn':'');
   }
-  tR('tut-ov-lts',ratios.lts*100,0,90,v=>fmtP(v,1),true);
+  tR('tut-ov-lts',ratios.lts*100,0,100,v=>fmtP(v,1),true);  // only warn if >100% AND thin buffer
   tR('tut-ov-del',ratios.delinq*100,0.8,1.5,v=>fmtP(v),true);
   tR('tut-ov-nco',ratios.ncoRate*100,0.3,0.8,v=>fmtP(v),true);
   tR('tut-ov-liq',ratios.liqRatio*100,8,5,v=>fmtP(v,1));
@@ -3473,7 +3467,7 @@ function tutDisplayResults(r) {
   addLine(ratios.delinq>0.015?'fail':ratios.delinq>0.009?'caution':'pass',ratios.delinq>0.015?'🚨':ratios.delinq>0.009?'⚠':'✅',`ASSET QUALITY: Delinquency ${fmtP(ratios.delinq*100)} is ${ratios.delinq>0.015?'elevated — vintage analysis and enhanced collections expected':ratios.delinq>0.009?'slightly above peer range':'within healthy range'}.`);
   addLine(ratios.effRatio>0.85?'fail':ratios.effRatio>0.742?'caution':'pass',ratios.effRatio>0.85?'🚨':ratios.effRatio>0.742?'⚠':'✅',`MANAGEMENT: Efficiency ratio ${fmtP(ratios.effRatio*100,1)} is ${ratios.effRatio>0.742?'above':'below'} peer average (74.2%).`);
   addLine(ratios.roa<0.003?'fail':ratios.roa<0.007?'caution':'pass',ratios.roa<0.003?'🚨':ratios.roa<0.007?'⚠':'✅',`EARNINGS: ROA ${fmtP(ratios.roa*100)} is ${ratios.roa>=0.0072?'above':'below'} peer average (0.72%).`);
-  addLine(ratios.liqRatio<0.05?'fail':'pass',ratios.liqRatio<0.05?'🚨':'✅',`LIQUIDITY: Liquidity ratio ${fmtP(ratios.liqRatio*100,1)}. Loan-to-share ${fmtP(ratios.lts*100,1)}.`);
+  addLine(ratios.liqRatio<0.05?'fail':'pass',ratios.liqRatio<0.05?'🚨':'✅',`LIQUIDITY: Liquidity ratio ${fmtP(ratios.liqRatio*100,1)}. Loan-to-share ${fmtP(ratios.lts*100,1)} — ${ratios.lts>1.00&&ratios.liqRatio<0.06?'loans exceed deposits with thin buffer — funding risk elevated':ratios.lts>0.95?'above 95% but liquidity buffer is '+(ratios.liqRatio*100>5?'adequate':'thin'):'within acceptable range'}.`);
   const ec=document.getElementById('tut-exam-comments'); if(ec)ec.innerHTML=lines.join('');
 
   // Alerts
