@@ -1814,7 +1814,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2700,10 +2700,20 @@ function runSimEngine(decMap, econ) {
   const netIncome = nii + feeInc - provision - totalOpex;
 
   // ── BALANCE SHEET ─────────────────────────────────────────────────
-  const newUndivided = START.undivided + netIncome * d.retainRate;
-  const totalEquity  = START.reserves + newUndivided + newAOCI;
-  const cashAdj      = 11.5;
-  const totalAssets  = cashAdj + totalInv + newLoansNet + 5.8 + 24.1;
+  // Retained earnings: portion kept in equity; remainder paid as member dividends (leaves as cash)
+  const dividendPaid  = netIncome * (1 - d.retainRate);   // cash paid out to members
+  const newUndivided  = START.undivided + netIncome * d.retainRate;
+  const totalEquity   = START.reserves + newUndivided + newAOCI;
+
+  // Total liabilities (deposits + FHLB + other)
+  const totalLiab     = newSD + newRS + newMM + newCert + newFHLB + 8.4;
+
+  // Assets = Liabilities + Equity (balance sheet identity — this is always true)
+  const totalAssets   = totalLiab + totalEquity;
+
+  // Back-solve cash: totalAssets - all other known assets
+  // Cash absorbs the residual — including dividend outflows and any rounding
+  const cashAdj       = Math.max(totalAssets - totalInv - newLoansNet - 5.8 - 24.1, 2.0);
 
   // ── RATIOS ────────────────────────────────────────────────────────
   const nwRatio  = totalEquity / totalAssets;
