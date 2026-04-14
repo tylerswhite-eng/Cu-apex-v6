@@ -1028,7 +1028,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           <div class="dec-group">
             <div class="dec-group-title"><span class="tterm">FHLB Borrowings<span class="tterm-tip"><strong>FHLB Advances</strong> Loans from the Federal Home Loan Bank. Useful for funding gaps. Examiners flag heavy reliance (>15% of assets) as a liquidity concern — wholesale funding is less stable than member deposits.</span></span> (% of earning assets)</div>
             <div class="dec-row">
-              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Reliance Level</div><div class="dec-lbl-sub">Current: $52M (7% of assets) · above 15% triggers examiner concern · penalizes Liquidity CAMEL when combined with thin buffer</div></div>
+              <div class="dec-lbl"><div class="dec-lbl-main">FHLB Reliance Level</div><div class="dec-lbl-sub">Current: $42M (5.7% of assets) · above 15% triggers examiner concern · penalizes Liquidity CAMEL when combined with thin buffer</div></div>
               <div class="dec-ctrl"><input type="range" min="0" max="25" value="7" step="1" oninput="tutRng(this,'tut-cfo-fhlb',1,'%')"><span class="rval" id="tut-cfo-fhlb">7%</span></div>
             </div>
           </div>
@@ -1037,7 +1037,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           <div class="card-title">Deposit Rate Strategy</div>
           <div class="intel-box">
             <strong>⚠ CFO ALM INTELLIGENCE (EYES ONLY)</strong>
-            Duration gap: +3.1 years (assets longer than liabilities). AOCI currently -$8.2M from prior rate hikes — LONG duration posture will compound this further. Competitor 12-month CD rate: 5.20%. Your current rate: 4.65%. Estimated at-risk deposits repricing this quarter: ~$62M in certificates.
+            Duration gap: +2.4 years (assets longer than liabilities). AOCI currently -$9.5M from prior rate hikes — LONG duration posture will compound this further. Competitor 12-month CD rate: 5.20%. Your current rate: 4.65%. Estimated at-risk deposits repricing this quarter: ~$62M in certificates.
           </div>
           <div class="dec-group">
             <div class="dec-group-title">Deposit Pricing (annual rates)</div>
@@ -1816,7 +1816,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2443,7 +2443,7 @@ function renderCMOPanel(submitted) {
             <button class="tog-btn ${(d.channel||'50/50')==='50/50'?'on':''}" onclick="tog('tog-channel',this)">50/50</button>
             <button class="tog-btn ${(d.channel||'50/50')==='70% COMMUNITY'?'on':''}" onclick="tog('tog-channel',this)">70% COMMUNITY</button>
           </div></div>
-        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">New Member Target (Qtr)</div><div class="dec-lbl-sub">Current run rate ~680/qtr · attrition ~420</div></div>
+        <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">New Member Target (Qtr)</div><div class="dec-lbl-sub">Current run rate ~680/qtr · attrition ~480</div></div>
           <div class="dec-ctrl"><input type="range" id="cmo-newmem" min="300" max="1500" value="${d.newmem||750}" step="50" oninput="rng(this,'cmo-newmem-v',1,'')"><span class="rval" id="cmo-newmem-v">${d.newmem||750}</span></div></div>
         <div class="dec-row"><div class="dec-lbl"><div class="dec-lbl-main">Digital Banking Investment ($K)</div><div class="dec-lbl-sub">Drives satisfaction &amp; reduces attrition</div></div>
           <div class="dec-ctrl"><input type="range" id="cmo-digital" min="50" max="500" value="${d.digital||180}" step="25" oninput="rng(this,'cmo-digital-v',1,'K','$')"><span class="rval" id="cmo-digital-v">$${d.digital||180}K</span></div></div>
@@ -2470,7 +2470,7 @@ function renderCMOPanel(submitted) {
         <strong>MEMBERSHIP TREND</strong>
         Current members: <strong>48,240</strong><br>
         Net change last quarter: <span style="color:var(--good)">+312</span><br>
-        Projected attrition this quarter: <span style="color:var(--bad)">~420</span>
+        Projected attrition this quarter: <span style="color:var(--bad)">~480</span>
       </div>
     </div>
   </div>`;
