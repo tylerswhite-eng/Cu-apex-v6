@@ -1209,6 +1209,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
               <tr class="ind"><td>Money Market</td><td id="tut-bs-mm">—</td><td>$128.0M</td></tr>
               <tr class="ind"><td>Share Certificates</td><td id="tut-bs-cert">—</td><td>$215.0M</td></tr>
               <tr class="ind"><td>FHLB Borrowings</td><td id="tut-bs-fhlb">—</td><td>$42.0M</td></tr>
+              <tr class="ind"><td>Other Liabilities</td><td id="tut-bs-othl">—</td><td>$9.0M</td></tr>
               <tr class="sub"><td>Total Liabilities</td><td id="tut-bs-liab">—</td><td>$664.0M</td></tr>
               <tr class="sec"><td colspan="3">EQUITY</td></tr>
               <tr class="ind"><td>Regular Reserves</td><td>$38.0M</td><td>$38.0M</td></tr>
@@ -1536,6 +1537,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
               <tr class="ind"><td>Money Market</td><td id="bs-mm">—</td><td id="bs-mm-p">—</td></tr>
               <tr class="ind"><td>Certificates</td><td id="bs-cert">—</td><td id="bs-cert-p">—</td></tr>
               <tr class="ind"><td>FHLB Borrowings</td><td id="bs-fhlb">—</td><td id="bs-fhlb-p">—</td></tr>
+              <tr class="ind"><td>Other Liabilities</td><td id="bs-othl">—</td><td id="bs-othl-p">—</td></tr>
               <tr class="sub"><td>Total Liabilities</td><td id="bs-liab">—</td><td id="bs-liab-p">—</td></tr>
               <tr class="sec"><td colspan="3">EQUITY</td></tr>
               <tr class="ind"><td>Reserves</td><td id="bs-rr">—</td><td id="bs-rr-p">—</td></tr>
@@ -1814,7 +1816,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2710,7 +2712,7 @@ function runSimEngine(decMap, econ) {
   const totalEquity   = START.reserves + newUndivided + newAOCI;
 
   // Total liabilities (deposits + FHLB + other)
-  const totalLiab     = newSD + newRS + newMM + newCert + newFHLB + 8.4;
+  const totalLiab     = newSD + newRS + newMM + newCert + newFHLB + 9.0;
 
   // Assets = Liabilities + Equity (balance sheet identity — this is always true)
   const totalAssets   = totalLiab + totalEquity;
@@ -2791,7 +2793,7 @@ function runSimEngine(decMap, econ) {
   const apex        = Math.round(camelComposite*0.75 + growthScore*0.25);
 
   return {
-    bs:{cash:cashAdj,inv:totalInv,loans:newLoansNet,other:29.9,total:totalAssets,sd:newSD,rs:newRS,mm:newMM,cert:newCert,fhlb:newFHLB,liab:newSD+newRS+newMM+newCert+newFHLB+8.4,rr:START.reserves,ue:newUndivided,aoci:newAOCI,equity:totalEquity},
+    bs:{cash:cashAdj,inv:totalInv,loans:newLoansNet,other:28.3,total:totalAssets,sd:newSD,rs:newRS,mm:newMM,cert:newCert,fhlb:newFHLB,othl:9.0,liab:newSD+newRS+newMM+newCert+newFHLB+9.0,rr:START.reserves,ue:newUndivided,aoci:newAOCI,equity:totalEquity},
     is:{li:loanIncome,ii:invIncome,tii:loanIncome+invIncome,dos:depExp,bc:fhlbCost,tie:depExp+fhlbCost,nii,fee:feeInc,prov:-provision,opex:-totalOpex,ni:netIncome},
     ratios:{nwRatio,roa,nim,effRatio,lts,delinq,ncoRate,liqRatio,members,totalShares,heat,
             memberGrowth,assetGrowth:assetGrowth.toFixed(2),loanGrowthPct:loanGrowthPct.toFixed(2),
@@ -2854,7 +2856,7 @@ function renderResults() {
   set('apexBreak',`CAMEL (75%): ${camelPart} pts  |  Growth (25%): ${growthPart} pts  |  Members: ${(r.memberGrowth||0)>=0?'+':''}${r.memberGrowth||0}  |  Asset Growth: ${r.assetGrowth||'—'}%`);
 
   // BS
-  const bsKeys=['cash','inv','loans','other','total','sd','rs','mm','cert','fhlb','liab','rr','ue','equity'];
+  const bsKeys=['cash','inv','loans','other','total','sd','rs','mm','cert','fhlb','othl','liab','rr','ue','equity'];
   bsKeys.forEach(k=>{set('bs-'+k,fmt(bs[k]||0));set('bs-'+k+'-p',fmt(pbs[k]||0));});
   const aEl=document.getElementById('bs-aoci'); if(aEl){aEl.textContent=bs.aoci<0?'-'+fmt(Math.abs(bs.aoci)):fmt(bs.aoci);aEl.className=bs.aoci<0?'neg':'pos';}
   const paEl=document.getElementById('bs-aoci-p'); if(paEl){paEl.textContent=pbs.aoci!==undefined?(pbs.aoci<0?'-'+fmt(Math.abs(pbs.aoci)):fmt(pbs.aoci)):'—';}
@@ -3454,7 +3456,7 @@ function tutDisplayResults(r) {
   tSet('tut-apexBreak',breakStr); tSet('tut-apex-camel-break',breakStr);
 
   // Balance sheet
-  ['cash','inv','loans','other','total','sd','rs','mm','cert','fhlb','liab','ue','equity'].forEach(k=>tSet('tut-bs-'+k,fmt(bs[k]||0)));
+  ['cash','inv','loans','other','total','sd','rs','mm','cert','fhlb','othl','liab','ue','equity'].forEach(k=>tSet('tut-bs-'+k,fmt(bs[k]||0)));
   const aEl=document.getElementById('tut-bs-aoci');
   if(aEl){aEl.textContent=bs.aoci<0?'-'+fmt(Math.abs(bs.aoci)):fmt(bs.aoci);aEl.className=bs.aoci<0?'neg':'pos';}
 
