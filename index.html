@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CU APEX v7 — Credit Union Leadership Simulation</title>
+<title>CU APEX v6.0.5 — Credit Union Leadership Simulation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
-  /* ── CU APEX v7 PALETTE — lightened navy/orange ── */
+  /* ── CU APEX v6.0.5 PALETTE — lightened navy/orange ── */
   --navy:        #1a4a7a;   /* Lifted ~20% from #003366 */
   --navy-dark:   #0f3060;   /* Deep navy for headers */
   --navy-mid:    #1e5590;   /* Mid navy */
@@ -673,8 +673,24 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .fac-notification.warn { background:rgba(232,99,10,0.12); border:1px solid rgba(232,99,10,0.25); color:var(--fac-accent); }
 .fac-notification.info { background:rgba(74,159,212,0.12); border:1px solid rgba(74,159,212,0.25); color:var(--fac-accent2); }
 
-@media(max-width:900px) {
-  .fac-status-bar { grid-template-columns:repeat(3,1fr); }
+/* ── Version footer — subtle, consistent across all screens ── */
+.version-footer{
+  text-align:center;font-family:'IBM Plex Mono',monospace;
+  font-size:0.64rem;color:var(--muted-light);letter-spacing:0.08em;
+  padding:8px 0 6px;opacity:0.65;
+}
+.version-tag{
+  position:fixed;bottom:9px;right:14px;
+  font-family:'IBM Plex Mono',monospace;font-size:0.64rem;
+  color:var(--muted-light);letter-spacing:0.06em;
+  opacity:0.5;pointer-events:none;z-index:50;
+}
+.fac-version-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:0.64rem;
+  color:var(--fac-muted);letter-spacing:0.06em;opacity:0.55;margin-left:auto;
+}
+
+
   .fac-team-grid { grid-template-columns:1fr; }
   .fac-econ-grid { grid-template-columns:repeat(2,1fr); }
   .fac-lb-row,.fac-lb-hdr { grid-template-columns:30px 1fr 60px 60px 60px; }
@@ -684,6 +700,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 </style>
 </head>
 <body>
+<!-- Version tag — shown on all screens except facilitator (which has its own) -->
+<div class="version-tag" id="global-version-tag">CU APEX v6.0.5</div>
 
 <!-- ═══════════════════════════════════
      SCREEN 1: AUTH
@@ -692,7 +710,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <div class="auth-card">
     <div class="auth-logo">
       <div class="auth-logo-mark">CU</div>
-      <h1>CU <span>APEX</span> <span style="font-size:.9rem;color:var(--muted);font-weight:400;">v7</span></h1>
+      <h1>CU <span>APEX</span></h1>
       <p>Credit Union Leadership Simulation</p>
     </div>
 
@@ -732,6 +750,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       <button class="btn-primary" onclick="doRegister()">Create Account →</button>
       <div class="auth-msg" id="reg-msg"></div>
     </div>
+    <div class="version-footer">CU APEX v6.0.5</div>
   </div>
 </div>
 
@@ -862,7 +881,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     <div style="display:flex;align-items:center;gap:12px">
       <div class="gh-logo" style="background:var(--navy)">CU</div>
       <div>
-        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span> <span style="font-size:.92rem;color:var(--muted);font-weight:400;">v7</span></div>
+        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span></div>
         <div class="gh-sub">Lakeside Community CU · Q1 2023 · Tutorial Mode</div>
       </div>
     </div>
@@ -1292,7 +1311,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 ═══════════════════════════════════ -->
 <div id="screen-lobby" class="screen">
   <div class="lobby-header">
-    <div class="lobby-logo">CU <span style="color:var(--orange)">APEX</span> <span style="font-size:.92rem;opacity:.5;font-weight:400;">v5</span></div>
+    <div class="lobby-logo">CU <span style="color:var(--orange)">APEX</span></div>
     <div class="lobby-user">
       <span id="lobby-username"></span>
       <button class="btn-sm btn-outline" onclick="doSignOut()">Sign Out</button>
@@ -1424,7 +1443,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     <div class="gh-left">
       <div class="gh-logo">CU</div>
       <div>
-        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span> <span style="font-size:.92rem;color:var(--muted);font-weight:400;">v7</span></div>
+        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span></div>
         <div class="gh-sub" id="gh-sub">Loading…</div>
       </div>
     </div>
@@ -1611,12 +1630,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <div class="fac-header">
     <div style="display:flex;align-items:center;gap:0">
       <div class="fac-logo">
-        <span>CU<span style="color:var(--orange-light)">APEX</span> <span style="font-size:.92rem;opacity:.6;font-weight:400;">v5</span></span>
+        <span>CU<span style="color:var(--orange-light)">APEX</span></span>
         <span class="fac-logo-badge">FACILITATOR</span>
       </div>
       <span class="fac-session-name" id="fac-session-name">Loading…</span>
     </div>
     <div class="fac-header-right">
+      <span class="fac-version-tag">v6.0.5</span>
       <div id="fac-notifications" style="display:flex;gap:6px;align-items:center;"></div>
       <button class="fac-btn fac-btn-secondary" onclick="goLobby()">← Lobby</button>
       <button class="fac-btn fac-btn-secondary" onclick="doSignOut()">Sign Out</button>
@@ -1727,7 +1747,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       </div>
       <div id="fac-lb-rows"></div>
       <div style="margin-top:16px;font-size:0.92rem;color:rgba(255,255,255,0.3);font-family:'IBM Plex Mono',monospace;">
-        FACILITATOR VIEW: Full metrics visible. Scoring: 75% CAMEL + 25% Growth (member, asset, loan growth). v5.
+        FACILITATOR VIEW: Full metrics visible. Scoring: 75% CAMEL + 25% Growth (member, asset, loan growth).
       </div>
     </div>
 
@@ -1816,7 +1836,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -1844,6 +1864,9 @@ let APP = {
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
+  // Hide global version tag on facilitator screen (it has its own in the header)
+  const vtag = document.getElementById('global-version-tag');
+  if(vtag) vtag.style.display = id === 'facilitator' ? 'none' : '';
 }
 
 // ════════════════════════════════════
