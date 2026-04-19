@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CU APEX v6.0.5 — Credit Union Leadership Simulation</title>
+<title>CU ApexSim — Credit Union Leadership Simulation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
-  /* ── CU APEX v6.0.5 PALETTE — lightened navy/orange ── */
+  /* ── CU ApexSim v6.0.5 PALETTE — lightened navy/orange ── */
   --navy:        #1a4a7a;   /* Lifted ~20% from #003366 */
   --navy-dark:   #0f3060;   /* Deep navy for headers */
   --navy-mid:    #1e5590;   /* Mid navy */
@@ -701,7 +701,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 </head>
 <body>
 <!-- Version tag — shown on all screens except facilitator (which has its own) -->
-<div class="version-tag" id="global-version-tag">CU APEX v6.0.5</div>
+<div class="version-tag" id="global-version-tag">CU ApexSim v6.0.5</div>
 
 <!-- ═══════════════════════════════════
      SCREEN 1: AUTH
@@ -710,7 +710,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <div class="auth-card">
     <div class="auth-logo">
       <div class="auth-logo-mark">CU</div>
-      <h1>CU <span>APEX</span></h1>
+      <h1>CU <span>ApexSim</span></h1>
       <p>Credit Union Leadership Simulation</p>
     </div>
 
@@ -750,7 +750,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       <button class="btn-primary" onclick="doRegister()">Create Account →</button>
       <div class="auth-msg" id="reg-msg"></div>
     </div>
-    <div class="version-footer">CU APEX v6.0.5</div>
+    <div class="version-footer">CU ApexSim v6.0.5</div>
   </div>
 </div>
 
@@ -764,7 +764,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <div id="tut-modal-overlay">
     <div class="tut-modal">
       <div class="tut-modal-header">
-        <h2>Welcome to CU Apex 👋</h2>
+        <h2>Welcome to CU ApexSim 👋</h2>
         <p>A quick orientation before you run your first quarter — no login required</p>
         <div class="tut-step-dots">
           <div class="tut-dot on" id="td0"></div><div class="tut-dot" id="td1"></div>
@@ -773,8 +773,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       </div>
       <div class="tut-modal-body">
         <div class="tut-step-content on" id="tts0">
-          <h3><span class="tut-step-num">1</span> What is CU Apex?</h3>
-          <p>CU Apex puts you in the executive chair of a real credit union — <strong>Lakeside Community Credit Union</strong>, seeded from actual NCUA 5300 call report data with $750M in assets.</p>
+          <h3><span class="tut-step-num">1</span> What is CU ApexSim?</h3>
+          <p>CU ApexSim puts you in the executive chair of a real credit union — <strong>Lakeside Community Credit Union</strong>, seeded from actual NCUA 5300 call report data with $750M in assets.</p>
           <p>Your team of four makes real management decisions each quarter and competes against peer institutions on a regulator-calibrated scorecard.</p>
           <div class="tut-callout"><strong>🏦 Your Institution This Session</strong>Lakeside Community CU · $743M Assets · 48,240 Members · Net Worth: 10.6% (well-capitalized)<br>Scenario: <em>"The Great Unwind"</em> — Rising rate environment, Q1 2023</div>
         </div>
@@ -881,19 +881,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     <div style="display:flex;align-items:center;gap:12px">
       <div class="gh-logo" style="background:var(--navy)">CU</div>
       <div>
-        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span></div>
+        <div class="gh-title">CU <span style="color:var(--orange)">ApexSim</span></div>
         <div class="gh-sub">Lakeside Community CU · Q1 2023 · Tutorial Mode</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
       <div class="tut-mode-badge">TUTORIAL — NO LOGIN REQUIRED</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
       <div class="heat-wrap">
         <span>REG HEAT</span>
         <div class="heat-bar"><div class="heat-fill" id="tut-heatFill" style="width:20%"></div></div>
         <span id="tut-heatLbl" style="color:var(--good);font-weight:600">LOW</span>
       </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px">
       <button class="tut-glossary-btn" onclick="openGlossary()">📖 Glossary</button>
       <button class="tut-exit-btn" onclick="exitTutorialMode()">← Back to Sign In</button>
     </div>
@@ -1311,7 +1311,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 ═══════════════════════════════════ -->
 <div id="screen-lobby" class="screen">
   <div class="lobby-header">
-    <div class="lobby-logo">CU <span style="color:var(--orange)">APEX</span></div>
+    <div class="lobby-logo">CU <span style="color:var(--orange)">ApexSim</span></div>
     <div class="lobby-user">
       <span id="lobby-username"></span>
       <button class="btn-sm btn-outline" onclick="doSignOut()">Sign Out</button>
@@ -1443,7 +1443,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     <div class="gh-left">
       <div class="gh-logo">CU</div>
       <div>
-        <div class="gh-title">CU <span style="color:var(--orange)">APEX</span></div>
+        <div class="gh-title">CU <span style="color:var(--orange)">ApexSim</span></div>
         <div class="gh-sub" id="gh-sub">Loading…</div>
       </div>
     </div>
@@ -1630,7 +1630,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <div class="fac-header">
     <div style="display:flex;align-items:center;gap:0">
       <div class="fac-logo">
-        <span>CU<span style="color:var(--orange-light)">APEX</span></span>
+        <span>CU<span style="color:var(--orange-light)">ApexSim</span></span>
         <span class="fac-logo-badge">FACILITATOR</span>
       </div>
       <span class="fac-session-name" id="fac-session-name">Loading…</span>
@@ -1836,7 +1836,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
