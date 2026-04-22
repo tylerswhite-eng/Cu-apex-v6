@@ -1877,7 +1877,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2658,6 +2658,8 @@ function runSimEngine(decMap, econ) {
     investments:169.0
   };
 
+  const OTHER_ASSETS  = 28.3;  // NCUSIF $5.8M + Fixed $22.5M — used in FHLB gap calc and cash back-solve; must match bs.other in return object
+
   const econMult = {
     delinqMult:  econ.delinq_mult||1.0,
     loanDemand:  econ.loan_demand||1.0,
@@ -2815,7 +2817,6 @@ function runSimEngine(decMap, econ) {
   // Back-solve cash: totalAssets - all other known assets
   // Other fixed assets: NCUSIF $5.8M + Fixed $22.5M = $28.3M (matches bs.other display)
   // Cash absorbs the residual — including dividend outflows and any rounding
-  const OTHER_ASSETS  = 28.3;  // NCUSIF 5.8 + Fixed 22.5 — must match bs.other in return
   const cashAdj       = Math.max(totalAssets - totalInv - newLoansNet - OTHER_ASSETS, 2.0);
 
   // ── RATIOS ────────────────────────────────────────────────────────
