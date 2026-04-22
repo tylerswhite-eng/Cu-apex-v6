@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CU ApexSim — Credit Union Leadership Simulation</title>
+<title>CU ApexSim v6.5.5 — Credit Union Leadership Simulation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
-  /* ── CU ApexSim v6.0.5 PALETTE — lightened navy/orange ── */
+  /* ── CU ApexSim v6.5.5 PALETTE — lightened navy/orange ── */
   --navy:        #1a4a7a;   /* Lifted ~20% from #003366 */
   --navy-dark:   #0f3060;   /* Deep navy for headers */
   --navy-mid:    #1e5590;   /* Mid navy */
@@ -726,7 +726,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 </head>
 <body>
 <!-- Version tag — shown on all screens except facilitator (which has its own) -->
-<div class="version-tag" id="global-version-tag">CU ApexSim v6.0.5</div>
+<div class="version-tag" id="global-version-tag">CU ApexSim v6.5.5</div>
 
 <!-- ═══════════════════════════════════
      SCREEN 1: AUTH
@@ -775,7 +775,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       <button class="btn-primary" onclick="doRegister()">Create Account →</button>
       <div class="auth-msg" id="reg-msg"></div>
     </div>
-    <div class="version-footer">CU ApexSim v6.0.5</div>
+    <div class="version-footer">CU ApexSim v6.5.5</div>
   </div>
 </div>
 
@@ -1677,7 +1677,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       <span class="fac-session-name" id="fac-session-name">Loading…</span>
     </div>
     <div class="fac-header-right">
-      <span class="fac-version-tag">v6.0.5</span>
+      <span class="fac-version-tag">v6.5.5</span>
       <div id="fac-notifications" style="display:flex;gap:6px;align-items:center;"></div>
       <button class="fac-btn fac-btn-secondary" onclick="goLobby()">← Lobby</button>
       <button class="fac-btn fac-btn-secondary" onclick="doSignOut()">Sign Out</button>
@@ -1877,7 +1877,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 // CONFIGURATION — paste your anon key below
 // ════════════════════════════════════
 const SUPABASE_URL  = 'https://ppyraqmyalucorltratq.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_NQHxCOVOt2FuuRizB7g_vg_BH3Z-S8g';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -2728,15 +2728,35 @@ function runSimEngine(decMap, econ) {
   // ── DEPOSITS ─────────────────────────────────────────────────────
   const cert12Gap = mktCert12 - d.rC12;
   const mmGap     = mktMM - d.rMM;
-  // More aggressive outflow floors — a team 200bps below market can lose >30%
+  // Certificates: asymmetric sensitivity — outflows and inflows behave differently.
+  // Below market (gap>0): heavy outflow — rate shoppers leave for competitors.
+  // Above market (gap<0): genuine inflow — new money from rate shoppers,
+  //   maturing CDs at other institutions, members moving savings to higher-yield certs.
+  //   Inflow coeff 2.2 x depPressure (cert market is highly rate-elastic).
+  //   Capped at +25% of starting balance (realistic one-quarter inflow ceiling).
+  const certOutflow = cert12Gap>0
+    ? START.cert * cert12Gap * 2.8 * econMult.depPressure
+    : 0;
+  const certInflow  = cert12Gap<0
+    ? Math.min(START.cert * (-cert12Gap) * 2.2 * econMult.depPressure, START.cert*0.25)
+    : 0;
   const newCert = Math.max(
-    START.cert - (cert12Gap>0 ? START.cert*cert12Gap*2.8*econMult.depPressure
-                              : START.cert*cert12Gap*0.35),
-    START.cert*0.52   // floor: can lose up to 48% of cert book in extreme scenario
+    START.cert - certOutflow + certInflow,
+    START.cert*0.52
   );
+
+  // Money market: moderately rate-elastic — less mobile than certs but responds to pricing.
+  // Below market (gap>0): outflow to HYSA/competitors.
+  // Above market (gap<0): inflow from rate-sensitive members and new accounts.
+  //   Inflow coeff 0.9, capped at +12% of starting balance (MM money moves more slowly).
+  const mmOutflow = mmGap>0
+    ? START.mm * mmGap * 1.8 * econMult.depPressure
+    : 0;
+  const mmInflow  = mmGap<0
+    ? Math.min(START.mm * (-mmGap) * 0.9, START.mm*0.12)
+    : 0;
   const newMM = Math.max(
-    START.mm - (mmGap>0 ? START.mm*mmGap*1.8*econMult.depPressure
-                        : START.mm*mmGap*0.3),
+    START.mm - mmOutflow + mmInflow,
     START.mm*0.72
   );
   const newSD  = START.sd * 0.992;   // slight natural runoff
@@ -2745,8 +2765,19 @@ function runSimEngine(decMap, econ) {
 
   // ── BORROWINGS ───────────────────────────────────────────────────
   const fhlbRate  = 0.053;  // overnight Fed Funds proxy — simplified
-  const newFHLB   = (newLoansGross + totalInv) * d.fhlbPct;
-  const fhlbCost  = newFHLB * fhlbRate / 4;
+
+  // FHLB as a funding gap, not a percentage of assets.
+  // The CFO slider sets the MAXIMUM wholesale funding the team is willing to use.
+  // Actual FHLB = min(gap, slider cap) — only borrows what's needed to fund the balance sheet.
+  // fundingNeed: all assets that must be funded (excl. cash, which is the residual)
+  // naturalFunding: equity + deposits (what we have without wholesale borrowing)
+  // This means FHLB grows when loans outpace deposit growth — not just because slider moved.
+  const fundingNeed    = newLoansGross + totalInv + OTHER_ASSETS + 9.0; // loans + inv + fixed + other liab
+  const naturalFunding = totalShares + START.reserves + (START.undivided); // deposits + existing equity base
+  const fundingGap     = Math.max(0, fundingNeed - naturalFunding);
+  const fhlbCap        = fundingNeed * d.fhlbPct;   // slider = ceiling as % of funded assets
+  const newFHLB        = Math.min(fundingGap, fhlbCap);
+  const fhlbCost       = newFHLB * fhlbRate / 4;
 
   // ── INCOME STATEMENT ─────────────────────────────────────────────
   // Deposit expense — realistic blended cost
@@ -2782,8 +2813,10 @@ function runSimEngine(decMap, econ) {
   const totalAssets   = totalLiab + totalEquity;
 
   // Back-solve cash: totalAssets - all other known assets
+  // Other fixed assets: NCUSIF $5.8M + Fixed $22.5M = $28.3M (matches bs.other display)
   // Cash absorbs the residual — including dividend outflows and any rounding
-  const cashAdj       = Math.max(totalAssets - totalInv - newLoansNet - 5.8 - 24.1, 2.0);
+  const OTHER_ASSETS  = 28.3;  // NCUSIF 5.8 + Fixed 22.5 — must match bs.other in return
+  const cashAdj       = Math.max(totalAssets - totalInv - newLoansNet - OTHER_ASSETS, 2.0);
 
   // ── RATIOS ────────────────────────────────────────────────────────
   const nwRatio  = totalEquity / totalAssets;
